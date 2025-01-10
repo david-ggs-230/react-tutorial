@@ -1,0 +1,246 @@
+.. _set-py-venv-scrapy:
+
+.. rst-class:: title-center h1
+   
+Set Scrapy Environment
+
+##################################################################################################
+Create Scrapy Project
+##################################################################################################
+
+**************************************************************************************************
+Install scrapy/selenium packages
+**************************************************************************************************
+
+#. Create the <project> folder.
+#. Navigate to the <project> folder.
+#. Install py scrapy/selenium packages.::
+    
+    # create a Python virtual environment
+    python -m venv .venv
+    # activate the Python virtual environment
+    .venv\Scripts\activate.bat
+    # Update pip
+    python -m pip install -U pip -i https://pypi.tuna.tsinghua.edu.cn/simple
+    # Installing scrapy packages
+    pip install -U scrapy -i https://pypi.tuna.tsinghua.edu.cn/simple
+    # Upgrade Scrapy
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U scrapy 
+    # Installing selenium packages
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U selenium 
+    # Upgrade Selenium
+    pip install --upgrade selenium
+    
+    # Installing BeautifulSoup packages
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U bs4
+    # Upgrade BeautifulSoup
+    pip install --upgrade bs4
+    
+**************************************************************************************************
+Check Scrapy Python Version
+**************************************************************************************************
+
+    ::
+    
+        # Using the Command Line
+        pip show scrapy
+        
+        # Checking Installed Packages
+        # Windows
+        pip list | findstr Scrapy
+        # Linux
+        pip list | grep Scrapy
+    
+**************************************************************************************************
+Check Selenium Python Version
+**************************************************************************************************
+
+    .. code-block:: sh
+       :linenos:
+       
+       # Using the Command Line
+       pip show selenium
+       
+       # Checking Installed Packages
+       # Windows
+       pip list | findstr selenium
+       # Linux
+       pip list | grep selenium
+       
+       
+**************************************************************************************************
+Download Chrome Binary and ChromeDriver
+**************************************************************************************************
+
+- Check Selenium Python Version
+   
+   - ``pip show selenium``
+   
+- Find supported Chrome Version
+   
+   - https://github.com/SeleniumHQ/selenium/blob/trunk/py/CHANGES
+   - Find the matching Chrome version
+       
+       .. code-block:: cfg
+          :linenos:
+          
+          Selenium 4.27.0
+          * Add CDP for Chrome 131 and remove 128
+          * Add Firefox CDP deprecation warnings (#14787)
+          * Cleaned up Py doc sphinx warnings/errors and added README (#14191)
+          * Added Deprecation of WebElement.get_attribute() per #13334 (#14675)
+          * Fix TypeError when init Safari webdriver (#14699)
+          * Set user_agent and extra_headers via ClientConfig (#14718)
+          * Updated Handling for DetachedShadowRoot Exception (#14677)
+          * Support FedCM commands (#14710)
+          
+- Download matching Chrome binary and Chrome Driver
+   
+   - https://googlechromelabs.github.io/chrome-for-testing/#stable
+   - Find the matching Chrome and chromedriver
+   - For Chrome 131 (Selenium 4.27.0), 
+       
+       - Chrome (Win64): https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.85/win64/chrome-win64.zip
+       - ChromeDriver (Win64): https://storage.googleapis.com/chrome-for-testing-public/131.0.6778.85/win64/chromedriver-win64.zip
+       
+       
+**************************************************************************************************
+Creates a new Scrapy project
+**************************************************************************************************
+
+    ::
+    
+        # Using the Command Line
+        # Installing py packages
+        pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U scrapy
+        # Creates a new Scrapy project
+        scrapy startproject <projectname>
+        # Navigate to the <projectname> folder
+        # Generate a spider
+        scrapy genspider <name> <domain>
+        
+
+##################################################################################################
+Scrapy Selenium Guide for quotes.toscrape.com
+##################################################################################################
+
+#. Create the <project> folder.
+   
+   - # Creates a new Scrapy project
+   - scrapy startproject <projectname> // <project name>: scrapy_selenium_quotes_toscrape
+   - scrapy startproject scrapy_selenium_quotes_toscrape
+#. Navigate to the <project> folder.
+   
+   - # Generate a spider
+   - scrapy genspider <spider name> <domain> // <spider name>: quotes, <domain>: https://quotes.toscrape.com
+   - scrapy genspider quotes https://quotes.toscrape.com
+#. Creates a new Scrapy project::
+    
+    # Using the Command Line
+    python -m venv .venv
+    .venv\Scripts\activate.bat
+    pip install -i https://pypi.tuna.tsinghua.edu.cn/simple -U scrapy selenium bs4
+    scrapy startproject <projectname>
+    # Navigate to the <projectname> folder
+    cd <projectname>
+    # Generate a spider
+    # scrapy genspider <name> <domain>
+    scrapy genspider cnki https://www.cnki.net
+    
+#. Settings::
+    
+    # <projectname folder>/settings.py
+    # Log level: Default: 'DEBUG'
+    LOG_LEVEL = 'WARNING'
+    #USER_AGENT: Default: "Scrapy/VERSION (+https://scrapy.org)"
+    #USER_AGENT = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36 "
+    DEFAULT_REQUEST_HEADERS = { 
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/107.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8', 
+        'Accept-Language': 'en',
+    }
+    DOWNLOAD_DELAY = 3
+    RANDOMIZE_DOWNLOAD_DELAY = True
+    
+#. Spider source code (books_spider.py)
+  
+  .. code-block:: python
+    :caption: books_spider.py
+    :linenos:
+    
+    # -*- coding: utf-8 -*-
+    import scrapy
+    
+    class BookSpider(scrapy.Spider):
+        name = "books"
+    
+        def start_requests(self):
+            urls = [ 
+                        "https://books.toscrape.com" 
+                   ]
+            for url in urls:
+                yield scrapy.Request(url=url, callback=self.parse)
+            
+        def parse(self, response):
+            # <li>
+            #     <article class="product_pod">
+            #         <h3>
+            #            <a href="catalogue/a-light-in-the-attic_1000/index.html" title="A Light in the Attic">
+            #               A Light in the Attic
+            #            </a>
+            #          </h3>
+            #          <div class="product_price">
+            #               <p class="price_color">£51.77</p>
+            #               <p class="instock availability">
+            #                   <i class="icon-ok"></i> In stock
+            #               </p>
+            #          </div>
+            #
+    
+            for book in response.css('li article.product_pod'):
+                name = book.xpath('./h3/a/@title').extract_first()
+                price = book.css('p.price_color::text').extract_first()
+    
+                yield {
+                    'name': name,
+                    'price': price
+                }
+    
+            #
+            # <ul class="pager">
+            #      <li class="current">Page 1 of 50</li>
+            #      <li class="next"><a href="catalogue/page-2.html">next</a></li>
+            # </ul>
+    
+            next_url = response.css('ul.pager li.next a::attr(href)').extract_first()
+            if next_url:
+                next_url = response.urljoin(next_url)
+                yield scrapy.Request(next_url, callback=self.parse)
+    
+5. Run the project::
+    
+    # Using the Command Line
+    scrapy crawl books
+    
+
+##################################################################################################
+Save Scrapy Project
+##################################################################################################
+
+#. Navigate to the <project> folder.
+#. Generate the requirements.txt file::
+
+    pip install pipreqs
+    pipreqs --ignore .venv --force
+
+#. Copy all .py files and the the requirements.txt file to a <new-project> folder
+#. Navigate to the <new-project> folder
+#. Install venv and dependencies::
+
+    # create a Python virtual environment
+    python -m venv .venv
+    # activate the Python virtual environment
+    .venv\Scripts\activate.bat
+    # Installing py packages
+    pip install -r requirements.txt -i https://pypi.tuna.tsinghua.edu.cn/simple
+
