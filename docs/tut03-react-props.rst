@@ -114,6 +114,7 @@ React components use props to communicate with each other. Every parent componen
         :class: sd-mb-2
         :width: 80%
         
+    
 ==================================================================================================
 Passing Props to Class Components
 ==================================================================================================
@@ -123,7 +124,8 @@ Every component can have attributes similar to HTML attributes and each attribut
 For example, Hello component with a name attribute can be accessed inside the component through this.props.name variable ::
     
     <Hello name="React" />
-    // value of name will be "Hello* const name = this.props.name
+    // value of name will be "React"
+    // accessed inside the component through props.name
     
 
 When we need immutable data in our component, we can just add props to render() function inside the Class Component.
