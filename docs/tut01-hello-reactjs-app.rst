@@ -27,10 +27,9 @@ Setup ReactJS App Environment
     
 - open your browser and go to http://localhost:3000 to see your React app running
     
-    .. figure:: images/tut01-reactjs-app-init.png
+    .. figure:: images/tut01/tut01-reactjs-app-init.png
         :align: center
         :class: sd-mb-2
-        :alt: Hello ReactJS App
         :width: 80%
         
     
@@ -41,6 +40,18 @@ Modify the React Application
 - Move inside the ReactJS App folder <tut01-hello-reactjs-app/src>::
     
     cd tut01-hello-reactjs-app/src
+    
+- Disable the unit test: open the file ``App.test.js``, make modifications ::
+    
+    import { render, screen } from '@testing-library/react';
+    import App from './App';
+    
+    test('renders learn react link', () => {
+      //render(<App />);
+      //Disable test
+      //const linkElement = screen.getByText(/learn react/i); 
+      //expect(linkElement).toBeInTheDocument();
+    });
     
 - open the file ``App.js``, Replace all the content inside the <div className="App"> with a <h1> element. ::
     
@@ -63,9 +74,8 @@ Modify the React Application
     
 - open your browser and go to http://localhost:3000 to see your React app running
     
-    .. figure:: images/tut01-hello-reactjs-app.png
+    .. figure:: images/tut01/tut01-hello-reactjs-app.png
         :align: center
         :class: sd-mb-2
-        :alt: Hello ReactJS App
         :width: 80%
         

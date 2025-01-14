@@ -21,4 +21,5 @@ React Tutorial documentation
    
    tut01-hello-reactjs-app
    tut02-react-components
+   tut03-react-props
    
