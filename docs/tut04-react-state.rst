@@ -293,15 +293,17 @@ Create Clock Component
 - Create the file ``Clock1.js`` (Child Function Component)::
     
     import './App.css';
-    import React, {useState} from 'react';
+    import React, {useState, useEffect} from 'react';
     
     function Clock1 (props) {
       const [datetime, setDatetime] = useState (new Date ());
+      useEffect (() => {
+        const intervalId = setInterval (() => {
+          setDatetime (new Date ());
+        }, 1000);
     
-      setInterval (() => {
-        setDatetime (new Date ());
-      }, 1000);
-    
+        return () => clearInterval (intervalId);
+      }, []);
       return (
         <div className="App">
           <h4>Function-Component Clock</h4>
@@ -311,6 +313,7 @@ Create Clock Component
     }
     
     export default Clock1;
+    
     
 - Create the file ``Clock2.js`` (Child Class Component)::
     
