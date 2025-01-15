@@ -30,7 +30,7 @@ Create Test App Folder Structure
 - Move inside a project folder:
 - Create React App <tut03-react-props>::
     
-    npx create-react-app tut03-react-props
+    yarn create react-app tut03-react-props
     
 - Move inside the ReactJS App/src folder <tut03-react-props/src>::
     
@@ -51,7 +51,7 @@ Create Test App Folder Structure
 - open the file ``App.js``, and make modifications.
 - Run the ReactJS App <tut03-react-props>::
     
-    npm run start
+    yarn start
     
 - open your browser and go to http://localhost:3000 to see your React app running
 
