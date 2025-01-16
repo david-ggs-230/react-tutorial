@@ -23,4 +23,5 @@ React Tutorial documentation
    tut02-react-components
    tut03-react-props
    tut04-react-state
+   tut05-react-event
    
