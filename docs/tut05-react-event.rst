@@ -540,3 +540,98 @@ Structure:
        
        :custom-color-primary-bold:`Event Handler (Pass no argument)`, Click :custom-color-primary:`Click Me (Div)` or :bdg-secondary-line:`Click Me (Button)` to update logMessages
     
+
+--------------------------------------------------------------------------------------------------
+Event Handler (Pass extra argument)
+--------------------------------------------------------------------------------------------------
+
+Here’s an example of a ReactJS class component that handles both button and div clicks to update a message list:
+    
+    - Button click, add 'Button was clicked!' to LogMessageList
+    - Div click, add 'Div was clicked!' to LogMessageList
+    
+Structure:
+    
+    - Create a parent component <App />
+    - Create a child component <EventHandlerComponentWithExtraArgs />
+    - Three elements in  <EventHandlerComponentWithExtraArgs />, LogMessage, Button and Div
+    - Child component update information when button is clicked
+    
+- Move inside the ReactJS App/src folder <tut05-react-event/src>::
+    
+    cd tut05-react-event/src
+    
+- Create the file ``EventHandlerComponentWithExtraArgs.js`` (Child Component)::
+    
+    import React, { useState } from 'react';
+    import './App.css';
+    
+    function  EventHandlerComponentWithExtraArgs() {
+        const [messages, setMessages] = useState([]);
+    
+        // Regular function to handle div click
+        function handleDivClick (number,e) {
+            setMessages((prevMessages) => [...prevMessages, 'Div was clicked! Passed Argument: ['+number+']']);
+        };
+        // Event handler for button click
+        // class property, using lambda function to define event handler. autobind.
+        const handleButtonClick = (number,e) => {
+            setMessages((prevMessages) => [...prevMessages, 'Button was clicked! Passed Argument: ['+number+']']);
+        };
+    
+        return (
+          <div>
+            <h4>React Event Handler Example (Function Component)</h4>
+            <div
+              onClick={(e)=>handleDivClick(Math.floor(Math.random() * 20),e)}
+              style={{
+                marginTop: '20px',
+                padding: '20px',
+                /*backgroundColor: '#f0f0f0',*/
+                cursor: 'pointer',
+              }}
+            >
+              Click Me (Div)
+            </div>
+            {/* Button that triggers button click handler */}
+            <button onClick={(e)=>handleButtonClick(Math.floor(Math.random() * 20),e)}>Click Me (Button)</button>
+    
+            <div className="App">
+              <h5>LogMessages</h5>
+              {/* Display the list of messages */}
+              <ul>
+                { messages.map ((message, index) => (
+                  <li key={index}>{message}</li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        );
+    }
+    
+    export default EventHandlerComponentWithExtraArgs;
+    
+- Edit the file ``App.js`` (Parent Component)::
+    
+    import './App.css';
+    import EventHandlerComponentWithExtraArgs from './EventHandlerComponentWithExtraArgs';
+    
+    function App() {
+      return (
+        <div className="App">
+          <EventHandlerComponentWithExtraArgs />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. figure:: images/tut05/tut05-react-event-function-component-extra-arg.png
+       :align: center
+       :class: sd-my-2
+       :alt: Event Handler (Pass extra argument)
+       
+       :custom-color-primary-bold:`Event Handler (Pass extra argument)`, Click :custom-color-primary:`Click Me (Div)` or :bdg-secondary-line:`Click Me (Button)` to update logMessages
+    
