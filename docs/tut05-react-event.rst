@@ -433,7 +433,7 @@ Define an event handler method to handle the given event:
                .... 
             }
             
-        - Use the event handler
+        - Use the event handler ::
             
             # Passing no argument
             <tag onClick={eventHandlerMethod}> ... </tag>
