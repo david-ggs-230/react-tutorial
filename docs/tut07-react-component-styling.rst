@@ -527,7 +527,7 @@ Structure:
     
     import React, {Component} from 'react';
     import './App.css';
-    import styles from './ItemsCssStyleSheet.scss';
+    import './ItemsCssStyleSheet.scss';
     
     class StylingComponentCssStylesheet extends Component {
       render () {
