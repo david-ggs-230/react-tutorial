@@ -158,8 +158,8 @@ The general signature of useState() Hook is as follows ::
     
     const [<state variable>, <state update function>] = useState(<initial value>);
     
-
-
+Example App Structure:
+    
     - Create a parent component <App />
     - Create a child component <Person />
     - Child component update information when button is clicked
