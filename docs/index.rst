@@ -24,4 +24,6 @@ React Tutorial documentation
    tut03-react-props
    tut04-react-state
    tut05-react-event
+   tut06-react-component-life-cycle
+   
    
