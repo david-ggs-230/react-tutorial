@@ -26,4 +26,5 @@ React Tutorial documentation
    tut05-react-event
    tut06-react-component-life-cycle
    tut07-react-component-styling
+   tut08-react-router
    
