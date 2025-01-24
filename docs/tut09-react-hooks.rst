@@ -668,4 +668,199 @@ The useReducer hook accepts a reducer function along with the initial value and 
                
                :custom-color-primary-bold:`React Hooks - useReducer`, Click :bdg-secondary-line:`Reset` button to update the state { count: 0, color: :custom-color-primary:`blue` }
                
+
+==================================================================================================
+useMemo
+==================================================================================================
+
+The useMemo hook in React is used to optimize performance by memoizing (i caching) the result of a computation or function call, preventing unnecessary recalculations on re-renders. This is especially useful when the computation is expensive or the result is likely to stay the same across renders.
+
+When to Use useMemo:
+    
+    - When you have a computationally expensive function that depends on certain props or state values, and you want to avoid recalculating it on every render.
+    - When passing down functions to child components, and you want to prevent re-renders of child components when certain props don’t change.
+    
+Using useMemo to Optimize a computationally expensive functions:
+    
+    - useMemo with Arguments: Use useMemo to memoize computations that take arguments, and only recompute the result when the arguments change.
+    - The dependencies array determines when the memoized value should be recalculated. If any dependency changes, the function inside useMemo will be re-run to calculate the new result.
+    - useMemo is particularly useful for avoiding unnecessary re-executions of expensive calculations in functional components.
+    - Arguments are passed as state variables
+    
+Preventing Re-rendering of Expensive Child Component
+    
+    - useMemo is often used to optimize the rendering of child components by memoizing the props that are passed to them, especially when those props are computationally expensive to calculate.
+    - ChildComponent won’t re-render unless props or states change to prevent unnecessary recalculations during every render of ParentComponent.
+    - Arguments are passed using props
+    
+The signature of the useMemo hook is as follows ::
+    
+    const <output of the expensive logic> = useMemo(<expensive_fn>, <dependency_array>);
+    const MemoizedComponent = React.memo(FunctionalComponent);
+    # expensive_fn − Do the expensive logic and returns the output to be memoized.
+    # dependency_array − Hold variables, upon which the expensive logic depends. If the value of the array changes,
+    #    then the expensive logic has to be rerun and the value have to be updated.
+    
+- Move inside the ReactJS App/src folder <tut09-react-hooks/src> ::
+    
+    cd tut09-react-hooks/src
+    
+- Create the file ``./UseMemoChildComponent.js`` ::
+    
+    import React, { useMemo } from 'react';
+    import UseMemoComponent from './UseMemoComponent';
+    import './App.css';
+    
+    function UseMemoChildComponent({data}) {
+    
+      if (typeof UseMemoComponent.logMessages == 'undefined') {
+        UseMemoComponent.logMessages = [];
+      }
+      const expensiveCalculation = (num) => {
+        UseMemoComponent.logMessages.push('Calling ChildComputation('+num+")")
+        if(num<1) return 0;
+        let sum=0;
+        for (let i = 0; i <= num; i++) {
+          sum += i;
+        }
+        return sum;
+      };
+    
+      let result = useMemo(() => expensiveCalculation(data), [data]);
+      //let result = expensiveCalculation(data);
+      return (
+        <span>
+            Child Compution Sum: {result}
+        </span>
+      );
+    }
+    
+    //export default React.memo(UseMemoChildComponent);
+    export default UseMemoChildComponent;
+    
+- Create the file ``./UseMemoComponent.js`` ::
+    
+    import React, {useState, useMemo, useEffect} from 'react';
+    import UseMemoChildComponent from './UseMemoChildComponent';
+    import './App.css';
+    
+    function UseMemoComponent () {
+      const [count, setCount] = useState(0);
+      const [number, setNumber] = useState(10);
+      const [childNum, setChildNumber] = useState(10);
+      const [reRender, setReRender] = useState(true);
+    
+      if (typeof UseMemoComponent.logMessages == 'undefined') {
+        UseMemoComponent.logMessages = [];
+      }
+      useEffect (() => {
+        setReRender(!reRender);
+      }, [UseMemoComponent.logMessages]);
+    
+      const expensiveCalculation = (num) => {
+        UseMemoComponent.logMessages.push('Calling Computation('+num+"). Count: "+count+".")
+        if(num<1) return 0;
+        let sum=0;
+        for (let i = 0; i <= num; i++) {
+          sum += i;
+        }
+        return sum;
+      };
+    
+      const useMemoCalculation = useMemo(() => expensiveCalculation(number), [number]);
+    
+      const handleCountClick=()=>{
+        setCount(count + 1);
+        UseMemoComponent.logMessages.push("Increment Clicked! Count: "+(count+1)+".");
+      }
+      const handleNumberClick=()=>{
+        setNumber(number + 1);
+        UseMemoComponent.logMessages.push("Compute Clicked! Number: "+(number+1)+".");
+      }
+      
+      const handleChildNumberClick=()=>{
+        setChildNumber(childNum + 1);
+        UseMemoComponent.logMessages.push("Child-Compute Clicked! Number: "+(childNum+1)+".");
+      }
+      return (
+        <div>
+          <h2>React Hooks- useMemo</h2>
+          <p>Count: {count} </p>
+          <p>Computation Sum: {useMemoCalculation}</p>
+          <p><UseMemoChildComponent  data={childNum} /></p>
+          <p>
+            <button onClick={handleCountClick}>Increment</button>
+            <button style={{marginLeft: '10px'}} onClick={handleNumberClick }>Compute</button>
+            <button style={{marginLeft: '10px'}} onClick={handleChildNumberClick}>Child-Compute</button>
+          </p>
+          <div className="App">
+            <h5>LogMessages</h5>
+            {/* Display the list of messages */}
+            <ul>
+              {UseMemoComponent.logMessages.map ((message, index) => (
+                <li key={index}>{message}</li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      );
+    }
+    
+    export default UseMemoComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import UseMemoComponent from './UseMemoComponent';
+    import './App.css';
+    
+    
+    function App() {
+      return (
+        <div className='App'>
+          <UseMemoComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usememo-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hooks - useMemo
                
+               :custom-color-primary-bold:`React Hooks - useMemo`, state with initial values: {count: 0, compute: 10, child-compute: 10 }
+            
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usememo-count.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Hooks - useMemo
+               
+               :custom-color-primary-bold:`React Hooks - useMemo`, Click :bdg-secondary-line:`Count-Change` button to update the state {count: XXX}, no rerender for Compute function value and Child-Compute component.
+            
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usememo-compute.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Hooks - useMemo
+               
+               :custom-color-primary-bold:`React Hooks - useMemo`, Click :bdg-secondary-line:`Compute` button to update the state {compute: XXX}, no rerender for Count state value and Child-Compute component.
+            
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usememo-child-compute.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Hooks - useMemo
+               
+               :custom-color-primary-bold:`React Hooks - useMemo`, Click :bdg-secondary-line:`Child-Compute` button to update the state {child-compute: XXX}, no rerender for Count state value and Compute function value.
+            
