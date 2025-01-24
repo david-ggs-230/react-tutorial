@@ -864,3 +864,275 @@ The signature of the useMemo hook is as follows ::
                
                :custom-color-primary-bold:`React Hooks - useMemo`, Click :bdg-secondary-line:`Child-Compute` button to update the state {child-compute: XXX}, no rerender for Count state value and Compute function value.
             
+
+==================================================================================================
+useCallback
+==================================================================================================
+
+The useCallback hook is similar to useMemo hook and provides the functionality of memoizing the function instead of values. Since callback function in an integral part of the JavaScript programming and callback functions are passed by references, react provides a separate hook, useCallback to memoize the callback functions. The useCallback and useMemo Hooks are similar. The main difference is that useMemo returns a memoized value and useCallback returns a memoized function.
+
+When to Use useCallback:
+    
+    - One reason to use useCallback is to prevent a component from re-rendering unless its props have changed.
+    - Every time a component re-renders, its functions get recreated. When the function is passed to its child component as props, the props state has actually changed.
+    - We can use the useCallback hook to prevent the function from being recreated unless necessary.
+    
+The signature of the useMemo hook is as follows ::
+    
+    const <memoized_callback_fn> = useCallback(<callback_fn>, <dependency_array>);
+    # callback_fn − Callback function to be memorized.
+    # dependency_array − Hold variables, upon which the callback function depends.
+    # The output of the useCallback hook is the memoized callback function of the callback_fn.
+    # The useCallback(callback_fn, dependency_array) is equivalent to useMemo(() => callback_fn, dependency_array).
+    
+- Move inside the ReactJS App/src folder <tut09-react-hooks/src> ::
+    
+    cd tut09-react-hooks/src
+    
+- Create the file ``./UseCallbackChildComponent.js`` ::
+    
+    import React from 'react';
+    import './App.css';
+    const UseCallbackChildComponent=({count, onClick})=> {
+      console.log("child render");
+      return (
+        <div>
+            <h5>Child Component</h5>
+            <p>Child Count: {count}</p>      
+            <p>
+                <button onClick={onClick}>Child Count by Child</button>
+            </p>
+        </div>
+      );
+    }
+    
+    export default React.memo(UseCallbackChildComponent);
+    
+- Create the file ``./UseCallbackComponent.js`` ::
+    
+    import React, { useState ,useCallback } from 'react';
+    import UseCallbackChildComponent from './UseCallbackChildComponent';
+    import './App.css';
+    
+    function UseCallbackComponent() {
+      const [count, setCount] = useState(0);
+      const [pcount, setPCount] = useState(0);
+    
+      const handleCountClick=useCallback(()=>{
+        setCount(count + 1);
+      },[count]);
+    
+      const handleParentCountClick=()=>{
+        setPCount(pcount + 1);
+      };
+      return (
+        <div>
+          <h2>React Hooks- useCallback</h2>
+          <p>Parent Count: {pcount}</p>      
+          <p>
+            <button onClick={handleParentCountClick}>Parent Count by Parent</button>
+            <button style={{ marginLeft: '10px'}} onClick={handleCountClick}>Child Count by Parent</button>
+          </p>
+          <UseCallbackChildComponent  count={count} onClick={handleCountClick}/>
+        </div>
+      );
+    }
+    
+    export default UseCallbackComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import UseCallbackComponent from './UseCallbackComponent';
+    import './App.css';
+    
+    function App() {
+      return (
+        <div className='App'>
+          <UseCallbackComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usecallback-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hooks - useCallback
+               
+               :custom-color-primary-bold:`React Hooks - useCallback`, state with initial values: {parent-count: 0,  child-count: 0 }
+            
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usecallback-parentcount.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hooks - useCallback
+               
+               :custom-color-primary-bold:`React Hooks - useCallback`, Click :bdg-secondary-line:`Parent Count by Parent` button to update the state {parent-count: XXX}, no re-render for Child component.
+            
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usecallback-parentchild.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hooks - useCallback
+               
+               :custom-color-primary-bold:`React Hooks - useCallback`, Click :bdg-secondary-line:`Child Count by Parent` button to update the state {child-count: XXX}, re-render for Child component.
+            
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usecallback-childchild.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hooks - useCallback
+               
+               :custom-color-primary-bold:`React Hooks - useCallback`, Click :bdg-secondary-line:`Child Count by Child` button to update the state {child-count: XXX}, re-render for Child component.
+            
+
+==================================================================================================
+Custom Hooks
+==================================================================================================
+
+`ReactJS - Custom Hooks <https://www.tutorialspoint.com/reactjs/reactjs_custom_hooks.htm>`_ : :custom-color-primary-underline:`https://www.tutorialspoint.com/reactjs/reactjs_custom_hooks.htm`
+
+React allows to create new custom hooks through existing hooks. Developer can extract a special functionality from the function component and can create it as a separate hook, which can be used in any function component.
+
+Create a custom hook
+    
+    Let use create a new react function component with infinite scroll feature and then extract the infinite functionality from the function component and create a custom hook. Once the custom hook is created, we will try to change the original function component to use our custom hook.
+    
+    The basic functionality of the component is to show a dummy list of todo item simply by generating it. As the user scrolls, the component will generate a new set of dummy todo list and append it to the existing list.
+    
+
+- Move inside the ReactJS App/src folder <tut09-react-hooks/src> ::
+    
+    cd tut09-react-hooks/src
+    
+- Create the file ``./useInfiniteScroll_CustomHook.js`` ::
+    
+    import React from 'react';
+    
+    const useInfiniteScroll_CustomHook = loadDataFn => {
+      const [bottom, setBottom] = React.useState (false);
+      React.useEffect (() => {
+        window.addEventListener ('scroll', handleScroll);
+        return () => {
+          window.removeEventListener ('scroll', handleScroll);
+        };
+      }, []);
+      React.useEffect (
+        () => {
+          if (!bottom) return;
+          loadDataFn ();
+        },
+        [bottom]
+      );
+    
+      function handleScroll () {
+        if (
+          window.innerHeight + document.documentElement.scrollTop !=
+          document.documentElement.offsetHeight
+        ) {
+          return;
+        }
+        setBottom (true);
+      }
+      return [bottom, setBottom];
+    };
+    
+    export default useInfiniteScroll_CustomHook;
+    
+- Create the file ``./UsingCustomHook_InfiniteScrollComponent.js`` ::
+    
+    import React, {useState} from 'react';
+    import useInfiniteScroll_CustomHook from './useInfiniteScroll_CustomHook';
+    import './App.css';
+    
+    function UsingCustomHook_InfiniteScrollComponent () {
+      const [data, setData] = useState ([]);
+      const [count, setCount] = useState (100);
+      const [bottom, setBottom] = useInfiniteScroll_CustomHook (loadMoreData);
+    
+      const loadData = () => {
+        let data = [];
+        for (let i = 1; i <= count; i++) {
+          data.push ({
+            id: i,
+            todo: 'Todo Item ' + i.toString (),
+          });
+        }
+        setData (data);
+      };
+    
+      function loadMoreData () {
+        let data = [];
+    
+        for (let i = 1; i <= count; i++) {
+          data.push ({
+            id: i,
+            todo: 'Todo Item ' + i.toString (),
+          });
+        }
+        setData (data);
+        setCount (count + 100);
+        setBottom (false);
+      }
+      React.useEffect (() => {
+        loadData (count);
+      }, []);
+      return (
+        <div>
+          <p>List of Todo list</p>
+          <ul>
+            {data && data.map (item => <li key={item.id}>{item.todo}</li>)}
+          </ul>
+        </div>
+      );
+    }
+    
+    export default UsingCustomHook_InfiniteScrollComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import UsingCustomHook_InfiniteScrollComponent from './UsingCustomHook_InfiniteScrollComponent';
+    import './App.css';
+    
+    function App () {
+      return (
+        <div className="App">
+          <UsingCustomHook_InfiniteScrollComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usecustomhook-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hooks - useCustomHook
+               
+               :custom-color-primary-bold:`React Hooks - useCustomHook`, state with initial values: {count: 100}
+            
+        .. grid-item::
+            
+            .. figure:: images/tut09/tut09-react-hooks-usecustomhook-scroll.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hooks - useCustomHook
+               
+               :custom-color-primary-bold:`React Hooks - useCustomHook`, The application will update the state {count: XXX} and append new todo item once the user hits the end of the page and goes on infinitely.
+            
