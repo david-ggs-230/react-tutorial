@@ -47,14 +47,14 @@ Create Test App Folder Structure
     
 - Disable the unit test: open the file ``App.test.js``, make modifications ::
     
-    //import { render, screen } from '@testing-library/react';
-    //import App from './App';
+    import { render, screen } from '@testing-library/react';
+    import App from './App';
     
-    //test('renders learn react link', () => {
+    test('renders learn react link', () => {
       //render(<App />);
       //const linkElement = screen.getByText(/learn react/i); 
       //expect(linkElement).toBeInTheDocument();
-    //});
+    });
     
 - open the file ``App.js``, and make modifications.
 - Run the ReactJS App <tut10-react-form> ::
@@ -138,7 +138,7 @@ Controlled Form Component
             <div className="App">
               <form onSubmit={e => this.handleSubmit (e)}>
                 <div style={{marginTop: 10}}>
-                    <label for="name" style={{marginRight: '1.5rem'}}>Name</label>
+                    <label htmlFor="name" style={{marginRight: '1.5rem'}}>Name</label>
                     <input
                         type="text"
                         id="name"
@@ -149,7 +149,7 @@ Controlled Form Component
                     />
                 </div>
                 <div style={{marginTop: 10}}>
-                    <label for="age" style={{marginRight: '2.25rem'}}>Age</label>
+                    <label htmlFor="age" style={{marginRight: '2.25rem'}}>Age</label>
                     <input
                         type="number"
                         id="age"
@@ -160,7 +160,7 @@ Controlled Form Component
                     />
                 </div>
                 <div style={{marginTop: 10}}>
-                    <label for="location" style={{marginRight: '0.25rem'}}>Location</label>
+                    <label htmlFor="location" style={{marginRight: '0.25rem'}}>Location</label>
                     <input
                         type="text"
                         id="location"
@@ -224,3 +224,311 @@ Controlled Form Component
                
                :custom-color-primary-bold:`React Form - Controlled Component`, form input
             
+    
+--------------------------------------------------------------------------------------------------
+Controlled Form Child Component
+--------------------------------------------------------------------------------------------------
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./ReactFormControlledChildComponent.js`` ::
+    
+    import React from 'react';
+    import './App.css';
+    class ReactFormControlledChildComponent extends React.Component {
+      render () {
+        return (
+          <div style={{marginTop: 10}}>
+            <label htmlFor={this.props.name} style={{display: 'inline-block', width: '3rem', marginRight: '1.5rem'}}>
+              {this.props.label}
+            </label>
+            <input
+              type={this.props.type}
+              id={this.props.name}
+              name={this.props.name}
+              placeholder={this.props.placeholder}
+              value={this.props.value}
+              onChange={this.props.changeHandler}
+            />
+          </div>
+        );
+      }
+    }
+    
+    export default ReactFormControlledChildComponent;
+    
+- Create the file ``./ReactFormControlledParentComponent.js`` ::
+    
+    import React from 'react';
+    import './App.css';
+    import ReactFormControlledChildComponent from './ReactFormControlledChildComponent';
+    
+    class ReactFormControlledParentComponent extends React.Component {
+      constructor (props) {
+        super (props);
+        this.state = {name: '', age: '', location: ''};
+      }
+      changeHandler = e => {
+        this.setState (prevState => {
+          const name = e.target.name;
+          const value = e.target.value;
+          return {...prevState, [name]: value};
+        });
+      };
+    
+      handleSubmit = e => {
+        e.preventDefault ();
+        alert (JSON.stringify (this.state));
+      };
+      render () {
+        return (
+          <div>
+            <div className="App">
+              <form onSubmit={e => this.handleSubmit (e)}>
+                <ReactFormControlledChildComponent
+                  type="text"
+                  label="Name"
+                  name="name"
+                  placeholder="Enter name"
+                  value={this.state.name}
+                  changeHandler={this.changeHandler}
+                />
+                <ReactFormControlledChildComponent
+                  type="number"
+                  label="Age"
+                  name="age"
+                  placeholder="Enter age"
+                  value={this.state.age}
+                  changeHandler={this.changeHandler}
+                />
+                <ReactFormControlledChildComponent
+                  type="text"
+                  label="Location"
+                  name="location"
+                  placeholder="Enter location"
+                  value={this.state.location}
+                  changeHandler={this.changeHandler}
+                />
+                <div style={{marginTop: 10}}>
+                  <input type="submit" value="Submit" />
+                </div>
+              </form>
+            </div>
+            <div>
+              <h2>Name: {this.state.name}</h2>
+              <p>Age: {this.state.age}</p>
+              <p>Location: {this.state.location}</p>
+            </div>
+          </div>
+        );
+      }
+    }
+    
+    export default ReactFormControlledParentComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import ReactFormControlledParentComponent from './ReactFormControlledParentComponent';
+    
+    function App() {
+      return (
+        <div className="App">
+            <ReactFormControlledParentComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-controlled-child-component-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Form - Controlled Child Component
+               
+               :custom-color-primary-bold:`React Form - Controlled Child Component`, homepage
+            
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-controlled-child-component-input.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Form - Controlled Child Component
+               
+               :custom-color-primary-bold:`React Form - Controlled Child Component`, form input
+            
+    
+==================================================================================================
+Uncontrolled Component
+==================================================================================================
+
+In uncontrolled components, React does not manage the state of input elements and doesn't track the value of the input fields. Instead, it allows the DOM to handle the input's state. React provides a ref attribute for all its DOM element and a corresponding api, React.createRef() to create a new reference (this.ref). The newly created reference can be attached to the form element and the attached form element's value can be accessed using this.ref.current.value whenever necessary.
+
+The sample usage to do form programming in uncontrolled component:
+    
+    - Step 1 − Create a reference ::
+        
+        this.inputRef = React.createRef();
+        
+    - Step 2 − Create a form element ::
+        
+        <input type="text" name="username" />
+        
+    - Step 3 − Attach the already created reference in the form element ::
+        
+        <input type="text" name="username" ref={this.inputRef} />
+        
+    - Step 4 − Get the input value using this.inputRef.current.value during validation and submission ::
+        
+        <div> input: {this.inputRef.current.value} </div> 
+        
+    
+--------------------------------------------------------------------------------------------------
+Uncontrolled Form Component
+--------------------------------------------------------------------------------------------------
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./ReactFormUncontrolledComponent.js`` ::
+    
+    import React from 'react';
+    import './App.css';
+    class ReactFormUncontrolledComponent extends React.Component {
+      constructor (props) {
+        super (props);
+        //this.nameInputRef = React.createRef();
+        //this.ageInputRef = React.createRef();
+        //this.locationInputRef = React.createRef();
+        this.labelNameRef = React.createRef();
+        this.labelAgeRef = React.createRef();
+        this.labelLocationRef = React.createRef();
+      }
+    
+      handleSubmit = e => {
+        e.preventDefault ();
+        alert (JSON.stringify ({name:this.labelNameRef.current.innerText, age:this.labelAgeRef.current.innerText, location:this.labelLocationRef.current.innerText }));
+      };
+    
+      handleChange = (e) => {
+        let name=e.target.name;
+        if(name === 'name') {
+          this.labelNameRef.current.innerText=e.target.value;
+        }else if(name === 'age'){
+          this.labelAgeRef.current.innerText=e.target.value;  
+        }else if(name === 'location'){
+          this.labelLocationRef.current.innerText=e.target.value;  
+        }
+      };
+    
+      render () {
+        return (
+          <div>
+            <div className="App">
+              <form onSubmit={e => this.handleSubmit (e)}>
+                <div style={{marginTop: 10}}>
+                  <label htmlFor='name' style={{display: 'inline-block', width: '3rem', marginRight: '1.5rem'}}>
+                    Name
+                  </label>
+                  <input
+                    type='text'
+                    id='name'
+                    name='name'
+                    placeholder='Enter name'
+                    //ref={this.nameInputRef}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div style={{marginTop: 10}}>
+                  <label htmlFor='age' style={{display: 'inline-block', width: '3rem', marginRight: '1.5rem'}}>
+                    Age
+                  </label>
+                  <input
+                    type='number'
+                    id='age'
+                    name='age'
+                    placeholder='Enter age'
+                    //ref={this.ageInputRef}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div style={{marginTop: 10}}>
+                  <label htmlFor='location' style={{display: 'inline-block', width: '3rem', marginRight: '1.5rem'}}>
+                    Location
+                  </label>
+                  <input
+                    type='text'
+                    id='location'
+                    name='location'
+                    placeholder='Enter location'
+                    //ref={this.locationInputRef}
+                    onChange={this.handleChange}
+                  />
+                </div>
+                <div style={{marginTop: 10}}>
+                    <input type="submit" value="Submit" />
+                </div>
+              </form>
+            </div>
+            <div>
+              <h2>Name: <span ref={this.labelNameRef}></span></h2>
+              <p>Age: <span ref={this.labelAgeRef}></span></p>
+              <p>Location: <span ref={this.labelLocationRef}></span></p>
+            </div>
+          </div>
+        );
+      }
+    }
+    
+    export default ReactFormUncontrolledComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import ReactFormUncontrolledComponent from './ReactFormUncontrolledComponent';
+    
+    function App() {
+      return (
+        <div className="App">
+            <ReactFormUncontrolledComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-uncontrolled-component-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Form - Uncontrolled Component
+               
+               :custom-color-primary-bold:`React Form - Uncontrolled Component`, homepage
+            
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-uncontrolled-component-input.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Form - Uncontrolled Component
+               
+               :custom-color-primary-bold:`React Form - Uncontrolled Component`, form input
+            
+    
+--------------------------------------------------------------------------------------------------
+Uncontrolled Form Child Component
+--------------------------------------------------------------------------------------------------
