@@ -416,7 +416,9 @@ Uncontrolled Form Component
     
       handleSubmit = e => {
         e.preventDefault ();
-        alert (JSON.stringify ({name:this.labelNameRef.current.innerText, age:this.labelAgeRef.current.innerText, location:this.labelLocationRef.current.innerText }));
+        alert (JSON.stringify ({name:this.labelNameRef.current.innerText, 
+                      age:this.labelAgeRef.current.innerText, 
+                      location:this.labelLocationRef.current.innerText }));
       };
     
       handleChange = (e) => {
@@ -532,3 +534,151 @@ Uncontrolled Form Component
 --------------------------------------------------------------------------------------------------
 Uncontrolled Form Child Component
 --------------------------------------------------------------------------------------------------
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./ReactFormUncontrolledChildComponent.js`` ::
+    
+    import React from 'react';
+    import './App.css';
+    class ReactFormUncontrolledChildComponent extends React.Component {
+      render () {
+        return (
+          <div style={{marginTop: 10}}>
+            <label htmlFor={this.props.name} style={{display: 'inline-block', width: '3rem', marginRight: '1.5rem'}}>
+              {this.props.label}
+            </label>
+            <input
+              type={this.props.type}
+              id={this.props.name}
+              name={this.props.name}
+              placeholder={this.props.placeholder}
+              onChange={this.props.changeHandler}
+              ref={this.props.ref}
+            />
+          </div>
+        );
+      }
+    }
+    
+    export default ReactFormUncontrolledChildComponent;
+    
+- Create the file ``./ReactFormUncontrolledParentComponent.js`` ::
+    
+    import React from 'react';
+    import './App.css';
+    import ReactFormUncontrolledChildComponent from './ReactFormUncontrolledChildComponent';
+    
+    class ReactFormUncontrolledParentComponent extends React.Component {
+      constructor (props) {
+        super (props);
+        this.nameInputRef = React.createRef();
+        this.ageInputRef = React.createRef();
+        this.locationInputRef = React.createRef();
+        this.labelNameRef = React.createRef();
+        this.labelAgeRef = React.createRef();
+        this.labelLocationRef = React.createRef();
+      }
+    
+      changeHandler = e => {
+        let name=e.target.name;
+        if(name === 'name') {
+          this.labelNameRef.current.innerText=e.target.value;
+        }else if(name === 'age'){
+          this.labelAgeRef.current.innerText=e.target.value;  
+        }else if(name === 'location'){
+          this.labelLocationRef.current.innerText=e.target.value;  
+        }
+      };
+      handleSubmit = e => {
+        e.preventDefault ();
+        alert (JSON.stringify ({name:this.labelNameRef.current.innerText, 
+              age:this.labelAgeRef.current.innerText, 
+              location:this.labelLocationRef.current.innerText }));
+      };
+      render () {
+        return (
+          <div>
+            <div className="App">
+              <form onSubmit={e => this.handleSubmit (e)}>
+                <ReactFormUncontrolledChildComponent
+                  type="text"
+                  label="Name"
+                  name="name"
+                  placeholder="Enter name"
+                  ref={this.nameInputRef}
+                  changeHandler={this.changeHandler}
+                />
+                <ReactFormUncontrolledChildComponent
+                  type="number"
+                  label="Age"
+                  name="age"
+                  placeholder="Enter age"
+                  ref={this.ageInputRef}
+                  changeHandler={this.changeHandler}
+                />
+                <ReactFormUncontrolledChildComponent
+                  type="text"
+                  label="Location"
+                  name="location"
+                  placeholder="Enter location"
+                  ref={this.locationInputRef}
+                  changeHandler={this.changeHandler}
+                />
+                <div style={{marginTop: 10}}>
+                  <input type="submit" value="Submit" />
+                </div>
+              </form>
+            </div>
+            <div>
+              <h2>Name: <span ref={this.labelNameRef}></span></h2>
+              <p>Age: <span ref={this.labelAgeRef}></span></p>
+              <p>Location: <span ref={this.labelLocationRef}></span></p>
+            </div>
+          </div>
+        );
+      }
+    }
+    
+    export default ReactFormUncontrolledParentComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import ReactFormUncontrolledParentComponent from './ReactFormUncontrolledParentComponent';
+    
+    function App() {
+      return (
+        <div className="App">
+            <ReactFormUncontrolledParentComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-uncontrolled-child-component-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Form - Uncontrolled Child Component
+               
+               :custom-color-primary-bold:`React Form - Uncontrolled Child Component`, homepage
+            
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-uncontrolled-child-component-input.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Form - Uncontrolled Child Component
+               
+               :custom-color-primary-bold:`React Form - Uncontrolled Child Component`, form input
+            
+    
