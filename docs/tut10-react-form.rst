@@ -681,4 +681,222 @@ Uncontrolled Form Child Component
                
                :custom-color-primary-bold:`React Form - Uncontrolled Child Component`, form input
             
+
+**************************************************************************************************
+React Hook Form
+**************************************************************************************************
+
+React Hook Form is a React library for building forms. It is very flexible and can be used for simple forms as well as large forms with complex validation and submission logic. It is also very performant and optimised not to cause unnecessary re-renders.
+    
+    - install the react-hook-form library ::
+        
+        # npm install the react-hook-form library 
+        npm install react-hook-form
+        # yarn install the react-hook-form library 
+        yarn add react-hook-form
+        
+    - import the useForm hook from the library ::
+        
+        # import the useForm hook
+        import { useForm } from "react-hook-form";
+        
+    - use the useForm hook ::
+        
+        # destructure the register and handleSubmit properties
+        const { register, handleSubmit, formState: {errors, isSubmitting, isSubmitSuccessful} } = useForm();
+        
+    - register an input element ::
+        
+        # register an input element with a variable name. This spread operator syntax is a new implementation to 
+        #    the library that enables strict type checking in forms with TypeScript. 
+        <input type="text" name="firstName" {...register('firstName')} />
+        # React Hook Form versions older than v7 had the register method attached to the ref attribute as such:
+        #    <input type="text" name="firstName" ref={register} />
+        
+    - form submission. The handleSubmit method can handle two functions as arguments. The first function passed as an argument will be invoked when the form validation is successful. The second function is called with errors when the validation fails ::
+        
+        # create onSubmit and onErrors methods to handle form submission
+        const onFormSubmit  = data => console.log(data);
+        const onErrors = errors => console.error(errors);
+        <form onSubmit={handleSubmit(onFormSubmit, onErrors)}>
+            {/* ... */}
+        </form>
+        
+==================================================================================================
+Basic Form with React Hook Form
+==================================================================================================
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./ReactHookFormUseFormFunctionComponent.js`` ::
+    
+    import React, { useRef } from "react";
+    import { useForm } from "react-hook-form";
+    import "./App.css";
+    
+    const ReactHookFormUseFormFunctionComponent = () => {
+      const {
+        register,
+        handleSubmit
+      } = useForm();
+    
+      const labelNameRef = useRef(null);
+      const labelAgeRef = useRef(null);
+      const labelLocationRef = useRef(null);
+    
+      const onFormSubmit = (data) => {
+        alert(
+          JSON.stringify({
+            name: labelNameRef.current.innerText,
+            age: labelAgeRef.current.innerText,
+            location: labelLocationRef.current.innerText,
+          })
+        );
+      };
+    
+      const handleChange = (e) => {
+        let name = e.target.name;
+        if (name === "name") {
+          labelNameRef.current.innerText = e.target.value;
+        } else if (name === "age") {
+          labelAgeRef.current.innerText = e.target.value;
+        } else if (name === "location") {
+          labelLocationRef.current.innerText = e.target.value;
+        }
+      };
+    
+      return (
+        <div>
+          <div className="App">
+            <form onSubmit={handleSubmit(onFormSubmit)}>
+              <div style={{ marginTop: 10 }}>
+                <label
+                  htmlFor="name"
+                  style={{
+                    display: "inline-block",
+                    width: "3rem",
+                    marginRight: "1.5rem",
+                  }}
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter name"
+                  {...register('name')} 
+                  onChange={handleChange}
+                />
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <label
+                  htmlFor="age"
+                  style={{
+                    display: "inline-block",
+                    width: "3rem",
+                    marginRight: "1.5rem",
+                  }}
+                >
+                  Age
+                </label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  placeholder="Enter age"
+                  {...register('age')}
+                  onChange={handleChange}
+                />
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <label
+                  htmlFor="location"
+                  style={{
+                    display: "inline-block",
+                    width: "3rem",
+                    marginRight: "1.5rem",
+                  }}
+                >
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="Enter location"
+                  {...register('location')}
+                  onChange={handleChange}
+                />
+              </div>
+              <div style={{ marginTop: 10 }}>
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+          <div>
+            <h2>
+              Name: <span ref={labelNameRef}></span>
+            </h2>
+            <p>
+              Age: <span ref={labelAgeRef}></span>
+            </p>
+            <p>
+              Location: <span ref={labelLocationRef}></span>
+            </p>
+          </div>
+        </div>
+      );
+    };
+    
+    export default ReactHookFormUseFormFunctionComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import ReactHookFormUseFormFunctionComponent from './ReactHookFormUseFormFunctionComponent';
+    
+    function App() {
+      return (
+        <div className="App">
+            <ReactHookFormUseFormFunctionComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-hook-form-use-form-component-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hook Form - useForm Component
+               
+               :custom-color-primary-bold:`React Hook Form - useForm Component`, homepage
+            
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-hook-form-use-form-component-input.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Hook Form - useForm Component
+               
+               :custom-color-primary-bold:`React Hook Form - useForm Component`, form input
+            
+    
+        
+==================================================================================================
+Validate Form with React Hook Form
+==================================================================================================
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
     
