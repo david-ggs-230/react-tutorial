@@ -722,6 +722,7 @@ React Hook Form is a React library for building forms. It is very flexible and c
             {/* ... */}
         </form>
         
+
 ==================================================================================================
 Basic Form with React Hook Form
 ==================================================================================================
@@ -896,7 +897,488 @@ Basic Form with React Hook Form
 Validate Form with React Hook Form
 ==================================================================================================
 
+The validation parameters include the following properties:
+    - required
+        indicates if the field is required or not. If this property is set to true, then the field cannot be empty
+    - minlength and maxlength
+        set the minimum and maximum length for a string input value
+    - min and max 
+        set the minimum and maximum values for a numerical value
+    - type
+        indicates the type of the input field; it can be email, number, text, or any other standard HTML input types
+    - pattern
+        defines a pattern for the input value using a regular expression
+    
+Install ErrorMessage component to handle errors if desired
+    
+    - install by npm 
+        npm install @hookform/error-message
+    - install by yarn 
+        yarn add @hookform/error-message
+    
+--------------------------------------------------------------------------------------------------
+Validate with RegisterOptions
+--------------------------------------------------------------------------------------------------
+    
+Specifying validation
+    
+    - Field validation is defined in the register field in an options parameter as follows:
+        
+        - <input {...register('name', { required: true })} />
+        - <input {...register('name', { required: 'You must enter a name' })} />
+        - <input {...register('name', { required: 'You must enter a name', pattern: { value: /\S+/, message: 'Entered value does not match pattern format', } }) } />
+        
+    - Add a noValidate attribute to the form element to prevent any native HTML validation
+        
+        - <form noValidate onSubmit={handleSubmit(onSubmit)}>
+        
+    - Obtaining validation errors
+        
+        - The useForm returns a state called errors, which contains the form validation errors
+        - The errors state is an object containing invalid field error messages.
+            
+            For example, if a name field is invalid because a required rule has been violated, the errors object could be as follows ::
+              
+              { name: {
+                           message: 'You must enter your name',
+                           type: 'required'
+                      }
+              }
+              
+    - Use the errors object to display custom error messages
+        
+        - { errors.name && <p className="errorMsg">{errors.name.message}</p> }
+        
+Handling submission with form validation
+    
+    - The isSubmitting state can be used to disable elements whilst the form is being submitted ::
+        
+        <button type="submit" disabled={isSubmitting}>Submit</button>
+        
+    - The isSubmitSuccessful can be used to conditionally render a successful submission message ::
+        
+        if (isSubmitSuccessful) { 
+            return <div>The form was successfully submitted</div>;
+        }
+        
+
 - Move inside the ReactJS App/src folder <tut10-react-form/src> ::
     
     cd tut10-react-form/src
+    
+- Create the file ``./ReactHookFormUseFormFunctionComponentValidateWithRegisterOptions.js`` ::
+    
+    import React, {useRef} from 'react';
+    import {useForm} from 'react-hook-form';
+    //import { ErrorMessage } from "@hookform/error-message"
+    import './App.css';
+    
+    const ReactHookFormUseFormFunctionComponentValidateWithRegisterOptions = () => {
+      const {register, handleSubmit, formState: {errors}, reset} = useForm ({
+        mode: 'all',
+      });
+    
+      const labelNameRef = useRef (null);
+      const labelAgeRef = useRef (null);
+      const labelLocationRef = useRef (null);
+    
+      const formSubmitHandler = data => {
+        alert (
+          JSON.stringify ({
+            name: labelNameRef.current.innerText,
+            age: labelAgeRef.current.innerText,
+            location: labelLocationRef.current.innerText,
+          })
+        );
+        reset ();
+      };
+    
+      const handleChange = e => {
+        let name = e.target.name;
+        if (name === 'name') {
+          labelNameRef.current.innerText = e.target.value;
+        } else if (name === 'age') {
+          labelAgeRef.current.innerText = e.target.value;
+        } else if (name === 'location') {
+          labelLocationRef.current.innerText = e.target.value;
+        }
+      };
+    
+      return (
+        <div>
+          <div className="App">
+            <form noValidate onSubmit={handleSubmit (formSubmitHandler)}>
+              <div style={{marginTop: 10}} className="form-group">
+                <label
+                  htmlFor="name"
+                  style={{
+                    display: 'inline-block',
+                    width: '3rem',
+                    marginRight: '1.5rem',
+                  }}
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter name"
+                  {...register ('name', {
+                    required: 'You must enter a name',
+                    minLength: {
+                      value: 4,
+                      message: 'Name must be at least 4 characters',
+                    },
+                    maxLength: {
+                      value: 128,
+                      message: 'Name must be at most 128 characters',
+                    },
+                  })}
+                  onChange={handleChange}
+                />
+                {/*<p><ErrorMessage errors={errors} name="name" /></p>*/}
+                {errors.name && <p className="errorMsg">{errors.name.message}</p>}
+              </div>
+              <div style={{marginTop: 10}} className="form-group">
+                <label
+                  htmlFor="age"
+                  style={{
+                    display: 'inline-block',
+                    width: '3rem',
+                    marginRight: '1.5rem',
+                  }}
+                >
+                  Age
+                </label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  placeholder="Enter age"
+                  {...register ('age', {
+                    valueAsNumber: true,
+                    min: {value: 1, message: 'Age must be at least 1 years old'},
+                    max: {value: 150, message: 'Age must be at most 150 years old'},
+                  })}
+                  onChange={handleChange}
+                />
+                {errors.age && <p className="errorMsg">{errors.age.message}</p>}
+              </div>
+              <div style={{marginTop: 10}} className="form-group">
+                <label
+                  htmlFor="location"
+                  style={{
+                    display: 'inline-block',
+                    width: '3rem',
+                    marginRight: '1.5rem',
+                  }}
+                >
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="Enter location"
+                  {...register ('location', {
+                    required: 'You must enter a location',
+                    minLength: {
+                      value: 2,
+                      message: 'Location must be at least 2 characters',
+                    },
+                    maxLength: {
+                      value: 128,
+                      message: 'Location must be at most 128 characters',
+                    },
+                  })}
+                  onChange={handleChange}
+                />
+                {errors.location &&
+                  <p className="errorMsg">{errors.location.message}</p>}
+              </div>
+              <div style={{marginTop: 10}} className="form-group">
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+          <div>
+            <h2>
+              Name: <span ref={labelNameRef} />
+            </h2>
+            <p>
+              Age: <span ref={labelAgeRef} />
+            </p>
+            <p>
+              Location: <span ref={labelLocationRef} />
+            </p>
+          </div>
+        </div>
+      );
+    };
+    
+    export default ReactHookFormUseFormFunctionComponentValidateWithRegisterOptions;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import ReactHookFormUseFormFunctionComponentValidateWithRegisterOptions
+      from './ReactHookFormUseFormFunctionComponentValidateWithRegisterOptions';
+    
+    function App () {
+      return (
+        <div className="App">
+          <ReactHookFormUseFormFunctionComponentValidateWithRegisterOptions />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-useform-validate-registeroptions-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hook Form - useForm Validation with RegisterOptions
+               
+               :custom-color-primary-bold:`React Hook Form - useForm Validation with RegisterOptions`, homepage
+            
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-useform-validate-registeroptions-input.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Hook Form - useForm Validation with RegisterOptions
+               
+               :custom-color-primary-bold:`React Hook Form - useForm Validation with RegisterOptions`, form input
+            
+    
+    
+--------------------------------------------------------------------------------------------------
+Validate with the Yup Schema Validation Library
+--------------------------------------------------------------------------------------------------
+    
+Validation with React Hook Form and Yup
+    
+    - install yup by npm 
+        npm install react-hook-form @hookform/resolvers yup
+    - install yup by yarn 
+        yarn add react-hook-form @hookform/resolvers yup
+    
+Basic Usage of Yup
+    
+    - Step 1: Import Yup ::
+        
+        import * as yup from "yup";
+        
+    - Step 2: Define Your Schema ::
+        
+        const validationSchema = yup.object().shape({
+            email: Yup.string().email('Invalid email address').required('Email is required'),
+            password: Yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+        });
+        
+    - Step 3: import yupResolver ::
+        
+        import { yupResolver } from "@hookform/resolvers/yup";
+        
+    - Step 4: set useForm resolver ::
+        
+        const { register, handleSubmit, formState: { errors }, reset } = useForm({
+            resolver: yupResolver(schema),
+        });
+        
+    - Step 5: register inputs, assigning their names according to the properties of the schema ::
+        
+        <input {...register("email")} placeholder="email" type="email" required />
+        <input {...register("password")} placeholder="password" type="password" required />
+        
+    - Use the errors object to display the error messages for each of the inputs ::
+        
+        { errors.name && <p className="errorMsg">{errors.name.message}</p> }
+        
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./ReactHookFormUseFormFunctionComponentValidateWithYupLibrary.js`` ::
+    
+    import React, {useRef} from 'react';
+    import {useForm} from 'react-hook-form';
+    import * as yup from 'yup';
+    import {yupResolver} from '@hookform/resolvers/yup';
+    import './App.css';
+    
+    const ReactHookFormUseFormFunctionComponentValidateWithYupLibrary = () => {
+      const valdationSchema = yup.object ().shape ({
+        name: yup.string ().min (4).max (128).required ('Required'),
+        age: yup.number ().moreThan (0).lessThan (150).required ('Required'),
+        location: yup.string ().min (4).max (128).required ('Required'),
+      });
+    
+      const {register, handleSubmit, formState: {errors}, reset} = useForm ({
+        mode: 'all',
+        resolver: yupResolver (valdationSchema),
+      });
+    
+      const labelNameRef = useRef (null);
+      const labelAgeRef = useRef (null);
+      const labelLocationRef = useRef (null);
+    
+      const formSubmitHandler = data => {
+        alert (
+          JSON.stringify ({
+            name: labelNameRef.current.innerText,
+            age: labelAgeRef.current.innerText,
+            location: labelLocationRef.current.innerText,
+          })
+        );
+        reset ();
+      };
+    
+      const handleChange = e => {
+        let name = e.target.name;
+        if (name === 'name') {
+          labelNameRef.current.innerText = e.target.value;
+        } else if (name === 'age') {
+          labelAgeRef.current.innerText = e.target.value;
+        } else if (name === 'location') {
+          labelLocationRef.current.innerText = e.target.value;
+        }
+      };
+    
+      return (
+        <div>
+          <div className="App">
+            <form noValidate onSubmit={handleSubmit (formSubmitHandler)}>
+              <div style={{marginTop: 10}} className="form-group">
+                <label
+                  htmlFor="name"
+                  style={{
+                    display: 'inline-block',
+                    width: '3rem',
+                    marginRight: '1.5rem',
+                  }}
+                >
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  placeholder="Enter name"
+                  {...register ('name')}
+                  onChange={handleChange}
+                />
+                {errors.name && <p className="errorMsg">{errors.name.message}</p>}
+              </div>
+              <div style={{marginTop: 10}} className="form-group">
+                <label
+                  htmlFor="age"
+                  style={{
+                    display: 'inline-block',
+                    width: '3rem',
+                    marginRight: '1.5rem',
+                  }}
+                >
+                  Age
+                </label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  placeholder="Enter age"
+                  {...register ('age')}
+                  onChange={handleChange}
+                />
+                {errors.age && <p className="errorMsg">{errors.age.message}</p>}
+              </div>
+              <div style={{marginTop: 10}} className="form-group">
+                <label
+                  htmlFor="location"
+                  style={{
+                    display: 'inline-block',
+                    width: '3rem',
+                    marginRight: '1.5rem',
+                  }}
+                >
+                  Location
+                </label>
+                <input
+                  type="text"
+                  id="location"
+                  name="location"
+                  placeholder="Enter location"
+                  {...register ('location')}
+                  onChange={handleChange}
+                />
+                {errors.location &&
+                  <p className="errorMsg">{errors.location.message}</p>}
+              </div>
+              <div style={{marginTop: 10}} className="form-group">
+                <input type="submit" value="Submit" />
+              </div>
+            </form>
+          </div>
+          <div>
+            <h2>
+              Name: <span ref={labelNameRef} />
+            </h2>
+            <p>
+              Age: <span ref={labelAgeRef} />
+            </p>
+            <p>
+              Location: <span ref={labelLocationRef} />
+            </p>
+          </div>
+        </div>
+      );
+    };
+    
+    export default ReactHookFormUseFormFunctionComponentValidateWithYupLibrary;
+    
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import ReactHookFormUseFormFunctionComponentValidateWithYupLibrary from './ReactHookFormUseFormFunctionComponentValidateWithYupLibrary';
+    
+    function App () {
+      return (
+        <div className="App">
+          <ReactHookFormUseFormFunctionComponentValidateWithYupLibrary />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-useform-validate-yuplib-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React Hook Form - useForm Validation with Yup Library
+               
+               :custom-color-primary-bold:`React Hook Form - useForm Validation with Yup Library`, homepage
+            
+        .. grid-item::
+            
+            .. figure:: images/tut10/tut10-react-form-useform-validate-yuplib-input.png
+               :align: center
+               :class: sd-my-0
+               :alt: React Hook Form - useForm Validation with Yup Library
+               
+               :custom-color-primary-bold:`React Hook Form - useForm Validation with Yup Library`, form input
+            
     
