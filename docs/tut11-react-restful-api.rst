@@ -343,8 +343,657 @@ Making GET Requests
                
                :custom-color-primary-bold:`React RESTful API - Posts Fetch`, post list
             
+            
+--------------------------------------------------------------------------------------------------
+Making POST Requests
+--------------------------------------------------------------------------------------------------
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./PostComponent.js`` ::
+    
+    import './App.css';
+    
+    function PostComponent (props) {
+      return (
+        <div className="App">
+          <h2>ID: {props.id}</h2>
+          <p>Title: {props.title}</p>
+          <p>Author: {props.author}</p>
+        </div>
+      );
+    }
+    
+    export default PostComponent;
+    
+- Create the file ``./PostPostListComponent.js`` ::
+    
+    import './App.css';
+    import PostComponent from './PostComponent';
+    import {useForm} from 'react-hook-form';
+    import React, {useState, useEffect} from 'react';
+    
+    function PostPostListComponent () {
+      const [posts, setPosts] = useState ([]);
+      //const [title, setTitle] = useState ('');
+      //const [author, setAuthor] = useState ('');
+      const [isLoading, setLoading] = useState (true);
+      const {
+        register,
+        handleSubmit,
+        formState: {isSubmitting, isDirty, isValid},
+        reset,
+      } = useForm ();
+      useEffect (() => {
+        fetch ('http://localhost:3001/posts')
+          .then (response => response.json ())
+          .then (data => {
+            console.log (data);
+            setPosts (data);
+            setLoading (false);
+          })
+          .catch (err => {
+            console.log (err.message);
+            setLoading (false);
+          });
+      }, []);
+      const addPosts = async (id, title, author) => {
+        await fetch ('http://localhost:3001/posts', {
+          method: 'POST',
+          body: JSON.stringify ({
+            id: id,
+            title: title,
+            author: author,
+          }),
+          headers: {
+            'Content-type': 'application/json; charset=UTF-8',
+          },
+        })
+          .then (response => response.json ())
+          .then (data => {
+            setPosts (posts => [...posts, data]);
+            setLoading (false);
+            reset ();
+          })
+          .catch (err => {
+            console.log (err.message);
+            setLoading (false);
+          });
+      };
+      const onFormSubmit = data => {
+        for (let post of posts) {
+          if (Number (data.id) === Number (post.id)) {
+            alert ('id:' + data.id + ' already exists!');
+            return;
+          }
+        }
+        addPosts (data.id, data.title, data.author);
+      };
+      return (
+        <div className="App">
+          <form noValidate onSubmit={handleSubmit (onFormSubmit)}>
+            <div style={{marginTop: 10}}>
+              <label
+                htmlFor="id"
+                style={{
+                  display: 'inline-block',
+                  width: '3rem',
+                  marginRight: '1.5rem',
+                }}
+              >
+                ID
+              </label>
+              <input
+                type="text"
+                id="id"
+                name="id"
+                placeholder="Enter id"
+                {...register ('id')}
+              />
+            </div>
+            <div style={{marginTop: 10}}>
+              <label
+                htmlFor="title"
+                style={{
+                  display: 'inline-block',
+                  width: '3rem',
+                  marginRight: '1.5rem',
+                }}
+              >
+                Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter title"
+                {...register ('title')}
+              />
+            </div>
+            <div style={{marginTop: 10}}>
+              <label
+                htmlFor="author"
+                style={{
+                  display: 'inline-block',
+                  width: '3rem',
+                  marginRight: '1.5rem',
+                }}
+              >
+                Author
+              </label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                placeholder="Enter author"
+                {...register ('author')}
+              />
+            </div>
+            <div style={{marginTop: 10}}>
+              <input
+                type="submit"
+                value="Submit"
+                disabled={isSubmitting || !isDirty || !isValid}
+              />
+            </div>
+          </form>
+    
+          <h1>Post List</h1>
+          <ul>
+            {isLoading && <p>PostList Loading ......</p>}
+            {posts.map (post => {
+              return (
+                <li key={post.id}>
+                  <PostComponent
+                    id={post.id}
+                    author={post.author}
+                    title={post.title}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      );
+    }
+    
+    export default PostPostListComponent;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import PostPostListComponent from './PostPostListComponent';
+    
+    function App () {
+      return (
+        <div className="App">
+          <PostPostListComponent />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut11/tut11-react-restful-api-post-component-post-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React RESTful API - Posts Fetch (POST)
+               
+               :custom-color-primary-bold:`React RESTful API - Posts Fetch (POST)`, post form page
+            
+        .. grid-item::
+            
+            .. figure:: images/tut11/tut11-react-restful-api-post-component-post-addpost.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React RESTful API - Posts Fetch (POST)
+               
+               :custom-color-primary-bold:`React RESTful API - Posts Fetch (POST)`, add post
+            
     
 ==================================================================================================
 The axios API
 ==================================================================================================
 
+Axios is an HTTP client library based on promises that makes it simple to send asynchronous HTTP requests to REST endpoints. 
+
+- Install Axios by running the following command ::
+    
+    # npm
+    npm install axios
+    # yarn
+    yarn add axios
+    
+- Create an instance ::
+    
+    import axios from "axios";
+    
+    const client = axios.create({
+       baseURL: 'http://localhost:3001/posts' 
+    });
+    
+- Perform a GET Request in React With Axios ::
+    
+    useEffect(() => {
+       client.get('?id=10').then((response) => {
+          setPosts(response.data);
+       });
+    }, []);
+    
+- Perform a POST Request in React With Axios ::
+    
+    const addPosts = (title, body) => {
+       client
+          .post('', {
+             title: title,
+             body: body,
+          })
+          .then((response) => {
+             setPosts((posts) => [response.data, ...posts]);
+          });
+    };
+    
+- Perform a DELETE Request in React With Axios ::
+    
+    const deletePost = (id) => {
+       client.delete(`${id}`);
+       setPosts(
+          posts.filter((post) => {
+             return post.id !== id;
+          })
+       );
+    };
+    
+- Use Async/Await in Axios ::
+    
+    import React, { useState, useEffect } from 'react';
+    
+    const App = () => {
+       const [title, setTitle] = useState('');
+       const [body, setBody] = useState('');
+       const [posts, setPosts] = useState([]);
+    
+       // GET with Axios
+       useEffect(() => {
+          const fetchPost = async () => {
+             let response = await client.get('?_limit=10');
+             setPosts(response.data);
+          };
+          fetchPost();
+       }, []);
+    
+       // Delete with Axios
+       const deletePost = async (id) => {
+          await client.delete(`${id}`);
+          setPosts(
+             posts.filter((post) => {
+                return post.id !== id;
+             })
+          );
+       };
+    
+       // Post with Axios
+       const addPosts = async (title, body) => {
+          let response = await client.post('', {
+             title: title,
+             body: body,
+          });
+          setPosts((posts) => [response.data, ...posts]);
+       };
+    
+       const handleSubmit = (e) => {
+          e.preventDefault();
+          addPosts(title, body);
+       };
+    
+       return (
+          // ...
+       );
+    };
+    
+    export default App;
+    
+        
+--------------------------------------------------------------------------------------------------
+Making GET Requests
+--------------------------------------------------------------------------------------------------
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./PostComponent.js`` ::
+    
+    import './App.css';
+    
+    function PostComponent (props) {
+      return (
+        <div className="App">
+          <h2>ID: {props.id}</h2>
+          <p>Title: {props.title}</p>
+          <p>Author: {props.author}</p>
+        </div>
+      );
+    }
+    
+    export default PostComponent;
+    
+- Create the file ``./PostListComponentAxiosGet.js`` ::
+    
+    import './App.css';
+    import PostComponent from './PostComponent';
+    import axios from 'axios';
+    import React, {useState, useEffect} from 'react';
+    
+    function PostListComponentAxiosGet () {
+      const [posts, setPosts] = useState ([]);
+      const [isLoading, setLoading] = useState (true);
+      useEffect (() => {
+        axios
+          .get ('http://localhost:3001/posts')
+          .then (response => {
+            console.log (response.data);
+            setPosts (response.data);
+            setLoading (false);
+          })
+          .catch (err => {
+            console.log (err.message);
+            setLoading (false);
+          });
+      }, []);
+      if (isLoading) {
+        return (
+          <div className="App">
+            <h1>Post List</h1>
+            <div>Loading ......</div>
+          </div>
+        );
+      }
+      return (
+        <div className="App">
+          <h1>Post List</h1>
+          <ul>
+            {posts.map (post => {
+              return (
+                <li key={post.id}>
+                  <PostComponent
+                    id={post.id}
+                    author={post.author}
+                    title={post.title}
+                  />
+                </li>
+              );
+            })}
+          </ul>
+    
+        </div>
+      );
+    }
+    
+    export default PostListComponentAxiosGet;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import PostListComponentAxiosGet from './PostListComponentAxiosGet';
+    
+    function App () {
+      return (
+        <div className="App">
+          <PostListComponentAxiosGet />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut11/tut11-react-restful-api-post-component-axios-get-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React RESTful API - Posts Fetch (Axios Get)
+               
+               :custom-color-primary-bold:`React RESTful API - Posts Fetch (Axios Get)`, loading homepage
+               
+        .. grid-item::
+            
+            .. figure:: images/tut11/tut11-react-restful-api-post-component-axios-get-list.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React RESTful API - Posts Fetch (Axios Get)
+               
+               :custom-color-primary-bold:`React RESTful API - Posts Fetch (Axios Get)`, post list
+               
+            
+--------------------------------------------------------------------------------------------------
+Making POST Requests
+--------------------------------------------------------------------------------------------------
+
+- Move inside the ReactJS App/src folder <tut10-react-form/src> ::
+    
+    cd tut10-react-form/src
+    
+- Create the file ``./PostComponent.js`` ::
+    
+    import './App.css';
+    
+    function PostComponent (props) {
+      return (
+        <div className="App">
+          <h2>ID: {props.id}</h2>
+          <p>Title: {props.title}</p>
+          <p>Author: {props.author}</p>
+        </div>
+      );
+    }
+    
+    export default PostComponent;
+    
+- Create the file ``./PostListComponentAxiosPost.js`` ::
+    
+    import './App.css';
+    import PostComponent from './PostComponent';
+    import axios from 'axios';
+    import {useForm} from 'react-hook-form';
+    import React, {useState, useEffect} from 'react';
+    
+    function PostListComponentAxiosPost () {
+      const [posts, setPosts] = useState ([]);
+      //const [title, setTitle] = useState ('');
+      //const [author, setAuthor] = useState ('');
+      const [isLoading, setLoading] = useState (true);
+      const {
+        register,
+        handleSubmit,
+        formState: {isSubmitting, isDirty, isValid},
+        reset,
+      } = useForm ();
+      useEffect (() => {
+        axios
+          .get ('http://localhost:3001/posts')
+          .then (response => {
+            console.log (response.data);
+            setPosts (response.data);
+            setLoading (false);
+          })
+          .catch (err => {
+            console.log (err.message);
+            setLoading (false);
+          });
+      }, []);
+      const addPosts = async (id, title, author) => {
+        await axios
+          .post ('http://localhost:3001/posts', {
+            id: id,
+            title: title,
+            author: author,
+          })
+          .then (data => {
+            setPosts (posts => [
+              ...posts,
+              {
+                id: id,
+                title: title,
+                author: author,
+              },
+            ]);
+            setLoading (false);
+            reset ();
+          })
+          .catch (err => {
+            console.log (err.message);
+            setLoading (false);
+          });
+      };
+      const onFormSubmit = data => {
+        for (let post of posts) {
+          if (Number (data.id) === Number (post.id)) {
+            alert ('id:' + data.id + ' already exists!');
+            return;
+          }
+        }
+        addPosts (data.id, data.title, data.author);
+      };
+      return (
+        <div className="App">
+          <form noValidate onSubmit={handleSubmit (onFormSubmit)}>
+            <div style={{marginTop: 10}}>
+              <label
+                htmlFor="id"
+                style={{
+                  display: 'inline-block',
+                  width: '3rem',
+                  marginRight: '1.5rem',
+                }}
+              >
+                ID
+              </label>
+              <input
+                type="text"
+                id="id"
+                name="id"
+                placeholder="Enter id"
+                {...register ('id')}
+              />
+            </div>
+            <div style={{marginTop: 10}}>
+              <label
+                htmlFor="title"
+                style={{
+                  display: 'inline-block',
+                  width: '3rem',
+                  marginRight: '1.5rem',
+                }}
+              >
+                Title
+              </label>
+              <input
+                type="text"
+                id="title"
+                name="title"
+                placeholder="Enter title"
+                {...register ('title')}
+              />
+            </div>
+            <div style={{marginTop: 10}}>
+              <label
+                htmlFor="author"
+                style={{
+                  display: 'inline-block',
+                  width: '3rem',
+                  marginRight: '1.5rem',
+                }}
+              >
+                Author
+              </label>
+              <input
+                type="text"
+                id="author"
+                name="author"
+                placeholder="Enter author"
+                {...register ('author')}
+              />
+            </div>
+            <div style={{marginTop: 10}}>
+              <input
+                type="submit"
+                value="Submit"
+                disabled={isSubmitting || !isDirty || !isValid}
+              />
+            </div>
+          </form>
+    
+          <h1>Post List</h1>
+          <ul>
+            {isLoading && <p>PostList Loading ......</p>}
+            {posts &&
+              posts.map (post => {
+                return (
+                  <li key={post.id}>
+                    <PostComponent
+                      id={post.id}
+                      author={post.author}
+                      title={post.title}
+                    />
+                  </li>
+                );
+              })}
+          </ul>
+        </div>
+      );
+    }
+    
+    export default PostListComponentAxiosPost;
+    
+- Edit the file ``App.js`` ::
+    
+    import './App.css';
+    import PostListComponentAxiosPost from './PostListComponentAxiosPost';
+    
+    function App () {
+      return (
+        <div className="App">
+          <PostListComponentAxiosPost />
+        </div>
+      );
+    }
+    
+    export default App;
+    
+- Screenshot
+    
+    .. grid:: 1 1 1 2
+        
+        .. grid-item::
+            
+            .. figure:: images/tut11/tut11-react-restful-api-post-component-axios-post-home.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React RESTful API - Posts Fetch (Axios Post)
+               
+               :custom-color-primary-bold:`React RESTful API - Posts Fetch (Axios Post)`, post form page
+            
+        .. grid-item::
+            
+            .. figure:: images/tut11/tut11-react-restful-api-post-component-axios-post-addpost.png
+               :align: center
+               :class: sd-mb-1
+               :alt: React RESTful API - Posts Fetch (Axios Post)
+               
+               :custom-color-primary-bold:`React RESTful API - Posts Fetch (Axios Post)`, add post
+            
+    
