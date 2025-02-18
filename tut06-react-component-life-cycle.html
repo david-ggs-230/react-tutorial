@@ -1,0 +1,614 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. Tut06-React Component Life Cycle &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="7. Tut07-React Component Styling" href="tut07-react-component-styling.html" />
+    <link rel="prev" title="5. Tut05-React Event" href="tut05-react-event.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-react-components.html">2. Tut02-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-react-state.html">4. Tut04-React State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-react-event.html">5. Tut05-React Event</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Tut06-React Component Life Cycle</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">6.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#component-life-cycle-management">6.2. Component Life Cycle Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#life-cycle-management-in-class-component">6.2.1. Life Cycle Management in Class Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#life-cycle-management-in-function-component">6.2.2. Life Cycle Management in Function Component</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-component-styling.html">7. Tut07-React Component Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-hooks.html">9. Tut09-React Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut11-react-restful-api.html">11. Tut11-React and RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut12-react-testing.html">12. Tut12-React Unit Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Tut06-React Component Life Cycle</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut06-react-component-life-cycle">React Component Life Cycle</p>
+<section id="id1">
+<h1><span class="section-number">6. </span>Tut06-React Component Life Cycle<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>Each React component has three distinct stages:</p>
+<blockquote>
+<div><ul>
+<li><p>Mounting − Mounting represents the rendering of the React component in the given DOM node.</p>
+<blockquote>
+<div><ul>
+<li><p>constructor()</p>
+<blockquote>
+<div><p>Invoked during the initial construction phase of the React component. Used to set initial state and properties of the component.</p>
+</div></blockquote>
+</li>
+<li><p>getDerivedStateFromProps()</p>
+<blockquote>
+<div><p>Invoked during both initial and update phase and just before the render() method. It is mostly used in animation context where the various state of the component is needed to do smooth animation. The signature of the API is: <span class="sd-text-primary sd-font-weight-bold">static getDerivedStateFromProps(props, state)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>props − current properties of the component</p></li>
+<li><p>state − Current state of the component</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p>render()</p>
+<blockquote>
+<div><p>It renders the component in the virtual DOM instance. This is specified as mounting of the component in the DOM tree.</p>
+</div></blockquote>
+</li>
+<li><p>componentDidMount()</p>
+<blockquote>
+<div><p>Invoked after the initial mounting of the component in the DOM tree.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Updating − Updating represents the re-rendering of the React component in the given DOM node during state changes / updates.</p>
+<blockquote>
+<div><ul>
+<li><p>shouldComponentUpdate()</p>
+<blockquote>
+<div><p>Invoked during the update phase. Used to specify whether the component should update or not. The signature of the API is: <span class="sd-text-primary sd-font-weight-bold">shouldComponentUpdate(nextProps, nextState)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>nextProps − Upcoming properties of the component</p></li>
+<li><p>nextState − Upcoming state of the component</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p>getDerivedStateFromProps()</p>
+<blockquote>
+<div><p>Invoked during both initial and update phase and just before the render() method. It is mostly used in animation context where the various state of the component is needed to do smooth animation. The signature of the API is: <span class="sd-text-primary sd-font-weight-bold">static getDerivedStateFromProps(props, state)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>props − current properties of the component</p></li>
+<li><p>state − Current state of the component</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p>render()</p>
+<blockquote>
+<div><p>It renders the component in the virtual DOM instance.</p>
+</div></blockquote>
+</li>
+<li><p>getSnapshotBeforeUpdate()</p>
+<blockquote>
+<div><p>Invoked just before the rendered content is commited to DOM tree. The data returned by this method will be passed to ComponentDidUpdate() method. The signature of the API is: <span class="sd-text-primary sd-font-weight-bold">getSnapshotBeforeUpdate(prevProps, prevState)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>prevProps − Previous properties of the component.</p></li>
+<li><p>prevState − Previous state of the component.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+<li><p>componentDidUpdate()</p>
+<blockquote>
+<div><p>Invoked during the update phase. The signature of the API is: <span class="sd-text-primary sd-font-weight-bold">componentDidUpdate(prevProps, prevState, snapshot)</span></p>
+<blockquote>
+<div><ul class="simple">
+<li><p>prevProps − Previous properties of the component.</p></li>
+<li><p>prevState − Previous state of the component.</p></li>
+<li><p>snapshot − Current rendered content.</p></li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Unmounting − Unmounting represents the removal of the React component.</p>
+<blockquote>
+<div><ul>
+<li><p>componentWillUnmount()</p>
+<blockquote>
+<div><p>Invoked after the component is unmounted from the DOM. This is the good place to clean up the object.</p>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">6.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut06-react-component-life-cycle&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut06</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">life</span><span class="o">-</span><span class="n">cycle</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut06-react-component-life-cycle/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut06</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">life</span><span class="o">-</span><span class="n">cycle</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">Disable</span> <span class="n">test</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut06-react-component-life-cycle&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="component-life-cycle-management">
+<h2><span class="section-number">6.2. </span>Component Life Cycle Management<a class="headerlink" href="#component-life-cycle-management" title="Link to this heading"></a></h2>
+<p>Here’s an example of a ReactJS component showing component life cycle stages</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Showing life cycle stages</p></li>
+<li><p>State: {count: number}, record button click count</p></li>
+<li><p>Button click, update state {count}</p></li>
+</ul>
+</div></blockquote>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;LifeCycleManagementComponent /&gt;</p></li>
+<li><p>Child component update information when button is clicked</p></li>
+</ul>
+</div></blockquote>
+<section id="life-cycle-management-in-class-component">
+<h3><span class="section-number">6.2.1. </span>Life Cycle Management in Class Component<a class="headerlink" href="#life-cycle-management-in-class-component" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut06-react-component-life-cycle/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut06</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">life</span><span class="o">-</span><span class="n">cycle</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">LifeCycleManagementComponent.js</span></code> (Child Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LifeCycleManagementComponent</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+  <span class="n">static</span> <span class="n">logMessages</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="o">/*</span> <span class="n">Life</span> <span class="n">Cycle</span> <span class="n">Stage</span>
+      <span class="o">-</span> <span class="n">Mounting</span>
+        <span class="o">-</span> <span class="n">constructor</span><span class="p">()</span>
+        <span class="o">-</span> <span class="n">getDerivedStateFromProps</span><span class="p">()</span>
+        <span class="o">-</span> <span class="n">render</span><span class="p">()</span>
+        <span class="o">-</span> <span class="n">componentDidMount</span><span class="p">()</span>
+    <span class="o">-</span> <span class="n">Updating</span>
+        <span class="o">-</span> <span class="n">shouldComponentUpdate</span><span class="p">()</span>
+        <span class="o">-</span> <span class="n">getDerivedStateFromProps</span><span class="p">()</span>
+        <span class="o">-</span> <span class="n">render</span><span class="p">()</span>
+        <span class="o">-</span> <span class="n">getSnapshotBeforeUpdate</span><span class="p">()</span>
+        <span class="o">-</span> <span class="n">componentDidUpdate</span><span class="p">()</span>
+    <span class="o">-</span> <span class="n">Unmounting</span>
+        <span class="o">-</span> <span class="n">componentWillUnmount</span><span class="p">()</span>
+  <span class="o">*/</span>
+  <span class="n">constructor</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span> <span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">Initialize</span> <span class="n">state</span> <span class="k">with</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="n">count</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">messages</span><span class="p">:</span> <span class="p">[]};</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span><span class="s1">&#39;constructor ();&#39;</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">static</span> <span class="n">getDerivedStateFromProps</span> <span class="o">=</span> <span class="p">(</span><span class="n">props</span><span class="p">,</span> <span class="n">state</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span>
+      <span class="s1">&#39;getDerivedStateFromProps();&#39;</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="n">null</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">componentDidMount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span><span class="s1">&#39;componentDidMount();&#39;</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="n">shouldComponentUpdate</span> <span class="o">=</span> <span class="p">(</span><span class="n">nextProps</span><span class="p">,</span> <span class="n">nextState</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span><span class="s1">&#39;shouldComponentUpdate();&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="n">true</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">getSnapshotBeforeUpdate</span> <span class="p">(</span><span class="n">prevProps</span><span class="p">,</span> <span class="n">prevState</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span>
+      <span class="s1">&#39;getSnapshotBeforeUpdate();&#39;</span>
+    <span class="p">);</span>
+    <span class="k">return</span> <span class="n">null</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="n">componentDidUpdate</span> <span class="o">=</span> <span class="p">(</span><span class="n">prevProps</span><span class="p">,</span> <span class="n">prevState</span><span class="p">,</span> <span class="n">snapshot</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span><span class="s1">&#39;componentDidUpdate();&#39;</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="n">componentWillUnmount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span><span class="s1">&#39;componentWillUnmount ();&#39;</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="o">//</span> <span class="n">Event</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">button</span> <span class="n">click</span>
+  <span class="o">//</span> <span class="k">class</span><span class="w"> </span><span class="nc">property</span><span class="p">,</span> <span class="n">using</span> <span class="k">lambda</span> <span class="n">function</span> <span class="n">to</span> <span class="n">define</span> <span class="n">event</span> <span class="n">handler</span><span class="o">.</span> <span class="n">autobind</span><span class="o">.</span>
+  <span class="n">handleButtonClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setState</span> <span class="p">(</span><span class="n">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="n">count</span><span class="p">:</span> <span class="n">prevState</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span>
+      <span class="n">messages</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="n">prevState</span><span class="o">.</span><span class="n">messages</span><span class="p">,</span> <span class="s1">&#39;Button was clicked!&#39;</span><span class="p">],</span>
+    <span class="p">}));</span>
+  <span class="p">};</span>
+
+  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span> <span class="p">(</span><span class="s1">&#39;render ();&#39;</span><span class="p">);</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span><span class="n">Life</span> <span class="n">Cycle</span> <span class="n">Management</span> <span class="p">(</span><span class="n">Class</span> <span class="n">Component</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">/*</span> <span class="n">Button</span> <span class="n">that</span> <span class="n">triggers</span> <span class="n">button</span> <span class="n">click</span> <span class="n">handler</span> <span class="o">*/</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">handleButtonClick</span><span class="p">}</span><span class="o">&gt;</span><span class="n">INCREMENT</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="n">LogMessages</span><span class="o">&lt;/</span><span class="n">h5</span><span class="o">&gt;</span>
+          <span class="p">{</span><span class="o">/*</span> <span class="n">Display</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span> <span class="o">*/</span><span class="p">}</span>
+          <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Count</span><span class="p">:</span> <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">count</span><span class="p">}</span> <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="n">Life</span> <span class="n">Cycle</span> <span class="n">Stages</span><span class="o">&lt;/</span><span class="n">h5</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="n">LifeCycleManagementComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="n">message</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+              <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">index</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="p">))}</span>
+          <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">LifeCycleManagementComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">LifeCycleManagementComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./LifeCycleManagementComponent&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">LifeCycleManagementComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id2">
+<img alt="React Component Life Cycle (Class Component)" class="sd-my-2" src="_images/tut06-react-class-component-life-cycle.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Component Life Cycle (Class Component)</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">INCREMENT</span> to update state</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="life-cycle-management-in-function-component">
+<h3><span class="section-number">6.2.2. </span>Life Cycle Management in Function Component<a class="headerlink" href="#life-cycle-management-in-function-component" title="Link to this heading"></a></h3>
+<p>In React functional components, lifecycle methods from class components do not have a direct equivalent, but similar behavior can be achieved using the useEffect hook.</p>
+<ul>
+<li><p>componentDidMount: In class components, componentDidMount is called once the component is mounted (i.e., after the component is rendered to the screen).</p>
+<blockquote>
+<div><ul>
+<li><p>In functional components, you can use useEffect with an empty dependency array ([]) to replicate this behavior. This ensures the effect runs only once when the component mounts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">This</span> <span class="n">runs</span> <span class="n">once</span><span class="p">,</span> <span class="n">after</span> <span class="n">the</span> <span class="n">component</span> <span class="n">mounts</span>
+  <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Component mounted&quot;</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[]);</span> <span class="o">//</span> <span class="n">Empty</span> <span class="n">array</span> <span class="n">means</span> <span class="n">it</span> <span class="n">runs</span> <span class="n">only</span> <span class="n">once</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>componentDidUpdate: In class components, componentDidUpdate is called after every update, i.e., whenever the component re-renders due to a change in state or props.</p>
+<blockquote>
+<div><ul>
+<li><p>In functional components, you can achieve this using useEffect with specific dependencies. The effect will run whenever any of the dependencies change.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">This</span> <span class="n">runs</span> <span class="n">after</span> <span class="n">every</span> <span class="n">update</span> <span class="p">(</span><span class="n">re</span><span class="o">-</span><span class="n">render</span><span class="p">)</span>
+  <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Component updated&quot;</span><span class="p">);</span>
+<span class="p">},</span> <span class="p">[</span><span class="n">count</span><span class="p">]);</span> <span class="o">//</span> <span class="n">Runs</span> <span class="n">whenever</span> <span class="s1">&#39;count&#39;</span> <span class="n">changes</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>componentWillUnmount: In class components, componentWillUnmount is called right before a component is unmounted and destroyed.</p>
+<blockquote>
+<div><ul>
+<li><p>In functional components, you can achieve this behavior by returning a cleanup function from the useEffect hook. This cleanup function will run when the component unmounts.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">This</span> <span class="ow">is</span> <span class="n">the</span> <span class="n">effect</span> <span class="n">setup</span> <span class="n">code</span>
+  <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="o">//</span> <span class="n">This</span> <span class="n">cleanup</span> <span class="n">code</span> <span class="n">runs</span> <span class="n">when</span> <span class="n">the</span> <span class="n">component</span> <span class="n">unmounts</span>
+      <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;Component will unmount&quot;</span><span class="p">);</span>
+  <span class="p">};</span>
+<span class="p">},</span> <span class="p">[]);</span> <span class="o">//</span> <span class="n">Empty</span> <span class="n">array</span> <span class="n">means</span> <span class="n">the</span> <span class="n">effect</span> <span class="n">runs</span> <span class="n">once</span> <span class="p">(</span><span class="n">on</span> <span class="n">mount</span><span class="p">)</span> <span class="ow">and</span> <span class="n">cleanup</span> <span class="n">runs</span> <span class="n">on</span> <span class="n">unmount</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>getDerivedStateFromProps: This method is used in class components to update state based on props changes.</p>
+<blockquote>
+<div><ul>
+<li><p>In functional components, you generally manage state changes directly with useState, and you can conditionally update the state based on props or any other factors.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">MyComponent</span><span class="p">({</span> <span class="n">propValue</span> <span class="p">})</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">stateValue</span><span class="p">,</span> <span class="n">setStateValue</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">propValue</span><span class="p">);</span>
+
+  <span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">Similar</span> <span class="n">to</span> <span class="n">getDerivedStateFromProps</span>
+    <span class="n">setStateValue</span><span class="p">(</span><span class="n">propValue</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[</span><span class="n">propValue</span><span class="p">]);</span> <span class="o">//</span> <span class="n">Only</span> <span class="n">updates</span> <span class="n">when</span> <span class="s1">&#39;propValue&#39;</span> <span class="n">changes</span>
+
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="p">{</span><span class="n">stateValue</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>shouldComponentUpdate: In class components, shouldComponentUpdate() is used to determine whether a component should re-render when its props or state change. It returns a boolean value (true to re-render, false to prevent re-render).</p>
+<blockquote>
+<div><ul>
+<li><p>In React functional components, there is no direct equivalent to the shouldComponentUpdate() lifecycle method that exists in class components. However, you can achieve similar behavior by using React.memo and the useEffect hook.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">MyComponent</span> <span class="o">=</span> <span class="n">React</span><span class="o">.</span><span class="n">memo</span><span class="p">(({</span> <span class="n">count</span> <span class="p">})</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s1">&#39;Rendering MyComponent&#39;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="p">{</span><span class="n">count</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span><span class="p">;</span>
+<span class="p">},</span> <span class="p">(</span><span class="n">prevProps</span><span class="p">,</span> <span class="n">nextProps</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Only</span> <span class="n">re</span><span class="o">-</span><span class="n">render</span> <span class="k">if</span> <span class="s1">&#39;count&#39;</span> <span class="n">prop</span> <span class="n">changes</span>
+  <span class="k">return</span> <span class="n">prevProps</span><span class="o">.</span><span class="n">count</span> <span class="o">===</span> <span class="n">nextProps</span><span class="o">.</span><span class="n">count</span><span class="p">;</span>
+  <span class="o">//</span> <span class="n">Return</span> <span class="n">true</span> <span class="k">if</span> <span class="n">props</span> <span class="n">are</span> <span class="n">equal</span> <span class="ow">and</span> <span class="n">re</span><span class="o">-</span><span class="n">render</span> <span class="n">should</span> <span class="n">be</span> <span class="n">prevented</span>
+  <span class="o">//</span> <span class="n">Return</span> <span class="n">false</span> <span class="k">if</span> <span class="n">props</span> <span class="n">are</span> <span class="n">different</span> <span class="ow">and</span> <span class="n">re</span><span class="o">-</span><span class="n">render</span> <span class="n">should</span> <span class="n">occur</span>
+<span class="p">});</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">MyComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>In the example above:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>React.memo wraps the functional component.</p></li>
+<li><p>The second argument to React.memo is a function that compares the previous and next props. If the function returns true, the component will not re-render. If it returns false, the component will re-render.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut06-react-component-life-cycle/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut06</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">life</span><span class="o">-</span><span class="n">cycle</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">LifeCycleManagementComponent.js</span></code> (Child Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, {useState, useEffect} from &#39;react&#39;;
+import &#39;./App.css&#39;;
+
+function LifeCycleManagementComponent (props) {
+  const [count, setCount] = useState (0);
+
+  if (typeof LifeCycleManagementComponent.logMessages == &#39;undefined&#39;) {
+    LifeCycleManagementComponent.logMessages = [];
+  }
+
+  // This will run once when the component is first mounted
+  useEffect (() =&gt; {
+    LifeCycleManagementComponent.logMessages.push (&#39;Component mounted&#39;);
+    return () =&gt; {
+      // Cleanup function - equivalent to componentWillUnmount
+      LifeCycleManagementComponent.logMessages.push (&#39;Component unmounted&#39;);
+    };
+  }, []); // Empty dependency array to run only once on initial render
+  // Equivalent to componentDidMount and componentDidUpdate
+  useEffect (
+    () =&gt; {
+      // This will run after the component mounts and every time `count` changes
+      LifeCycleManagementComponent.logMessages.push (&#39;Component mounted or updated, count is:&#39; + count);
+      // Cleanup function - equivalent to componentWillUnmount
+      return () =&gt; {
+        // Cleanup function - equivalent to componentWillUnmount
+        LifeCycleManagementComponent.logMessages.push (&#39;Cleanup for count:&#39; + count);
+      };
+  },[count]); // The effect depends on the `count` state
+
+  const handleButtonClick = () =&gt; {
+    setCount (preCount =&gt; preCount + 1);
+  };
+  return (
+    &lt;div&gt;
+      &lt;h4&gt;Life Cycle Management (Function Component)&lt;/h4&gt;
+      {/* Button that triggers button click handler */}
+      &lt;button onClick={() =&gt; handleButtonClick ()}&gt;INCREMENT&lt;/button&gt;
+
+      &lt;div className=&quot;App&quot;&gt;
+        &lt;h5&gt;LogMessages&lt;/h5&gt;
+        {/* Display the list of messages */}
+        &lt;p&gt;Count: {count} &lt;/p&gt;
+        &lt;h5&gt;Life Cycle Stages&lt;/h5&gt;
+        &lt;ul&gt;
+          {LifeCycleManagementComponent.logMessages.map ((message, index) =&gt; (
+            &lt;li key={index}&gt;{message}&lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default LifeCycleManagementComponent;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">LifeCycleManagementComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./LifeCycleManagementComponent&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">LifeCycleManagementComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id3">
+<img alt="React Component Life Cycle (Function Component)" class="sd-my-2" src="_images/tut06-react-function-component-life-cycle.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 6.2 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Component Life Cycle (Function Component)</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">INCREMENT</span> to update state</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut05-react-event.html" class="btn btn-neutral float-left" title="5. Tut05-React Event" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut07-react-component-styling.html" class="btn btn-neutral float-right" title="7. Tut07-React Component Styling" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

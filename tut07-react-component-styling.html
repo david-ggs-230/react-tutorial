@@ -1,0 +1,742 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7. Tut07-React Component Styling &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="8. Tut08-React Router" href="tut08-react-router.html" />
+    <link rel="prev" title="6. Tut06-React Component Life Cycle" href="tut06-react-component-life-cycle.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-react-components.html">2. Tut02-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-react-state.html">4. Tut04-React State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-react-event.html">5. Tut05-React Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-component-life-cycle.html">6. Tut06-React Component Life Cycle</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">7. Tut07-React Component Styling</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">7.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#component-styling">7.2. Component Styling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#css-stylesheet">7.2.1. CSS Stylesheet</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inline-styling">7.2.2. Inline Styling</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#css-modules">7.2.3. CSS Modules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#sass-stylesheet">7.2.4. Sass stylesheet</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-hooks.html">9. Tut09-React Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut11-react-restful-api.html">11. Tut11-React and RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut12-react-testing.html">12. Tut12-React Unit Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7. </span>Tut07-React Component Styling</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut07-react-component-styling">React Component Styling</p>
+<section id="id1">
+<h1><span class="section-number">7. </span>Tut07-React Component Styling<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>In general, React allows component to be styled using CSS class through className attribute. Since, the React JSX supports JavaScript expression, a lot of common CSS methodology can be used. Some of the top options are as follows</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>CSS stylesheet − Normal CSS styles along with className</p></li>
+<li><p>Inline styling − CSS styles as JavaScript objects along with camelCase properties.</p></li>
+<li><p>CSS Modules − Locally scoped CSS styles.</p></li>
+<li><p>Sass stylesheet − Supports Sass based CSS styles by converting the styles to normal css at build time.</p></li>
+</ul>
+</div></blockquote>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">7.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut07-react-component-styling&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut07</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut07-react-component-styling/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut07</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">Disable</span> <span class="n">test</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut07-react-component-styling&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="component-styling">
+<h2><span class="section-number">7.2. </span>Component Styling<a class="headerlink" href="#component-styling" title="Link to this heading"></a></h2>
+<section id="css-stylesheet">
+<h3><span class="section-number">7.2.1. </span>CSS Stylesheet<a class="headerlink" href="#css-stylesheet" title="Link to this heading"></a></h3>
+<p>CSS stylesheet is usual, common and time-tested methodology. Simply create a CSS stylesheet for a component and enter all your styles for that particular component. Then, in the component, use className to refer the styles.</p>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;StylingComponentCssStylesheet /&gt;</p></li>
+<li><p>Create css stylesheet file &lt;ItemsCssStyleSheet.css&gt;</p></li>
+<li><p>Child component show the styling effects</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut07-react-component-styling/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut07</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">ItemsCssStyleSheet.css</span></code> (CSS StyleSheet)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">brown</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">14</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span><span class="o">.</span><span class="n">A</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">red</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">16</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span><span class="o">.</span><span class="n">B</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">black</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">12</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span><span class="o">.</span><span class="n">C</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">green</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">16</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">StylingComponentCssStylesheet.js</span></code> (Child Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./ItemsCssStyleSheet.css&#39;</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StylingComponentCssStylesheet</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span> <span class="n">Styling</span> <span class="n">Component</span> <span class="p">(</span><span class="n">CSS</span> <span class="n">StyleSheet</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item1</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Default</span> <span class="n">Style</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle A&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item2</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">A</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle B&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item3</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">B</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle C&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item4</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">C</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item5</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Default</span> <span class="n">Style</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">StylingComponentCssStylesheet</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">StylingComponentCssStylesheet</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./StylingComponentCssStylesheet&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">StylingComponentCssStylesheet</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id2">
+<img alt="Styling Component (CSS StyleSheet)" class="sd-my-2" src="_images/tut07-react-component-styling-css-stylesheet.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Styling Component (CSS StyleSheet)</span></span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="inline-styling">
+<h3><span class="section-number">7.2.2. </span>Inline Styling<a class="headerlink" href="#inline-styling" title="Link to this heading"></a></h3>
+<p>Inline Styling is one of the safest ways to style the React component. It declares all the styles as JavaScript objects using DOM based css properties and set it to the component through style attributes.</p>
+<p>Declare a variable of type object and set the styles.  All css properties can be used by representing it in camelCase format. Set style in the component using curly braces {}. Also, style can be directly set inside the component</p>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;StylingComponentCssStylesheet /&gt;</p></li>
+<li><p>Using Inline Styling in the child component &lt;StylingComponentCssStylesheet /&gt;</p></li>
+<li><p>Child component show the styling effects</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut07-react-component-styling/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut07</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">StylingComponentCssStylesheet.js</span></code> (Child Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StylingComponentCssStylesheet</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+    <span class="n">itemStyleInlineDefault</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;brown&#39;</span><span class="p">,</span>
+        <span class="n">fontSize</span><span class="p">:</span> <span class="s1">&#39;14px&#39;</span>
+    <span class="p">}</span>
+    <span class="n">itemStyleInlineA</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span><span class="p">,</span>
+        <span class="n">fontSize</span><span class="p">:</span> <span class="s1">&#39;16px&#39;</span>
+    <span class="p">}</span>
+    <span class="n">itemStyleInlineB</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+        <span class="n">fontSize</span><span class="p">:</span> <span class="s1">&#39;12x&#39;</span>
+    <span class="p">}</span>
+    <span class="n">itemStyleInlineC</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">,</span>
+        <span class="n">fontSize</span><span class="p">:</span> <span class="s1">&#39;16px&#39;</span>
+    <span class="p">}</span>
+
+  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span> <span class="n">Styling</span> <span class="n">Component</span> <span class="p">(</span><span class="n">Inline</span> <span class="n">Styling</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">itemStyleInlineDefault</span> <span class="p">}</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item1</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Default</span> <span class="n">Style</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">itemStyleInlineA</span> <span class="p">}</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item2</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">A</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">itemStyleInlineB</span> <span class="p">}</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item3</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">B</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">itemStyleInlineC</span> <span class="p">}</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item4</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">C</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">itemStyleInlineDefault</span> <span class="p">}</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item5</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Default</span> <span class="n">Style</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">color</span><span class="p">:</span> <span class="s1">&#39;purple&#39;</span><span class="p">,</span><span class="n">fontSize</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span> <span class="p">}}</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item6</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">D</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">StylingComponentCssStylesheet</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">StylingComponentCssStylesheet</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./StylingComponentCssStylesheet&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">StylingComponentCssStylesheet</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id3">
+<img alt="Styling Component (Inline Styling)" class="sd-my-2" src="_images/tut07-react-component-styling-inline-style.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.2 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Styling Component (Inline Styling)</span></span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="css-modules">
+<h3><span class="section-number">7.2.3. </span>CSS Modules<a class="headerlink" href="#css-modules" title="Link to this heading"></a></h3>
+<p>Css Modules provides safest as well as easiest way to define the style. It uses normal css stylesheet with normal syntax. While importing the styles, CSS modules converts all the styles into locally scoped styles so that the name conflicts will not happen. Create a new stylesheet ending with .module.css and write regular css styles. Here, file naming convention is very important. React toolchain will pre-process the css files ending with .module.css through CSS Module.</p>
+<p>Next, open the component .js file and import the styles ending with .module.css, and use the styles as JavaScript expression in the component.</p>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;StylingComponentCssStylesheet /&gt;</p></li>
+<li><p>Create css module stylesheet file &lt;ItemsCssStyleSheet.module.css&gt;</p></li>
+<li><p>Child component show the styling effects</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut07-react-component-styling/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut07</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">ItemsCssStyleSheet.module.css</span></code> (CSS Module StyleSheet)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">brown</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">14</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span><span class="o">.</span><span class="n">A</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">red</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">16</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span><span class="o">.</span><span class="n">B</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">black</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">12</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span><span class="o">.</span><span class="n">C</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">green</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">16</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="n">div</span><span class="o">.</span><span class="n">itemStyle</span> <span class="o">.</span><span class="n">D</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">purple</span><span class="p">;</span>
+  <span class="n">font</span><span class="o">-</span><span class="n">size</span><span class="p">:</span> <span class="mi">20</span><span class="n">px</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">StylingComponentCssStylesheet.js</span></code> (Child Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, {Component} from &#39;react&#39;;
+import &#39;./App.css&#39;;
+import styles from &#39;./ItemsCssStyleSheet.module.css&#39;;
+
+class StylingComponentCssStylesheet extends Component {
+  render () {
+    return (
+      &lt;div className=&quot;App&quot;&gt;
+        &lt;h4&gt; Styling Component (CSS Modules)&lt;/h4&gt;
+        &lt;div className={styles.itemStyle}&gt;
+          &lt;div&gt;&lt;b&gt;Item1:&lt;/b&gt; &lt;em&gt;Default Style&lt;/em&gt;&lt;/div&gt;
+          &lt;div className={`${styles.itemStyle} ${styles.A}`}&gt;&lt;b&gt;Item2:&lt;/b&gt; &lt;em&gt;itemStyle A&lt;/em&gt;&lt;/div&gt;
+          &lt;div className={`${styles.itemStyle} ${styles.B}`}&gt;&lt;b&gt;Item3:&lt;/b&gt; &lt;em&gt;itemStyle B&lt;/em&gt;&lt;/div&gt;
+          &lt;div className={`${styles.itemStyle} ${styles.C}`}&gt;&lt;b&gt;Item4:&lt;/b&gt; &lt;em&gt;itemStyle C&lt;/em&gt;&lt;/div&gt;
+          &lt;div className=&quot;itemStyle&quot;&gt;&lt;b&gt;Item5:&lt;/b&gt; &lt;em&gt;Default Style&lt;/em&gt;&lt;/div&gt;
+          &lt;div className={styles.D}&gt;&lt;b&gt;Item6:&lt;/b&gt; &lt;em&gt;Default Style&lt;/em&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    );
+  }
+}
+
+export default StylingComponentCssStylesheet;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">StylingComponentCssStylesheet</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./StylingComponentCssStylesheet&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">StylingComponentCssStylesheet</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id4">
+<img alt="Styling Component (CSS Modules)" class="sd-my-2" src="_images/tut07-react-component-styling-css-modules.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.3 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Styling Component (CSS Modules)</span></span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="sass-stylesheet">
+<h3><span class="section-number">7.2.4. </span>Sass stylesheet<a class="headerlink" href="#sass-stylesheet" title="Link to this heading"></a></h3>
+<p>Sass (Syntactically Awesome Stylesheets) is a powerful CSS preprocessor that extends CSS with additional features like variables, nesting, partials, and more. Essentially, Sass lets you write cleaner, more maintainable stylesheets, and then it compiles into regular CSS, which browsers can understand.</p>
+<p>While CSS is essential for styling web pages, it can become unwieldy as your project grows. Sass simplifies CSS in the following ways:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Code Reusability: Sass provides variables and mixins to reuse chunks of code.</p></li>
+<li><p>Maintainability: With features like partials and nesting, Sass helps you organize your styles logically.</p></li>
+<li><p>Efficient Development: Sass makes complex styles easier to manage and reduces repetitive code, speeding up the development process.</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Features of Sass</strong></p>
+<blockquote>
+<div><ul>
+<li><p>Variables</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$font-stack: &#39;Helvetica, sans-serif&#39;;
+
+// Usage
+body {
+  font-family: $font-stack;
+  background-color: $primary-color;
+}
+</pre></div>
+</div>
+</li>
+<li><p>Nesting</p>
+<blockquote>
+<div><ul>
+<li><p>Nesting allows you to write CSS in a hierarchical manner</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>.navbar {
+  background: $primary-color;
+
+  .nav-link {
+    color: white;
+    &amp;:hover {
+      color: darken(white, 10%);
+    }
+  }
+}
+</pre></div>
+</div>
+</li>
+<li><p>The above code compiles to:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">navbar</span> <span class="p">{</span>
+  <span class="n">background</span><span class="o">-</span><span class="n">color</span><span class="p">:</span> <span class="c1">#3498db;</span>
+<span class="p">}</span>
+<span class="o">.</span><span class="n">navbar</span> <span class="o">.</span><span class="n">nav</span><span class="o">-</span><span class="n">item</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="n">white</span><span class="p">;</span>
+<span class="p">}</span>
+<span class="o">.</span><span class="n">navbar</span> <span class="o">.</span><span class="n">nav</span><span class="o">-</span><span class="n">item</span><span class="p">:</span><span class="n">hover</span> <span class="p">{</span>
+  <span class="n">color</span><span class="p">:</span> <span class="c1">#2ecc71;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Partials and Imports</p>
+<blockquote>
+<div><ul>
+<li><p>Partials in Sass allow you to split your styles into smaller, modular files. These partial files typically start with an underscore (_). This tells Sass not to compile these files on their own; instead, they are imported into a main file.</p>
+<blockquote>
+<div><ul>
+<li><p>Example: File Structure for Partials</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">src</span>
+<span class="o">/</span><span class="n">styles</span>
+<span class="n">_variables</span><span class="o">.</span><span class="n">scss</span>
+<span class="n">_mixins</span><span class="o">.</span><span class="n">scss</span>
+<span class="n">_header</span><span class="o">.</span><span class="n">scss</span>
+<span class="n">_footer</span><span class="o">.</span><span class="n">scss</span>
+<span class="n">main</span><span class="o">.</span><span class="n">scss</span>
+</pre></div>
+</div>
+</li>
+<li><p>In the _variables.scss file, we’ll define our variables</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// _variables.scss
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$font-stack: &#39;Helvetica, sans-serif&#39;;
+</pre></div>
+</div>
+</li>
+<li><p>In _mixins.scss, we’ll define reusable mixins</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">_mixins</span><span class="o">.</span><span class="n">scss</span>
+<span class="nd">@mixin</span> <span class="n">flex</span><span class="o">-</span><span class="n">center</span> <span class="p">{</span>
+  <span class="n">display</span><span class="p">:</span> <span class="n">flex</span><span class="p">;</span>
+  <span class="n">justify</span><span class="o">-</span><span class="n">content</span><span class="p">:</span> <span class="n">center</span><span class="p">;</span>
+  <span class="n">align</span><span class="o">-</span><span class="n">items</span><span class="p">:</span> <span class="n">center</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>In _header.scss and _footer.scss, we define specific styles for components</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// _header.scss
+.header {
+  background-color: $primary-color;
+  @include flex-center;
+  height: 100px;
+  color: white;
+}
+
+// _footer.scss
+.footer {
+  background-color: $secondary-color;
+  @include flex-center;
+  height: 60px;
+  color: white;
+}
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>By importing all the partials into one main file, you create a single compiled CSS file, keeping your code modular and easy to maintain.</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Mixins: Mixins in Sass allow you to create reusable chunks of code that can be included in other styles</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Mixin Definition
+@mixin button-style($color, $bg-color) {
+  color: $color;
+  background-color: $bg-color;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+// Using the Mixin
+.button {
+  @include button-style(white, $primary-color);
+}
+
+// In this example, the button-style mixin can be reused across different buttons, passing in different color values.
+</pre></div>
+</div>
+</li>
+<li><p>Inheritance: You can use &#64;extend in Sass to inherit styles from other selectors, reducing redundancy.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>// Base Style
+.button {
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+// Extend Base Style
+.primary-button {
+  @extend .button;
+  background-color: $primary-color;
+  color: white;
+}
+</pre></div>
+</div>
+</li>
+<li><p>Operators: Sass supports basic math operations, making dynamic calculations easy in your styles.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">.</span><span class="n">container</span> <span class="p">{</span>
+  <span class="n">width</span><span class="p">:</span> <span class="mi">100</span><span class="o">%</span> <span class="o">/</span> <span class="mi">3</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;StylingComponentCssStylesheet /&gt;</p></li>
+<li><p>Create scss file &lt;ItemsCssStyleSheet.scss&gt;</p></li>
+<li><p>Child component show the styling effects</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut07-react-component-styling/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut07</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">component</span><span class="o">-</span><span class="n">styling</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install Sass</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># yarn add -D sass or npm install --save-dev sass</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="o">-</span><span class="n">D</span> <span class="n">sass</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">ItemsCssStyleSheet.scss</span></code> (SCSS StyleSheet)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$myDefaultColor: brown;
+$myItemStyleAColor: red;
+$myItemStyleBColor: black;
+$myItemStyleCColor: green;
+
+div.itemStyle {
+  color: $myDefaultColor;
+  font-size: 14px;
+}
+
+div.itemStyle.A {
+  color: $myItemStyleAColor;
+  font-size: 16px;
+}
+
+div.itemStyle.B {
+  color: $myItemStyleBColor;
+  font-size: 12px;
+}
+
+div.itemStyle.C {
+  color: $myItemStyleCColor;
+  font-size: 16px;
+}
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">StylingComponentCssStylesheet.js</span></code> (Child Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./ItemsCssStyleSheet.scss&#39;</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">StylingComponentCssStylesheet</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span> <span class="n">Styling</span> <span class="n">Component</span> <span class="p">(</span><span class="n">Sass</span> <span class="n">stylesheet</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item1</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Default</span> <span class="n">Style</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle A&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item2</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">A</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle B&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item3</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">B</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle C&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item4</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">itemStyle</span> <span class="n">C</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;itemStyle&quot;</span><span class="o">&gt;&lt;</span><span class="n">b</span><span class="o">&gt;</span><span class="n">Item5</span><span class="p">:</span><span class="o">&lt;/</span><span class="n">b</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">em</span><span class="o">&gt;</span><span class="n">Default</span> <span class="n">Style</span><span class="o">&lt;/</span><span class="n">em</span><span class="o">&gt;&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">StylingComponentCssStylesheet</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">StylingComponentCssStylesheet</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./StylingComponentCssStylesheet&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">StylingComponentCssStylesheet</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id5">
+<img alt="Styling Component (Sass stylesheet)" class="sd-my-2" src="_images/tut07-react-component-styling-sass-style.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 7.4 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Styling Component (Sass stylesheet)</span></span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut06-react-component-life-cycle.html" class="btn btn-neutral float-left" title="6. Tut06-React Component Life Cycle" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut08-react-router.html" class="btn btn-neutral float-right" title="8. Tut08-React Router" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

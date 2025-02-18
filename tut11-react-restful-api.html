@@ -1,0 +1,1162 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>11. Tut11-React and RESTful API &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="12. Tut12-React Unit Testing" href="tut12-react-testing.html" />
+    <link rel="prev" title="10. Tut10-React Form" href="tut10-react-form.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-react-components.html">2. Tut02-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-react-state.html">4. Tut04-React State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-react-event.html">5. Tut05-React Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-component-life-cycle.html">6. Tut06-React Component Life Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-component-styling.html">7. Tut07-React Component Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-hooks.html">9. Tut09-React Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">11. Tut11-React and RESTful API</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">11.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-rest-api-server">11.2. Creating a REST API Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#make-api-requests-in-react">11.3. Make API Requests in React</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#the-fetch-api">11.3.1. The Fetch API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#making-get-requests">11.3.1.1. Making GET Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#making-post-requests">11.3.1.2. Making POST Requests</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#the-axios-api">11.3.2. The axios API</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id1">11.3.2.1. Making GET Requests</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id2">11.3.2.2. Making POST Requests</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut12-react-testing.html">12. Tut12-React Unit Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">11. </span>Tut11-React and RESTful API</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut11-react-restful-api">React and RESTful API</p>
+<section id="tut11-react-and-restful-api">
+<h1><span class="section-number">11. </span>Tut11-React and RESTful API<a class="headerlink" href="#tut11-react-and-restful-api" title="Link to this heading"></a></h1>
+<p>Integrating RESTful APIs with React enhances the functionality of web applications by enabling them to fetch and update data dynamically. This integration facilitates a seamless user experience, ensuring that the application remains responsive and up-to-date.</p>
+<p>Make API Requests in React:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Using the <cite>fetch</cite> API − The fetch API is a built-in JavaScript method for making network requests.</p></li>
+<li><p>Using <cite>axios</cite> for HTTP Requests − <cite>axios</cite> is a popular library for making HTTP requests.</p></li>
+</ul>
+</div></blockquote>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">11.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut11-react-restful-api&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut11</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">restful</span><span class="o">-</span><span class="n">api</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut11-react-restful-api/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut11</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">restful</span><span class="o">-</span><span class="n">api</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut11-react-restful-api&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="creating-a-rest-api-server">
+<h2><span class="section-number">11.2. </span>Creating a REST API Server<a class="headerlink" href="#creating-a-rest-api-server" title="Link to this heading"></a></h2>
+<p>JSON-Server is an npm(Node Package Manager) module that allows you to create a mock REST API using just a JSON file. It is highly useful for prototyping, testing, or building front-end applications without needing a complex back-end infrastructure. Data is transferred in JSON(JavaScript Object Notation) format between client and server using HTTP methods like GET, POST, PUT, PATCH, and DELETE.</p>
+<p>How to Set Up JSON-Server</p>
+<blockquote>
+<div><ul>
+<li><p>Step 1: Install JSON-Server</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># npm install</span>
+<span class="n">npm</span> <span class="n">install</span> <span class="n">json</span><span class="o">-</span><span class="n">server</span><span class="o">@</span><span class="mf">0.17.3</span>
+<span class="c1"># yarn add  json-server@0.17.3</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step 2: Create a JSON Data File &lt;db.json&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;posts&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;JSON-Server&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Amit&quot;</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">&quot;title&quot;</span><span class="p">:</span> <span class="s2">&quot;Node.js&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;author&quot;</span><span class="p">:</span> <span class="s2">&quot;Mohit&quot;</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;comments&quot;</span><span class="p">:</span> <span class="p">[</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+            <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="s2">&quot;Great post!&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;postId&quot;</span><span class="p">:</span> <span class="mi">1</span>
+        <span class="p">},</span>
+        <span class="p">{</span>
+            <span class="s2">&quot;id&quot;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span>
+            <span class="s2">&quot;body&quot;</span><span class="p">:</span> <span class="s2">&quot;Informative!&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;postId&quot;</span><span class="p">:</span> <span class="mi">2</span>
+        <span class="p">}</span>
+    <span class="p">],</span>
+    <span class="s2">&quot;profile&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;Amit Kumar&quot;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Step 3: Start JSON-Server</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">json</span><span class="o">-</span><span class="n">server</span> <span class="o">--</span><span class="n">watch</span> <span class="n">db</span><span class="o">.</span><span class="n">json</span> <span class="o">--</span><span class="n">port</span> <span class="mi">3001</span> <span class="o">--</span><span class="n">delay</span> <span class="mi">2000</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="make-api-requests-in-react">
+<h2><span class="section-number">11.3. </span>Make API Requests in React<a class="headerlink" href="#make-api-requests-in-react" title="Link to this heading"></a></h2>
+<section id="the-fetch-api">
+<h3><span class="section-number">11.3.1. </span>The Fetch API<a class="headerlink" href="#the-fetch-api" title="Link to this heading"></a></h3>
+<p>The Fetch API is a modern interface for making HTTP requests in the browser. It provides a more powerful and flexible way to handle network requests compared to older techniques like XMLHttpRequest. The fetch function is used to make a GET request to the specified API endpoint, and the response is converted to JSON using response.json().</p>
+<ul>
+<li><p>Making GET Requests</p>
+<blockquote>
+<div><ul>
+<li><p>GET request</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">setData</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">([]);</span>
+
+<span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="n">fetchData</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="n">const</span> <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001/posts&#39;</span><span class="p">);</span>
+      <span class="n">const</span> <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">();</span>
+      <span class="n">setData</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="n">fetchData</span><span class="p">();</span>
+<span class="p">},</span> <span class="p">[]);</span>
+</pre></div>
+</div>
+</li>
+<li><p>GET request with query parameters</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">setData</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">([]);</span>
+<span class="n">const</span> <span class="p">[</span><span class="n">loading</span><span class="p">,</span> <span class="n">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
+
+<span class="o">//</span> <span class="k">with</span> <span class="n">setTimeout</span>
+<span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="n">fetchData</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">try</span> <span class="p">{</span>
+      <span class="o">//</span> <span class="n">Simulating</span> <span class="n">a</span> <span class="n">delay</span> <span class="n">to</span> <span class="n">show</span> <span class="n">loading</span> <span class="n">state</span>
+      <span class="n">setTimeout</span><span class="p">(</span><span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">const</span> <span class="n">response</span> <span class="o">=</span> <span class="k">await</span> <span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001/posts?id=1&#39;</span><span class="p">);</span>
+        <span class="n">const</span> <span class="n">result</span> <span class="o">=</span> <span class="k">await</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">();</span>
+        <span class="n">setData</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+        <span class="n">setLoading</span><span class="p">(</span><span class="n">false</span><span class="p">);</span>
+      <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+    <span class="p">}</span> <span class="n">catch</span> <span class="p">(</span><span class="n">error</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+      <span class="n">setLoading</span><span class="p">(</span><span class="n">false</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+
+  <span class="n">fetchData</span><span class="p">();</span>
+<span class="p">},</span> <span class="p">[]);</span>
+</pre></div>
+</div>
+</li>
+<li><p>GET request with query parameters</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">setData</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">([]);</span>
+<span class="n">const</span> <span class="p">[</span><span class="n">loading</span><span class="p">,</span> <span class="n">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="n">true</span><span class="p">);</span>
+
+<span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="n">fetchData</span> <span class="o">=</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001/posts?id=1&#39;</span><span class="p">)</span>
+            <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+            <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">result</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="n">setData</span><span class="p">(</span><span class="n">result</span><span class="p">);</span>
+                <span class="n">setLoading</span><span class="p">(</span><span class="n">false</span><span class="p">);</span>
+            <span class="p">})</span>
+            <span class="o">.</span><span class="n">catch</span><span class="p">((</span><span class="n">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+                <span class="n">console</span><span class="o">.</span><span class="n">error</span><span class="p">(</span><span class="s1">&#39;Error fetching data:&#39;</span><span class="p">,</span> <span class="n">error</span><span class="p">);</span>
+                <span class="n">setLoading</span><span class="p">(</span><span class="n">false</span><span class="p">);</span>
+            <span class="p">});</span>
+  <span class="p">};</span>
+
+  <span class="n">fetchData</span><span class="p">();</span>
+<span class="p">},</span> <span class="p">[]);</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Making POST Requests</p>
+<blockquote>
+<div><ul>
+<li><p>POST request</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="n">posts</span><span class="p">,</span> <span class="n">setPosts</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">([]);</span>
+<span class="n">const</span> <span class="p">[</span><span class="n">title</span><span class="p">,</span> <span class="n">setTitle</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="n">const</span> <span class="p">[</span><span class="n">body</span><span class="p">,</span> <span class="n">setBody</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+<span class="o">//</span> <span class="o">...</span>
+<span class="n">const</span> <span class="n">addPosts</span> <span class="o">=</span> <span class="k">async</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="k">await</span> <span class="n">fetch</span><span class="p">(</span><span class="s1">&#39;http://localhost:3001/posts&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="n">method</span><span class="p">:</span> <span class="s1">&#39;POST&#39;</span><span class="p">,</span>
+      <span class="n">body</span><span class="p">:</span> <span class="n">JSON</span><span class="o">.</span><span class="n">stringify</span><span class="p">({</span>
+         <span class="n">title</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+         <span class="n">body</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
+         <span class="n">userId</span><span class="p">:</span> <span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span><span class="o">.</span><span class="n">toString</span><span class="p">(</span><span class="mi">36</span><span class="p">)</span><span class="o">.</span><span class="n">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span>
+      <span class="p">}),</span>
+      <span class="n">headers</span><span class="p">:</span> <span class="p">{</span>
+         <span class="s1">&#39;Content-type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json; charset=UTF-8&#39;</span><span class="p">,</span>
+      <span class="p">},</span>
+   <span class="p">})</span>
+      <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+      <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">data</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="n">setPosts</span><span class="p">((</span><span class="n">posts</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="o">...</span><span class="n">posts</span><span class="p">]);</span>
+         <span class="n">setTitle</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+         <span class="n">setBody</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="o">.</span><span class="n">catch</span><span class="p">((</span><span class="n">err</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">);</span>
+      <span class="p">});</span>
+<span class="p">};</span>
+
+<span class="n">const</span> <span class="n">handleSubmit</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="n">e</span><span class="o">.</span><span class="n">preventDefault</span><span class="p">();</span>
+   <span class="n">addPosts</span><span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">);</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+<section id="making-get-requests">
+<h4><span class="section-number">11.3.1.1. </span>Making GET Requests<a class="headerlink" href="#making-get-requests" title="Link to this heading"></a></h4>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut11-react-restful-api/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut11</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">restful</span><span class="o">-</span><span class="n">api</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./PostComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">PostComponent</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">ID</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">id</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Title</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Author</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">author</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">PostComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./GetPostListComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PostComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./PostComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">useState</span><span class="p">,</span> <span class="n">useEffect</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">GetPostListComponent</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">posts</span><span class="p">,</span> <span class="n">setPosts</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">([]);</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">isLoading</span><span class="p">,</span> <span class="n">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">(</span><span class="n">true</span><span class="p">);</span>
+  <span class="n">useEffect</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">fetch</span> <span class="p">(</span><span class="s1">&#39;http://localhost:3001/posts&#39;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">then</span> <span class="p">(</span><span class="n">response</span> <span class="o">=&gt;</span> <span class="n">response</span><span class="o">.</span><span class="n">json</span> <span class="p">())</span>
+      <span class="o">.</span><span class="n">then</span> <span class="p">(</span><span class="n">data</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="n">setPosts</span> <span class="p">(</span><span class="n">data</span><span class="p">);</span>
+        <span class="n">setLoading</span> <span class="p">(</span><span class="n">false</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="o">.</span><span class="n">catch</span> <span class="p">(</span><span class="n">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">);</span>
+        <span class="n">setLoading</span> <span class="p">(</span><span class="n">false</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isLoading</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Post</span> <span class="n">List</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="n">Loading</span> <span class="o">......&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Post</span> <span class="n">List</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="n">posts</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">post</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">}</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">PostComponent</span>
+                <span class="nb">id</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">}</span>
+                <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">author</span><span class="p">}</span>
+                <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">}</span>
+              <span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="p">);</span>
+        <span class="p">})}</span>
+      <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">GetPostListComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">GetPostListComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./GetPostListComponent&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">GetPostListComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id3">
+<img alt="React RESTful API - Posts Fetch" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-get-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch</span>, loading homepage</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id4">
+<img alt="React RESTful API - Posts Fetch" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-get-list.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.2 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch</span>, post list</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="making-post-requests">
+<h4><span class="section-number">11.3.1.2. </span>Making POST Requests<a class="headerlink" href="#making-post-requests" title="Link to this heading"></a></h4>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut11-react-restful-api/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut11</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">restful</span><span class="o">-</span><span class="n">api</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./PostComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">PostComponent</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">ID</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">id</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Title</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Author</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">author</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">PostComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./PostPostListComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import PostComponent from &#39;./PostComponent&#39;;
+import {useForm} from &#39;react-hook-form&#39;;
+import React, {useState, useEffect} from &#39;react&#39;;
+
+function PostPostListComponent () {
+  const [posts, setPosts] = useState ([]);
+  //const [title, setTitle] = useState (&#39;&#39;);
+  //const [author, setAuthor] = useState (&#39;&#39;);
+  const [isLoading, setLoading] = useState (true);
+  const {
+    register,
+    handleSubmit,
+    formState: {isSubmitting, isDirty, isValid},
+    reset,
+  } = useForm ();
+  useEffect (() =&gt; {
+    fetch (&#39;http://localhost:3001/posts&#39;)
+      .then (response =&gt; response.json ())
+      .then (data =&gt; {
+        console.log (data);
+        setPosts (data);
+        setLoading (false);
+      })
+      .catch (err =&gt; {
+        console.log (err.message);
+        setLoading (false);
+      });
+  }, []);
+  const addPosts = async (id, title, author) =&gt; {
+    await fetch (&#39;http://localhost:3001/posts&#39;, {
+      method: &#39;POST&#39;,
+      body: JSON.stringify ({
+        id: id,
+        title: title,
+        author: author,
+      }),
+      headers: {
+        &#39;Content-type&#39;: &#39;application/json; charset=UTF-8&#39;,
+      },
+    })
+      .then (response =&gt; response.json ())
+      .then (data =&gt; {
+        setPosts (posts =&gt; [...posts, data]);
+        setLoading (false);
+        reset ();
+      })
+      .catch (err =&gt; {
+        console.log (err.message);
+        setLoading (false);
+      });
+  };
+  const onFormSubmit = data =&gt; {
+    for (let post of posts) {
+      if (Number (data.id) === Number (post.id)) {
+        alert (&#39;id:&#39; + data.id + &#39; already exists!&#39;);
+        return;
+      }
+    }
+    addPosts (data.id, data.title, data.author);
+  };
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;form noValidate onSubmit={handleSubmit (onFormSubmit)}&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;label
+            htmlFor=&quot;id&quot;
+            style={{
+              display: &#39;inline-block&#39;,
+              width: &#39;3rem&#39;,
+              marginRight: &#39;1.5rem&#39;,
+            }}
+          &gt;
+            ID
+          &lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;id&quot;
+            name=&quot;id&quot;
+            placeholder=&quot;Enter id&quot;
+            {...register (&#39;id&#39;)}
+          /&gt;
+        &lt;/div&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;label
+            htmlFor=&quot;title&quot;
+            style={{
+              display: &#39;inline-block&#39;,
+              width: &#39;3rem&#39;,
+              marginRight: &#39;1.5rem&#39;,
+            }}
+          &gt;
+            Title
+          &lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;title&quot;
+            name=&quot;title&quot;
+            placeholder=&quot;Enter title&quot;
+            {...register (&#39;title&#39;)}
+          /&gt;
+        &lt;/div&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;label
+            htmlFor=&quot;author&quot;
+            style={{
+              display: &#39;inline-block&#39;,
+              width: &#39;3rem&#39;,
+              marginRight: &#39;1.5rem&#39;,
+            }}
+          &gt;
+            Author
+          &lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;author&quot;
+            name=&quot;author&quot;
+            placeholder=&quot;Enter author&quot;
+            {...register (&#39;author&#39;)}
+          /&gt;
+        &lt;/div&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;input
+            type=&quot;submit&quot;
+            value=&quot;Submit&quot;
+            disabled={isSubmitting || !isDirty || !isValid}
+          /&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+
+      &lt;h1&gt;Post List&lt;/h1&gt;
+      &lt;ul&gt;
+        {isLoading &amp;&amp; &lt;p&gt;PostList Loading ......&lt;/p&gt;}
+        {posts.map (post =&gt; {
+          return (
+            &lt;li key={post.id}&gt;
+              &lt;PostComponent
+                id={post.id}
+                author={post.author}
+                title={post.title}
+              /&gt;
+            &lt;/li&gt;
+          );
+        })}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default PostPostListComponent;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PostPostListComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./PostPostListComponent&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">PostPostListComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id5">
+<img alt="React RESTful API - Posts Fetch (POST)" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-post-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.3 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch (POST)</span>, post form page</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id6">
+<img alt="React RESTful API - Posts Fetch (POST)" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-post-addpost.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.4 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch (POST)</span>, add post</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="the-axios-api">
+<h3><span class="section-number">11.3.2. </span>The axios API<a class="headerlink" href="#the-axios-api" title="Link to this heading"></a></h3>
+<p>Axios is an HTTP client library based on promises that makes it simple to send asynchronous HTTP requests to REST endpoints.</p>
+<ul>
+<li><p>Install Axios by running the following command</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># npm</span>
+<span class="n">npm</span> <span class="n">install</span> <span class="n">axios</span>
+<span class="c1"># yarn</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="n">axios</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create an instance</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">axios</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;axios&quot;</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">client</span> <span class="o">=</span> <span class="n">axios</span><span class="o">.</span><span class="n">create</span><span class="p">({</span>
+   <span class="n">baseURL</span><span class="p">:</span> <span class="s1">&#39;http://localhost:3001/posts&#39;</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>Perform a GET Request in React With Axios</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">useEffect</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="n">client</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;?id=10&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">setPosts</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">);</span>
+   <span class="p">});</span>
+<span class="p">},</span> <span class="p">[]);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Perform a POST Request in React With Axios</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">addPosts</span> <span class="o">=</span> <span class="p">(</span><span class="n">title</span><span class="p">,</span> <span class="n">body</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="n">client</span>
+      <span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> <span class="p">{</span>
+         <span class="n">title</span><span class="p">:</span> <span class="n">title</span><span class="p">,</span>
+         <span class="n">body</span><span class="p">:</span> <span class="n">body</span><span class="p">,</span>
+      <span class="p">})</span>
+      <span class="o">.</span><span class="n">then</span><span class="p">((</span><span class="n">response</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+         <span class="n">setPosts</span><span class="p">((</span><span class="n">posts</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">,</span> <span class="o">...</span><span class="n">posts</span><span class="p">]);</span>
+      <span class="p">});</span>
+<span class="p">};</span>
+</pre></div>
+</div>
+</li>
+<li><p>Perform a DELETE Request in React With Axios</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>const deletePost = (id) =&gt; {
+   client.delete(`${id}`);
+   setPosts(
+      posts.filter((post) =&gt; {
+         return post.id !== id;
+      })
+   );
+};
+</pre></div>
+</div>
+</li>
+<li><p>Use Async/Await in Axios</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, { useState, useEffect } from &#39;react&#39;;
+
+const App = () =&gt; {
+   const [title, setTitle] = useState(&#39;&#39;);
+   const [body, setBody] = useState(&#39;&#39;);
+   const [posts, setPosts] = useState([]);
+
+   // GET with Axios
+   useEffect(() =&gt; {
+      const fetchPost = async () =&gt; {
+         let response = await client.get(&#39;?_limit=10&#39;);
+         setPosts(response.data);
+      };
+      fetchPost();
+   }, []);
+
+   // Delete with Axios
+   const deletePost = async (id) =&gt; {
+      await client.delete(`${id}`);
+      setPosts(
+         posts.filter((post) =&gt; {
+            return post.id !== id;
+         })
+      );
+   };
+
+   // Post with Axios
+   const addPosts = async (title, body) =&gt; {
+      let response = await client.post(&#39;&#39;, {
+         title: title,
+         body: body,
+      });
+      setPosts((posts) =&gt; [response.data, ...posts]);
+   };
+
+   const handleSubmit = (e) =&gt; {
+      e.preventDefault();
+      addPosts(title, body);
+   };
+
+   return (
+      // ...
+   );
+};
+
+export default App;
+</pre></div>
+</div>
+</li>
+</ul>
+<section id="id1">
+<h4><span class="section-number">11.3.2.1. </span>Making GET Requests<a class="headerlink" href="#id1" title="Link to this heading"></a></h4>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut11-react-restful-api/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut11</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">restful</span><span class="o">-</span><span class="n">api</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./PostComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">PostComponent</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">ID</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">id</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Title</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Author</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">author</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">PostComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./PostListComponentAxiosGet.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PostComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./PostComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">axios</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;axios&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">useState</span><span class="p">,</span> <span class="n">useEffect</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">PostListComponentAxiosGet</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">posts</span><span class="p">,</span> <span class="n">setPosts</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">([]);</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">isLoading</span><span class="p">,</span> <span class="n">setLoading</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">(</span><span class="n">true</span><span class="p">);</span>
+  <span class="n">useEffect</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">axios</span>
+      <span class="o">.</span><span class="n">get</span> <span class="p">(</span><span class="s1">&#39;http://localhost:3001/posts&#39;</span><span class="p">)</span>
+      <span class="o">.</span><span class="n">then</span> <span class="p">(</span><span class="n">response</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">);</span>
+        <span class="n">setPosts</span> <span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">data</span><span class="p">);</span>
+        <span class="n">setLoading</span> <span class="p">(</span><span class="n">false</span><span class="p">);</span>
+      <span class="p">})</span>
+      <span class="o">.</span><span class="n">catch</span> <span class="p">(</span><span class="n">err</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">err</span><span class="o">.</span><span class="n">message</span><span class="p">);</span>
+        <span class="n">setLoading</span> <span class="p">(</span><span class="n">false</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">isLoading</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Post</span> <span class="n">List</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span><span class="n">Loading</span> <span class="o">......&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h1</span><span class="o">&gt;</span><span class="n">Post</span> <span class="n">List</span><span class="o">&lt;/</span><span class="n">h1</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="n">posts</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">post</span> <span class="o">=&gt;</span> <span class="p">{</span>
+          <span class="k">return</span> <span class="p">(</span>
+            <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">}</span><span class="o">&gt;</span>
+              <span class="o">&lt;</span><span class="n">PostComponent</span>
+                <span class="nb">id</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">id</span><span class="p">}</span>
+                <span class="n">author</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">author</span><span class="p">}</span>
+                <span class="n">title</span><span class="o">=</span><span class="p">{</span><span class="n">post</span><span class="o">.</span><span class="n">title</span><span class="p">}</span>
+              <span class="o">/&gt;</span>
+            <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+          <span class="p">);</span>
+        <span class="p">})}</span>
+      <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">PostListComponentAxiosGet</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PostListComponentAxiosGet</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./PostListComponentAxiosGet&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">PostListComponentAxiosGet</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id7">
+<img alt="React RESTful API - Posts Fetch (Axios Get)" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-axios-get-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.5 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch (Axios Get)</span>, loading homepage</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id8">
+<img alt="React RESTful API - Posts Fetch (Axios Get)" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-axios-get-list.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.6 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch (Axios Get)</span>, post list</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="id2">
+<h4><span class="section-number">11.3.2.2. </span>Making POST Requests<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut11-react-restful-api/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut11</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">restful</span><span class="o">-</span><span class="n">api</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./PostComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">PostComponent</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">ID</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">id</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Title</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">title</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Author</span><span class="p">:</span> <span class="p">{</span><span class="n">props</span><span class="o">.</span><span class="n">author</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">PostComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./PostListComponentAxiosPost.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import PostComponent from &#39;./PostComponent&#39;;
+import axios from &#39;axios&#39;;
+import {useForm} from &#39;react-hook-form&#39;;
+import React, {useState, useEffect} from &#39;react&#39;;
+
+function PostListComponentAxiosPost () {
+  const [posts, setPosts] = useState ([]);
+  //const [title, setTitle] = useState (&#39;&#39;);
+  //const [author, setAuthor] = useState (&#39;&#39;);
+  const [isLoading, setLoading] = useState (true);
+  const {
+    register,
+    handleSubmit,
+    formState: {isSubmitting, isDirty, isValid},
+    reset,
+  } = useForm ();
+  useEffect (() =&gt; {
+    axios
+      .get (&#39;http://localhost:3001/posts&#39;)
+      .then (response =&gt; {
+        console.log (response.data);
+        setPosts (response.data);
+        setLoading (false);
+      })
+      .catch (err =&gt; {
+        console.log (err.message);
+        setLoading (false);
+      });
+  }, []);
+  const addPosts = async (id, title, author) =&gt; {
+    await axios
+      .post (&#39;http://localhost:3001/posts&#39;, {
+        id: id,
+        title: title,
+        author: author,
+      })
+      .then (data =&gt; {
+        setPosts (posts =&gt; [
+          ...posts,
+          {
+            id: id,
+            title: title,
+            author: author,
+          },
+        ]);
+        setLoading (false);
+        reset ();
+      })
+      .catch (err =&gt; {
+        console.log (err.message);
+        setLoading (false);
+      });
+  };
+  const onFormSubmit = data =&gt; {
+    for (let post of posts) {
+      if (Number (data.id) === Number (post.id)) {
+        alert (&#39;id:&#39; + data.id + &#39; already exists!&#39;);
+        return;
+      }
+    }
+    addPosts (data.id, data.title, data.author);
+  };
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;form noValidate onSubmit={handleSubmit (onFormSubmit)}&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;label
+            htmlFor=&quot;id&quot;
+            style={{
+              display: &#39;inline-block&#39;,
+              width: &#39;3rem&#39;,
+              marginRight: &#39;1.5rem&#39;,
+            }}
+          &gt;
+            ID
+          &lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;id&quot;
+            name=&quot;id&quot;
+            placeholder=&quot;Enter id&quot;
+            {...register (&#39;id&#39;)}
+          /&gt;
+        &lt;/div&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;label
+            htmlFor=&quot;title&quot;
+            style={{
+              display: &#39;inline-block&#39;,
+              width: &#39;3rem&#39;,
+              marginRight: &#39;1.5rem&#39;,
+            }}
+          &gt;
+            Title
+          &lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;title&quot;
+            name=&quot;title&quot;
+            placeholder=&quot;Enter title&quot;
+            {...register (&#39;title&#39;)}
+          /&gt;
+        &lt;/div&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;label
+            htmlFor=&quot;author&quot;
+            style={{
+              display: &#39;inline-block&#39;,
+              width: &#39;3rem&#39;,
+              marginRight: &#39;1.5rem&#39;,
+            }}
+          &gt;
+            Author
+          &lt;/label&gt;
+          &lt;input
+            type=&quot;text&quot;
+            id=&quot;author&quot;
+            name=&quot;author&quot;
+            placeholder=&quot;Enter author&quot;
+            {...register (&#39;author&#39;)}
+          /&gt;
+        &lt;/div&gt;
+        &lt;div style={{marginTop: 10}}&gt;
+          &lt;input
+            type=&quot;submit&quot;
+            value=&quot;Submit&quot;
+            disabled={isSubmitting || !isDirty || !isValid}
+          /&gt;
+        &lt;/div&gt;
+      &lt;/form&gt;
+
+      &lt;h1&gt;Post List&lt;/h1&gt;
+      &lt;ul&gt;
+        {isLoading &amp;&amp; &lt;p&gt;PostList Loading ......&lt;/p&gt;}
+        {posts &amp;&amp;
+          posts.map (post =&gt; {
+            return (
+              &lt;li key={post.id}&gt;
+                &lt;PostComponent
+                  id={post.id}
+                  author={post.author}
+                  title={post.title}
+                /&gt;
+              &lt;/li&gt;
+            );
+          })}
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default PostListComponentAxiosPost;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">PostListComponentAxiosPost</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./PostListComponentAxiosPost&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">PostListComponentAxiosPost</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id9">
+<img alt="React RESTful API - Posts Fetch (Axios Post)" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-axios-post-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.7 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch (Axios Post)</span>, post form page</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id10">
+<img alt="React RESTful API - Posts Fetch (Axios Post)" class="sd-mb-1" src="_images/tut11-react-restful-api-post-component-axios-post-addpost.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 11.8 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React RESTful API - Posts Fetch (Axios Post)</span>, add post</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut10-react-form.html" class="btn btn-neutral float-left" title="10. Tut10-React Form" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut12-react-testing.html" class="btn btn-neutral float-right" title="12. Tut12-React Unit Testing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
