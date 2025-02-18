@@ -1,4 +1,4 @@
-.. _tut11-react-restful-api:
+.. _tut12-react-testing:
 
 
 .. role:: custom-color-primary
@@ -21,31 +21,30 @@
 
 .. rst-class:: title-center h1
    
-React and RESTful API
+React Unit Testing
 
 ##################################################################################################
-Tut11-React and RESTful API
+Tut12-React Unit Testing
 ##################################################################################################
 
-Integrating RESTful APIs with React enhances the functionality of web applications by enabling them to fetch and update data dynamically. This integration facilitates a seamless user experience, ensuring that the application remains responsive and up-to-date. 
+Unit Testing with Jest and React Testing Library
+    
+    - Jest is a JavaScript testing framework maintained by Facebook, designed with a focus on simplicity and support for large JavaScript applications, especially React. It offers built-in utilities like test runners, mocking, snapshot testing, and code coverage reporting. Jest is preinstalled in a Create React App project and configured to look for tests in files with particular extensions. These file extensions are .test.ts for tests on pure functions and .test.tsx for tests on components. Alternatively, a .spec.* file extension could be used.
+    - React Testing Library (RTL) is a lightweight solution for testing React components. RTL promotes testing components in a way that closely resembles how users interact with them. Instead of focusing on testing the internal implementation, RTL emphasizes testing the UI behaviour and user interactions. React Testing Library is a popular companion library for testing React components. It provides functions to render components and then select internal elements. Those internal elements can then be checked using special matchers provided by another companion library called jest-dom.
+    
 
-Make API Requests in React: 
-    
-    - Using the `fetch` API − The fetch API is a built-in JavaScript method for making network requests.
-    - Using `axios` for HTTP Requests − `axios` is a popular library for making HTTP requests.
-    
 **************************************************************************************************
 Create Test App Folder Structure
 **************************************************************************************************
 
 - Move inside a project folder:
-- Create React App <tut11-react-restful-api> ::
+- Create React App <tut12-react-testing> ::
     
-    yarn create react-app tut11-react-restful-api
+    yarn create react-app tut12-react-testing
     
-- Move inside the ReactJS App/src folder <tut11-react-restful-api/src> ::
+- Move inside the ReactJS App/src folder <tut12-react-testing/src> ::
     
-    cd tut11-react-restful-api/src
+    cd tut12-react-testing/src
     
 - Disable the unit test: open the file ``App.test.js``, make modifications ::
     
@@ -59,19 +58,48 @@ Create Test App Folder Structure
     });
     
 - open the file ``App.js``, and make modifications.
-- Run the ReactJS App <tut11-react-restful-api> ::
+- Run the ReactJS App <tut12-react-testing> ::
     
     yarn start
     
 - open your browser and go to http://localhost:3000 to see your React app running
 
 **************************************************************************************************
-Creating a REST API Server
+Running tests with Jest
 **************************************************************************************************
 
-JSON-Server is an npm(Node Package Manager) module that allows you to create a mock REST API using just a JSON file. It is highly useful for prototyping, testing, or building front-end applications without needing a complex back-end infrastructure. Data is transferred in JSON(JavaScript Object Notation) format between client and server using HTTP methods like GET, POST, PUT, PATCH, and DELETE.
+Jest is a Node-based runner. This means that the tests always run in a Node environment and not in a real browser. This lets us enable fast iteration speed and prevent flakiness. Jest is intended to be used for unit tests of your logic and your components rather than the DOM quirks.
 
-How to Set Up JSON-Server
+At a high level, Jest provides the describe, it, test, and expect functions to organize and execute tests. You can think of the describe function as a test suite. Use the describe function to group related tests for specific components. The it and test functions are for specific tests. The it and test functions are interchangeable functions used to house and run the code for individual test cases. Use the expect function to assert the expected output. Jest also provides mock functions to handle code outside the realm of tests and coverage reporting. A test written with Jest can be as simple as testing the output of a pure function.
+
+Install Jest ::
+    
+    # npm
+    npm install --save-dev jest react-test-renderer
+    # yarn
+    yarn add --dev jest react-test-renderer
+    # run npm test, Jest will launch in watch mode
+    npm run jest
+    
+
+**************************************************************************************************
+Testing pure functions
+**************************************************************************************************
+
+A pure function has a consistent output value for a given set of parameter values. These functions depend only on the function parameters and nothing outside the function, and also don’t change any argument values passed into them. 
+
+A test is defined using Jest’s test function ::
+    
+    # normal function
+    test('test name', () => {
+        // test implementation
+    });
+    
+    # Asynchronous function
+    test('test name', async () => {
+        // test implementation
+    });
+    
     
     - Step 1: Install JSON-Server ::
         
@@ -233,9 +261,9 @@ The Fetch API is a modern interface for making HTTP requests in the browser. It 
 Making GET Requests
 --------------------------------------------------------------------------------------------------
 
-- Move inside the ReactJS App/src folder <tut11-react-restful-api/src> ::
+- Move inside the ReactJS App/src folder <tut12-react-testing/src> ::
     
-    cd tut11-react-restful-api/src
+    cd tut12-react-testing/src
     
 - Create the file ``./PostComponent.js`` ::
     
@@ -348,9 +376,9 @@ Making GET Requests
 Making POST Requests
 --------------------------------------------------------------------------------------------------
 
-- Move inside the ReactJS App/src folder <tut11-react-restful-api/src> ::
+- Move inside the ReactJS App/src folder <tut12-react-testing/src> ::
     
-    cd tut11-react-restful-api/src
+    cd tut12-react-testing/src
     
 - Create the file ``./PostComponent.js`` ::
     
@@ -666,9 +694,9 @@ Axios is an HTTP client library based on promises that makes it simple to send a
 Making GET Requests
 --------------------------------------------------------------------------------------------------
 
-- Move inside the ReactJS App/src folder <tut11-react-restful-api/src> ::
+- Move inside the ReactJS App/src folder <tut12-react-testing/src> ::
     
-    cd tut11-react-restful-api/src
+    cd tut12-react-testing/src
     
 - Create the file ``./PostComponent.js`` ::
     
@@ -783,9 +811,9 @@ Making GET Requests
 Making POST Requests
 --------------------------------------------------------------------------------------------------
 
-- Move inside the ReactJS App/src folder <tut11-react-restful-api/src> ::
+- Move inside the ReactJS App/src folder <tut12-react-testing/src> ::
     
-    cd tut11-react-restful-api/src
+    cd tut12-react-testing/src
     
 - Create the file ``./PostComponent.js`` ::
     

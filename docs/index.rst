@@ -30,5 +30,5 @@ React Tutorial documentation
    tut09-react-hooks
    tut10-react-form
    tut11-react-restful-api
-   
+   tut12-react-testing
    
