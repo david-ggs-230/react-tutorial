@@ -79,7 +79,7 @@ Install Jest ::
     # yarn
     yarn add --dev jest react-test-renderer
     # run npm test, Jest will launch in watch mode
-    npm run jest
+    npm test
     
 
 
@@ -235,44 +235,263 @@ Testing Components with React Testing Library (RTL)
 
 React Testing Library (RTL) is a lightweight and easy-to-use tool for testing the Document Object Model (DOM) output of components. It abstracts a lot of boilerplate code, allowing you to write code that is easier to read, and allows you to test the code. The library encourages you to move away from testing implementation details, to avoid many false negative and false positive test cases. Instead, the library's API of tools makes it easy for you to write tests that simulate actual users' behaviors with your components, yielding confidence that the application works as expected for users.
 
-==================================================================================================
-DOM Testing Library
-==================================================================================================
+Testing Library encourages you to avoid testing implementation details like the internals of a component you're testing. The guiding principles of this library emphasize a focus on tests that closely resemble how users interact with your web pages.
 
-The DOM Testing Library makes it easier to test the UI of applications like real users to gain confidence that the application works as expected for users. There are no methods to get the component's state value or directly invoke component methods.
-
-The library encourages you to select DOM elements in ways that are available to all users. The library's API includes accessibility-focused query methods allowing you to interact with the DOM like users with disabilities who require tools such as screen readers or other forms of assistive technology to navigate applications. 
-
-For the following element in the test
+You may want to avoid testing the following implementation details:
     
-    - Element ::
-        
-        <label for="firstname">First name:</label>
-        <input
-            type="text"
-            id="firstname"
-            name="firstname"
-            placeholder="first name..."
-        >
-        
-    - Select the input: The getByPlaceholderText method is used from the screen object to select the DOM element by its placeholder value in the following code. ::
-        
-        screen.getByPlaceholderText(/first name/i)
-        
-    - Select the input: The screen.getByRole method is used from the screen object to select the element by its role of a textbox with the name 'first name:' by a label element and an accessible name attribute. ::
-        
-        screen.getByRole('textbox', {
-            name: /first name:/i
-        })
-        
-    - Use the render method of the React Testing Library to place the component into an element attached to the DOM ::
-        
-        render(<SomeComponent />);
-        
+    -Internal state of a component
+    -Internal methods of a component
+    -Lifecycle methods of a component
+    -Child components
+    
+==================================================================================================
+Install React Testing Library
+==================================================================================================
+
+React Testing Library (RTL) by Kent C. Dodds got released as alternative to Airbnb's Enzyme. While Enzyme gives React developers utilities to test internals of React components, React Testing Library takes a step back and questions us "how to test React components to get full confidence in our React components": Rather than testing a component's implementation details, React Testing Library puts the developer in the shoes of an end user of an React application. React Testing Library builds on top of DOM Testing Library by adding APIs for working with React components. It provides light utility functions on top of react-dom and react-dom/test-utils, in a way that encourages better testing practices.
 
 
+Install React Testing Library ::
+    
+    # npm
+    npm install --save-dev @testing-library/react @testing-library/dom @testing-library/jest-dom
+    # yarn
+    yarn add --dev @testing-library/react @testing-library/dom @testing-library/jest-dom
+    # run npm test, Jest will launch in watch mode
+    npm test
+    # run yarn test, Jest will launch in watch mode
+    yarn test
+    
+==================================================================================================
+Rendering a React component
+==================================================================================================
+
+- imports ::
+    
+    import { render, screen, logRoles, prettyDOM} from '@testing-library/react';
+    // import Component
+    import HiddenMessage from './HiddenMessage';
+    
+- render Component ::
+    
+    const { msgDOMContainer } = render(<HiddenMessage />);
+    
+- show debug, prettyDOM(container, maxLength, options) helps format and display the DOM structure in a more readable way. ::
+    
+    console.log(prettyDOM(msgDOMContainer));
+    
+- Complete code './HiddenMessage.test.js' ::
+    
+    import {render, screen, logRoles, prettyDOM} from '@testing-library/react';
+    
+    import HiddenMessage from './HiddenMessage';
+    
+    test ('renders <HiddenMessage /> component', () => {
+      const {msgDOMContainer} = render (<HiddenMessage />);
+      console.log (prettyDOM (msgDOMContainer));
+    });
+    
+==================================================================================================
+Selecting a React component element
+==================================================================================================
+
+Conveniently getBy throws an error by default if the element cannot be found. However, this makes it difficult to check for elements which shouldn't be there. The getByText function accepts a string as argument, as we are using it right now, but also a regular expression. Whereas a string argument is used for the exact match, a regular expression can be used for a partial match which is often more convenient. 
+    
+    - getByText
+    - getByRole
+    - getByLabelText
+    - getByPlaceholderText
+    - getByAltText
+    - getByDisplayValue
+    
+Every time you are asserting that an element isn't there, use queryBy. queryBy with all its search types:
+    
+    - queryByText
+    - queryByRole
+    - queryByLabelText
+    - queryByPlaceholderText
+    - queryByAltText
+    - queryByDisplayValue
+    
+The findBy search variant is used for asynchronous elements which will be there eventually. findBy with all its search types. 
+    
+    - findByText
+    - findByRole
+    - findByLabelText
+    - findByPlaceholderText
+    - findByAltText
+    - findByDisplayValue
+    
+Multiple elements:
+    
+    - getAllBy
+    - queryAllBy
+    - findAllBy
+    
+Assertive Functions, all these assertive functions come in an extra package ``@testing-library/jest-dom`` :
+    
+    - toBeDisabled
+    - toBeEnabled
+    - toBeEmpty
+    - toBeEmptyDOMElement
+    - toBeInTheDocument
+    - toBeInvalid
+    - toBeRequired
+    - toBeValid
+    - toBeVisible
+    - toContainElement
+    - toContainHTML
+    - toHaveAttribute
+    - toHaveClass
+    - toHaveFocus
+    - toHaveFormValues
+    - toHaveStyle
+    - toHaveTextContent
+    - toHaveValue
+    - toHaveDisplayValue
+    - toBeChecked
+    - toBePartiallyChecked
+    - toHaveDescription
+    
+
+- get Component element ::
+    
+    const headingElement = screen.getByText(/Show\/Hide Message/i);
+    expect(headingElement).toBeInTheDocument();
+    const buttonElement = screen.getByRole ('button', {name: 'Show Message'});
+    expect (buttonElement).toBeInTheDocument ();
+    
+- logRoles can log an element’s ARIA role or a list of roles applied to elements within the DOM tree. ::
+    
+    logRoles(headingElement);
+    logRoles (buttonElement);
+    
+- Complete code './HiddenMessage.test.js' ::
+    
+    import {render, screen, logRoles, prettyDOM} from '@testing-library/react';
+    
+    import HiddenMessage from './HiddenMessage';
+    
+    test ('renders <HiddenMessage /> component', () => {
+      const {msgDOMContainer} = render (<HiddenMessage />);
+      console.log (prettyDOM (msgDOMContainer));
+      const headingElement = screen.getByText (/Show\/Hide Message/i);
+      expect (headingElement).toBeInTheDocument ();
+      logRoles (headingElement);
+      const buttonElement = screen.getByRole ('button', {name: 'Show Message'});
+      expect (buttonElement).toBeInTheDocument ();
+      logRoles (buttonElement);
+    });
+    
+==================================================================================================
+Firing events
+==================================================================================================
+
+We can use RTL's fireEvent and waitFor functions to simulate interactions of an end user. The fireEvent function takes an element (here the input field by textbox role) and an event (here an event which has the value "JavaScript"). 
+
+React Testing Library comes with an extended user event library which builds up on top of the fireEvent API. The userEvent API mimics the actual browser behavior more closely than the fireEvent API. For example, a fireEvent.change() triggers only a change event whereas userEvent.type triggers a change event, but also keyDown, keyPress, and keyUp events.
+
+Whenever possible, use userEvent over fireEvent when using React Testing Library. At the time of writing this, userEvent doesn't include all the features of fireEvent, however, this may change in the future.
+
+React Testing Library has a fireEvent function that can raise events on DOM elements. The following example raises a click event on a Save button: ::
+    
+    render(<button>Save</button>);
+    fireEvent.click(screen.getByText('Save'));
+    
+The following example raises a mousedown event on a Save button: :: 
+    
+    render(<button>Save</button>);
+    fireEvent.mouseDown(screen.getByText('Save'));
+    
+The following example raises a click event or mousedown event on a Save button: :: 
+    
+    const user = userEvent.setup();
+    render(<button>Save</button>);
+    await user.click(screen.getByText('Save'));
+    
+--------------------------------------------------------------------------------------------------
+fireEvent
+--------------------------------------------------------------------------------------------------
+
+- imports ::
+    
+    import { render, screen, logRoles, prettyDOM, fireEvent } from '@testing-library/react';
+    // import Component
+    import HiddenMessage from './HiddenMessage';
+    
+- render Component ::
+    
+    render(<HiddenMessage />);
+    
+- get Component element ::
+    
+    const buttonElement = screen.getByRole ('button', {name: 'Show Message'});
+    expect (buttonElement).toBeInTheDocument ();
+    
+- fireEvent ::
+    
+    fireEvent.click (buttonElement);
+    
+- Complete code './HiddenMessage.test.js' ::
+    
+    import {render, screen, logRoles, prettyDOM} from '@testing-library/react';
+    
+    import HiddenMessage from './HiddenMessage';
+    
+    test ('<HiddenMessage /> button fireEvent', () => {
+        render (<HiddenMessage />);
+        const buttonElement = screen.getByRole ('button', {name: 'Show Message'});
+        fireEvent.click (buttonElement);
+        console.log (prettyDOM (buttonElement));
+        expect (buttonElement).toHaveTextContent ('Hide Message');
+    });
+    
+--------------------------------------------------------------------------------------------------
+Asynchronous fireEvent
+--------------------------------------------------------------------------------------------------
 
 
+--------------------------------------------------------------------------------------------------
+userEvent
+--------------------------------------------------------------------------------------------------
 
-
-
+- imports ::
+    
+    import { render, screen, logRoles, prettyDOM} from '@testing-library/react';
+    import userEvent from '@testing-library/user-event';
+    // import Component
+    import HiddenMessage from './HiddenMessage';
+    
+- render Component ::
+    
+    render(<HiddenMessage />);
+    
+- get Component element ::
+    
+    const buttonElement = screen.getByRole ('button', {name: 'Show Message'});
+    expect (buttonElement).toBeInTheDocument ();
+    
+- userEvent ::
+    
+    userEvent.click (buttonElement);
+    
+- Complete code './HiddenMessage.test.js' ::
+    
+    import {render, screen, logRoles, prettyDOM} from '@testing-library/react';
+    import userEvent from '@testing-library/user-event';
+    import HiddenMessage from './HiddenMessage';
+    
+    test ('<HiddenMessage /> button userEvent', () => {
+        render (<HiddenMessage />);
+        const buttonElement = screen.getByRole ('button', {name: 'Show Message'});
+        userEvent.click (buttonElement);
+        console.log (prettyDOM (buttonElement));
+        expect (buttonElement).toHaveTextContent ('Hide Message');
+        userEvent.click (buttonElement);
+        console.log (prettyDOM (buttonElement));
+        expect (buttonElement).toHaveTextContent ('Show Message');
+    });
+    
+--------------------------------------------------------------------------------------------------
+Asynchronous userEvent
+--------------------------------------------------------------------------------------------------
