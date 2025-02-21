@@ -1,0 +1,526 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4. Tut04-React State &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="5. Tut05-React Event" href="tut05-react-event.html" />
+    <link rel="prev" title="3. Tut03-React Props" href="tut03-react-props.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-react-components.html">2. Tut02-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">4. Tut04-React State</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">4.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#state-management">4.2. State Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#state-management-of-class-component">4.2.1. State Management of Class Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#state-management-of-function-component">4.2.2. State Management of Function Component</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#state-management-example-a-digital-clock">4.3. State Management Example - A Digital Clock</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#create-clock-app-structure">4.3.1. Create Clock App Structure</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-clock-component">4.3.2. Create Clock Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-app-component">4.3.3. Create App Component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#screenshot">4.3.4. Screenshot</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-react-event.html">5. Tut05-React Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-component-life-cycle.html">6. Tut06-React Component Life Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-component-styling.html">7. Tut07-React Component Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-hooks.html">9. Tut09-React Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut11-react-restful-api.html">11. Tut11-React and RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut12-react-testing.html">12. Tut12-React Unit Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4. </span>Tut04-React State</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut04-react-state">React State</p>
+<section id="id1">
+<h1><span class="section-number">4. </span>Tut04-React State<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>State represents the value of a dynamic properties of a React component at a given instance. React provides a dynamic data store for each component. The internal data represents the state of a React component and can be accessed using this.state member variable of the component. Whenever the state of the component is changed, the component will re-render itself by calling the render() method along with the new state.</p>
+<p>React component maintains and expose it’s state through this.state of the component. React provides a single API to maintain state in the component. The API is this.setState(). It accepts either a JavaScript object or a function that returns a JavaScript object.</p>
+<p>setState() is used to update a component’s state object. This is done by scheduling an update to that component’s state object. So, when the state changes, this component responds by re-rendering.</p>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">4.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut04-react-state&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut04</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">state</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut04-react-state/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut04</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">state</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">Disable</span> <span class="n">test</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut04-react-state&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="state-management">
+<h2><span class="section-number">4.2. </span>State Management<a class="headerlink" href="#state-management" title="Link to this heading"></a></h2>
+<section id="state-management-of-class-component">
+<h3><span class="section-number">4.2.1. </span>State Management of Class Component<a class="headerlink" href="#state-management-of-class-component" title="Link to this heading"></a></h3>
+<p>React components have a built-in state object. The state object is used to store all the property values that belong to the component in which this state is defined. When the state object changes, the component re-renders.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;Person /&gt;</p></li>
+<li><p>Child component update information when button is clicked</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Step-by-Step Tutorial</strong></p>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut04-react-state/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut04</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">state</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">Person.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, { Component } from &#39;react&#39;
+import &#39;./App.css&#39;
+class Person extends Component {
+  constructor (props) {
+    super(props)
+    this.state = { name: &#39;Nancy&#39;, age: &#39;19&#39;, location: &#39;New York&#39; }
+  }
+  changeUserHandler = () =&gt; {
+    this.setState(prevState =&gt;
+      prevState.name === &#39;Nancy&#39;
+        ? { name: &#39;Bob&#39;, age: &#39;37&#39;, location: &#39;Boston&#39; }
+        : { name: &#39;Nancy&#39;, age: &#39;19&#39;, location: &#39;New York&#39; }
+    )
+  }
+  render () {
+    return (
+      &lt;div&gt;
+        &lt;div className=&#39;App&#39;&gt;
+          &lt;h2&gt;{this.state.name}&lt;/h2&gt;
+          &lt;p&gt;Age: {this.state.age}&lt;/p&gt;
+          &lt;p&gt;Location: {this.state.location}&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div className=&#39;App&#39;&gt;
+          &lt;button onClick={this.changeUserHandler}&gt;Change User&lt;/button&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    )
+  }
+}
+
+export default Person;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import Person from &#39;./Person&#39;;
+
+function App() {
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+        &lt;h1&gt;Class-Component State!&lt;/h1&gt;
+        &lt;Person /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id2">
+<img alt="User State 1" class="sd-mb-1" src="_images/tut04-react-state-class-component-01.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">User State 1</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Change User</span> to toggle</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id3">
+<img alt="User State 2" class="sd-my-0" src="_images/tut04-react-state-class-component-02.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.2 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">User State 2</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Change User</span> to toggle</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="state-management-of-function-component">
+<h3><span class="section-number">4.2.2. </span>State Management of Function Component<a class="headerlink" href="#state-management-of-function-component" title="Link to this heading"></a></h3>
+<p>React Hooks are special functions provided by React to handle a specific functionality inside a React functional component. React provides a Hook function for every supported feature. For example, React provides useState() function to manage state in a functional component. When a React functional component uses React Hooks, React Hooks attach itself into the component and provides additional functionality.</p>
+<p>The general signature of useState() Hook is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">state</span> <span class="n">variable</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">state</span> <span class="n">update</span> <span class="n">function</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="o">&lt;</span><span class="n">initial</span> <span class="n">value</span><span class="o">&gt;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Example App Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;Person /&gt;</p></li>
+<li><p>Child component update information when button is clicked</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Step-by-Step Tutorial</strong></p>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut04-react-state/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut04</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">state</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">Person.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import React, { useState } from &#39;react&#39;;
+
+function Person(props) {
+
+    const [user, setUser] = useState({name:&#39;Nancy&#39;, age:&#39;19&#39;,location:&#39;Houston&#39;});
+
+    const changeUserHandler = () =&gt; {
+          user.name === &#39;Nancy&#39;
+            ? setUser({ name: &#39;Bob&#39;, age: &#39;37&#39;, location: &#39;Boston&#39; })
+            : setUser({ name: &#39;Nancy&#39;, age: &#39;19&#39;, location: &#39;New York&#39; })
+    }
+
+    return (
+        &lt;div&gt;
+            &lt;div className=&#39;App&#39;&gt;
+                &lt;h2&gt;{user.name}&lt;/h2&gt;
+                &lt;p&gt;Age: {user.age}&lt;/p&gt;
+                &lt;p&gt;Location: {user.location}&lt;/p&gt;
+            &lt;/div&gt;
+            &lt;div className=&#39;App&#39;&gt;
+                &lt;button onClick={changeUserHandler}&gt;Change User&lt;/button&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+    );
+}
+
+export default Person;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import Person from &#39;./Person&#39;;
+
+function App() {
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+        &lt;h1&gt;Function-Component State!&lt;/h1&gt;
+        &lt;Person /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id4">
+<img alt="User State 1" class="sd-mb-1" src="_images/tut04-react-state-function-component-01.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.3 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">User State 1</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Change User</span> to toggle</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id5">
+<img alt="User State 2" class="sd-my-0" src="_images/tut04-react-state-function-component-02.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.4 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">User State 2</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Change User</span> to toggle</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="state-management-example-a-digital-clock">
+<h2><span class="section-number">4.3. </span>State Management Example - A Digital Clock<a class="headerlink" href="#state-management-example-a-digital-clock" title="Link to this heading"></a></h2>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child function component &lt;Clock1 /&gt;</p></li>
+<li><p>Create a child class component &lt;Clock2 /&gt;</p></li>
+<li><p>Child components update current-time automatically</p></li>
+</ul>
+</div></blockquote>
+<section id="create-clock-app-structure">
+<h3><span class="section-number">4.3.1. </span>Create Clock App Structure<a class="headerlink" href="#create-clock-app-structure" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Move inside a project folder</p></li>
+<li><p>Create React App &lt;tut04-react-state-clock&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut04</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">clock</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut04-react-state-clock/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut04</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">clock</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">Disable</span> <span class="n">test</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the ReactJS App &lt;tut04-react-state&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="create-clock-component">
+<h3><span class="section-number">4.3.2. </span>Create Clock Component<a class="headerlink" href="#create-clock-component" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut04-react-state-clock/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut04</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">state</span><span class="o">-</span><span class="n">clock</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">Clock1.js</span></code> (Child Function Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">useState</span><span class="p">,</span> <span class="n">useEffect</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">Clock1</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">datetime</span><span class="p">,</span> <span class="n">setDatetime</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">(</span><span class="n">new</span> <span class="n">Date</span> <span class="p">());</span>
+  <span class="n">useEffect</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">intervalId</span> <span class="o">=</span> <span class="n">setInterval</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">setDatetime</span> <span class="p">(</span><span class="n">new</span> <span class="n">Date</span> <span class="p">());</span>
+    <span class="p">},</span> <span class="mi">1000</span><span class="p">);</span>
+
+    <span class="k">return</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">clearInterval</span> <span class="p">(</span><span class="n">intervalId</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span><span class="n">Function</span><span class="o">-</span><span class="n">Component</span> <span class="n">Clock</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DateTime</span><span class="p">:</span> <span class="p">{</span><span class="n">datetime</span><span class="o">.</span><span class="n">toUTCString</span> <span class="p">()}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">Clock1</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">Clock2.js</span></code> (Child Class Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Clock2</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span> <span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="n">datetime</span><span class="p">:</span> <span class="n">new</span> <span class="n">Date</span> <span class="p">()};</span>
+  <span class="p">}</span>
+  <span class="n">componentDidMount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setTimeRef</span> <span class="o">=</span> <span class="n">setInterval</span> <span class="p">(</span>
+      <span class="p">()</span> <span class="o">=&gt;</span> <span class="n">this</span><span class="o">.</span><span class="n">setState</span> <span class="p">({</span><span class="n">datetime</span><span class="p">:</span> <span class="n">new</span> <span class="n">Date</span> <span class="p">()}),</span>
+      <span class="mi">1000</span>
+    <span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="n">componentWillUnmount</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">clearInterval</span> <span class="p">(</span><span class="n">this</span><span class="o">.</span><span class="n">setTimeRef</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span><span class="n">Class</span><span class="o">-</span><span class="n">Component</span> <span class="n">Clock</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">DateTime</span><span class="p">:</span> <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">datetime</span><span class="o">.</span><span class="n">toUTCString</span> <span class="p">()}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">Clock2</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="create-app-component">
+<h3><span class="section-number">4.3.3. </span>Create App Component<a class="headerlink" href="#create-app-component" title="Link to this heading"></a></h3>
+<ul>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import Clock1 from &#39;./Clock1&#39;;
+import Clock2 from &#39;./Clock2&#39;;
+
+function App () {
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+      &lt;h1&gt;A Digital Clock Example!&lt;/h1&gt;
+      &lt;Clock1 /&gt;
+      &lt;Clock2 /&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="screenshot">
+<h3><span class="section-number">4.3.4. </span>Screenshot<a class="headerlink" href="#screenshot" title="Link to this heading"></a></h3>
+<blockquote>
+<div><figure class="align-center" id="id6">
+<img alt="A Digital Clock Example" class="sd-mb-1" src="_images/tut04-react-state-clock-example.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 4.5 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">A Digital Clock Example</span></span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut03-react-props.html" class="btn btn-neutral float-left" title="3. Tut03-React Props" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut05-react-event.html" class="btn btn-neutral float-right" title="5. Tut05-React Event" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

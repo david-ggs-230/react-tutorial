@@ -1,0 +1,1019 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>12. Tut12-React Unit Testing &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="11. Tut11-React and RESTful API" href="tut11-react-restful-api.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-react-components.html">2. Tut02-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-react-state.html">4. Tut04-React State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-react-event.html">5. Tut05-React Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-component-life-cycle.html">6. Tut06-React Component Life Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-component-styling.html">7. Tut07-React Component Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-hooks.html">9. Tut09-React Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut11-react-restful-api.html">11. Tut11-React and RESTful API</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">12. Tut12-React Unit Testing</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">12.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-functions-with-jest">12.2. Testing Functions with Jest</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#testing-functions">12.2.1. Testing functions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#async-function">12.2.2. Async function</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#mock-function">12.2.3. Mock function</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#testing-components-with-react-testing-library-rtl">12.3. Testing Components with React Testing Library (RTL)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#install-react-testing-library">12.3.1. Install React Testing Library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#rendering-a-react-component">12.3.2. Rendering a React component</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#selecting-a-react-component-element">12.3.3. Selecting a React component element</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#firing-events">12.3.4. Firing events</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#fireevent">12.3.4.1. fireEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asynchronous-fireevent">12.3.4.2. Asynchronous fireEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#userevent">12.3.4.3. userEvent</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#asynchronous-userevent">12.3.4.4. Asynchronous userEvent</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#callback-handlers">12.3.5. callback handlers</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#snapshot-test">12.3.6. Snapshot test</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#getting-code-coverage">12.4. Getting code coverage</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">12. </span>Tut12-React Unit Testing</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut12-react-testing">React Unit Testing</p>
+<section id="tut12-react-unit-testing">
+<h1><span class="section-number">12. </span>Tut12-React Unit Testing<a class="headerlink" href="#tut12-react-unit-testing" title="Link to this heading"></a></h1>
+<p>Unit Testing with Jest and React Testing Library</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Jest is a JavaScript testing framework maintained by Facebook, designed with a focus on simplicity and support for large JavaScript applications, especially React. It offers built-in utilities like test runners, mocking, snapshot testing, and code coverage reporting. Jest is preinstalled in a Create React App project and configured to look for tests in files with particular extensions. These file extensions are .test.ts for tests on pure functions and .test.tsx for tests on components. Alternatively, a .spec.* file extension could be used.</p></li>
+<li><p>React Testing Library (RTL) is a lightweight solution for testing React components. RTL promotes testing components in a way that closely resembles how users interact with them. Instead of focusing on testing the internal implementation, RTL emphasizes testing the UI behaviour and user interactions. React Testing Library is a popular companion library for testing React components. It provides functions to render components and then select internal elements. Those internal elements can then be checked using special matchers provided by another companion library called jest-dom.</p></li>
+</ul>
+</div></blockquote>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">12.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut12-react-testing&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut12</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">testing</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut12-react-testing/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut12</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">testing</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut12-react-testing&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="testing-functions-with-jest">
+<h2><span class="section-number">12.2. </span>Testing Functions with Jest<a class="headerlink" href="#testing-functions-with-jest" title="Link to this heading"></a></h2>
+<p>Jest is a Node-based runner. This means that the tests always run in a Node environment and not in a real browser. This lets us enable fast iteration speed and prevent flakiness. Jest is intended to be used for unit tests of your logic and your components rather than the DOM quirks.</p>
+<p>At a high level, Jest provides the describe, it, test, and expect functions to organize and execute tests. You can think of the describe function as a test suite. Use the describe function to group related tests for specific components. The it and test functions are for specific tests. The it and test functions are interchangeable functions used to house and run the code for individual test cases. Use the expect function to assert the expected output. Jest also provides mock functions to handle code outside the realm of tests and coverage reporting. A test written with Jest can be as simple as testing the output of a pure function.</p>
+<p>Install Jest</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># npm</span>
+<span class="n">npm</span> <span class="n">install</span> <span class="o">--</span><span class="n">save</span><span class="o">-</span><span class="n">dev</span> <span class="n">jest</span> <span class="n">react</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">renderer</span>
+<span class="c1"># yarn</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="n">jest</span> <span class="n">react</span><span class="o">-</span><span class="n">test</span><span class="o">-</span><span class="n">renderer</span>
+<span class="c1"># run npm test, Jest will launch in watch mode</span>
+<span class="n">npm</span> <span class="n">test</span>
+</pre></div>
+</div>
+<p>Testing functions</p>
+<p>A test is defined using Jest’s test function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># normal function</span>
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;test name&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">test</span> <span class="n">implementation</span>
+<span class="p">});</span>
+
+<span class="c1"># Asynchronous function</span>
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;test name&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="o">//</span> <span class="n">test</span> <span class="n">implementation</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+<section id="testing-functions">
+<h3><span class="section-number">12.2.1. </span>Testing functions<a class="headerlink" href="#testing-functions" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">Calculator</span> <span class="p">{</span>
+  <span class="n">add</span> <span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">typeof</span> <span class="n">a</span>  <span class="o">!==</span> <span class="s1">&#39;number&#39;</span> <span class="o">||</span> <span class="n">typeof</span> <span class="n">b</span>  <span class="o">!==</span> <span class="s1">&#39;number&#39;</span> <span class="p">){</span>
+     <span class="n">throw</span> <span class="n">new</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Parameters must be of type number!&quot;</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="n">Number</span><span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">Calculator</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>test function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">describe</span> <span class="p">(</span><span class="s1">&#39;add&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">it</span> <span class="p">(</span><span class="s1">&#39;should add 1 and 1 and return 2&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">const</span> <span class="n">calculator</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Calculator</span> <span class="p">();</span>
+      <span class="n">const</span> <span class="n">result</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">add</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">);</span>
+      <span class="n">expect</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="mi">2</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="n">test</span> <span class="p">(</span><span class="s1">&#39;should add 1 and -9 and return -8&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">const</span> <span class="n">calculator</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Calculator</span> <span class="p">();</span>
+      <span class="n">const</span> <span class="n">result</span> <span class="o">=</span> <span class="n">calculator</span><span class="o">.</span><span class="n">add</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">9</span><span class="p">);</span>
+      <span class="n">expect</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="o">-</span><span class="mi">8</span><span class="p">);</span>
+    <span class="p">});</span>
+    <span class="n">test</span> <span class="p">(</span><span class="s1">&#39;should add 1 and Number.MAX_VALUE and return Infinity&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">const</span> <span class="n">calculator</span> <span class="o">=</span> <span class="n">new</span> <span class="n">Calculator</span> <span class="p">();</span>
+      <span class="n">expect</span> <span class="p">(</span><span class="n">calculator</span><span class="o">.</span><span class="n">add</span> <span class="p">(</span><span class="mi">234</span><span class="p">,</span> <span class="mf">1e309</span><span class="p">))</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="n">Number</span><span class="o">.</span><span class="n">POSITIVE_INFINITY</span><span class="p">);</span>
+    <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>test error</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>describe (&#39;add&#39;, () =&gt; {
+    test (&#39;should add 1 and &quot;abc&quot; and return Error(&quot;invalid argument type&quot;)&#39;, () =&gt; {
+      const calculator = new Calculator ();
+      expect (() =&gt; calculator.add (1, &#39;abc&#39;)).toThrow (
+        /Parameters must be of type number!/i
+      );
+      expect (() =&gt; calculator.add (1, &#39;abc&#39;)).toThrow (
+        new TypeError (&#39;Parameters must be of type number!&#39;)
+      );
+      expect (calculator.add (1, Number.NaN)).toBeNaN ();
+
+      const testFunction = () =&gt; calculator.add( 1, &#39;bcd&#39;);
+      expect(testFunction).toThrow();
+      expect(testFunction).toThrow(Error);
+      expect(testFunction).toThrow(&#39;Parameters must be of type number!&#39;);
+      expect(testFunction).toThrow(/type number/);
+    });
+});
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="async-function">
+<h3><span class="section-number">12.2.2. </span>Async function<a class="headerlink" href="#async-function" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>function ‘./AsyncFunction.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AsyncFunction</span> <span class="p">{</span>
+  <span class="n">callbackfunc</span><span class="o">=</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{};</span>
+  <span class="n">withCallback</span><span class="o">=</span><span class="p">(</span><span class="n">callbackfunc</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+      <span class="n">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="n">callbackfunc</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">withPromise</span><span class="o">=</span><span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+      <span class="k">return</span> <span class="n">new</span> <span class="n">Promise</span><span class="p">((</span><span class="n">resolve</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+          <span class="n">setTimeout</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="n">resolve</span><span class="p">(</span><span class="s2">&quot;Hello World&quot;</span><span class="p">),</span> <span class="mi">1000</span><span class="p">);</span>
+      <span class="p">});</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">AsyncFunction</span> <span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>test async function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">AsyncFunction</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./AsyncFunction&#39;</span><span class="p">;</span>
+
+<span class="n">describe</span> <span class="p">(</span><span class="s1">&#39;AsyncFunction&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">let</span> <span class="n">asyncFunction</span><span class="p">;</span>
+  <span class="n">beforeEach</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">asyncFunction</span> <span class="o">=</span> <span class="n">new</span> <span class="n">AsyncFunction</span> <span class="p">();</span>
+  <span class="p">});</span>
+  <span class="n">it</span> <span class="p">(</span><span class="s1">&#39;should work with callback&#39;</span><span class="p">,</span> <span class="n">done</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">asyncFunction</span><span class="o">.</span><span class="n">withCallback</span> <span class="p">(</span><span class="n">value</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">expect</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+      <span class="n">done</span> <span class="p">();</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+  <span class="n">it</span> <span class="p">(</span><span class="s1">&#39;should work with promises&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="n">asyncFunction</span><span class="o">.</span><span class="n">withPromise</span> <span class="p">()</span><span class="o">.</span><span class="n">then</span> <span class="p">(</span><span class="n">value</span> <span class="o">=&gt;</span> <span class="p">{</span>
+      <span class="n">expect</span> <span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+    <span class="p">});</span>
+  <span class="p">});</span>
+  <span class="n">it</span> <span class="p">(</span><span class="s1">&#39;should work with resolves&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">promise</span> <span class="o">=</span> <span class="n">asyncFunction</span><span class="o">.</span><span class="n">withPromise</span> <span class="p">();</span>
+    <span class="k">return</span> <span class="n">expect</span> <span class="p">(</span><span class="n">promise</span><span class="p">)</span><span class="o">.</span><span class="n">resolves</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+  <span class="n">it</span> <span class="p">(</span><span class="s1">&#39;should work with async functions&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">data</span> <span class="o">=</span> <span class="k">await</span> <span class="n">asyncFunction</span><span class="o">.</span><span class="n">withPromise</span> <span class="p">();</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">data</span><span class="p">)</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="s1">&#39;Hello World&#39;</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+<section id="mock-function">
+<h3><span class="section-number">12.2.3. </span>Mock function<a class="headerlink" href="#mock-function" title="Link to this heading"></a></h3>
+<blockquote>
+<div><ul>
+<li><p>function ‘./MockFunction.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">function</span> <span class="n">getNumber</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="n">Math</span><span class="o">.</span><span class="n">floor</span> <span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span> <span class="p">()</span> <span class="o">*</span> <span class="mi">10</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">getNumber</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>test mock function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">getNumber</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./MockFunction&#39;</span><span class="p">;</span>
+
+<span class="n">describe</span> <span class="p">(</span><span class="s1">&#39;getNumber&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">it</span> <span class="p">(</span><span class="s1">&#39;should return a valid number&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">originalRandom</span> <span class="o">=</span> <span class="k">global</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">;</span>
+    <span class="k">global</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span> <span class="o">=</span> <span class="n">jest</span><span class="o">.</span><span class="n">fn</span> <span class="p">()</span><span class="o">.</span><span class="n">mockReturnValue</span> <span class="p">(</span><span class="mf">0.41</span><span class="p">);</span>
+    <span class="n">const</span> <span class="n">result</span> <span class="o">=</span> <span class="n">getNumber</span> <span class="p">();</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">result</span><span class="p">)</span><span class="o">.</span><span class="n">toBe</span> <span class="p">(</span><span class="mi">4</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="k">global</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveBeenCalled</span> <span class="p">();</span>
+    <span class="k">global</span><span class="o">.</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span> <span class="o">=</span> <span class="n">originalRandom</span><span class="p">;</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+<section id="testing-components-with-react-testing-library-rtl">
+<h2><span class="section-number">12.3. </span>Testing Components with React Testing Library (RTL)<a class="headerlink" href="#testing-components-with-react-testing-library-rtl" title="Link to this heading"></a></h2>
+<p>React Testing Library (RTL) is a lightweight and easy-to-use tool for testing the Document Object Model (DOM) output of components. It abstracts a lot of boilerplate code, allowing you to write code that is easier to read, and allows you to test the code. The library encourages you to move away from testing implementation details, to avoid many false negative and false positive test cases. Instead, the library’s API of tools makes it easy for you to write tests that simulate actual users’ behaviors with your components, yielding confidence that the application works as expected for users.</p>
+<p>Testing Library encourages you to avoid testing implementation details like the internals of a component you’re testing. The guiding principles of this library emphasize a focus on tests that closely resemble how users interact with your web pages.</p>
+<p>You may want to avoid testing the following implementation details:</p>
+<blockquote>
+<div><p>-Internal state of a component
+-Internal methods of a component
+-Lifecycle methods of a component
+-Child components</p>
+</div></blockquote>
+<section id="install-react-testing-library">
+<h3><span class="section-number">12.3.1. </span>Install React Testing Library<a class="headerlink" href="#install-react-testing-library" title="Link to this heading"></a></h3>
+<p>React Testing Library (RTL) by Kent C. Dodds got released as alternative to Airbnb’s Enzyme. While Enzyme gives React developers utilities to test internals of React components, React Testing Library takes a step back and questions us “how to test React components to get full confidence in our React components”: Rather than testing a component’s implementation details, React Testing Library puts the developer in the shoes of an end user of an React application. React Testing Library builds on top of DOM Testing Library by adding APIs for working with React components. It provides light utility functions on top of react-dom and react-dom/test-utils, in a way that encourages better testing practices.</p>
+<p>Reference:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><a class="reference external" href="https://www.robinwieruch.de/react-testing-library/">React Testing Library Tutorial</a> , November 22, 2022 by Robin Wieruch</p></li>
+<li><p><a class="reference external" href="https://blog.logrocket.com/using-react-testing-library-debug-method/">Using the React Testing Library debug method</a> , Nov 3, 2023 by Ibadehin Mojeed</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Install React Testing Library</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># npm</span>
+<span class="n">npm</span> <span class="n">install</span> <span class="o">--</span><span class="n">save</span><span class="o">-</span><span class="n">dev</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">react</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">dom</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">jest</span><span class="o">-</span><span class="n">dom</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">user</span><span class="o">-</span><span class="n">event</span>
+<span class="c1"># yarn</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="o">--</span><span class="n">dev</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">react</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">dom</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">jest</span><span class="o">-</span><span class="n">dom</span> <span class="nd">@testing</span><span class="o">-</span><span class="n">library</span><span class="o">/</span><span class="n">user</span><span class="o">-</span><span class="n">event</span>
+<span class="c1"># run npm test, Jest will launch in watch mode</span>
+<span class="n">npm</span> <span class="n">test</span>
+<span class="c1"># run yarn test, Jest will launch in watch mode</span>
+<span class="n">yarn</span> <span class="n">test</span>
+</pre></div>
+</div>
+</li>
+<li><p>HiddenMessage Component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import { useState } from &#39;react&#39;;
+
+function HiddenMessage() {
+    const [showMessage, setShowMessage] = useState(false);
+
+    const toggleMessage = () =&gt; {
+      setShowMessage(!showMessage);
+    };
+
+    return (
+      &lt;div className=&quot;App&quot; style={{ marginTop: 40 }}&gt;
+        &lt;h1&gt;Show/Hide Message&lt;/h1&gt;
+        &lt;button onClick={toggleMessage}&gt;
+          {showMessage ? &#39;Hide&#39; : &#39;Show&#39;} Message
+        &lt;/button&gt;
+        {showMessage &amp;&amp; &lt;p&gt;This is a toggled message!&lt;/p&gt;}
+      &lt;/div&gt;
+    );
+  }
+
+export default HiddenMessage;
+</pre></div>
+</div>
+</li>
+<li><p>UserSearchComponent</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React from &#39;react&#39;;
+import SearchComponent from &#39;./SearchComponent&#39;;
+
+function UserSearchComponent () {
+  const [search, setSearch] = React.useState (&#39;&#39;);
+  const [user, setUser] = React.useState (null);
+
+  const handleChange = async event =&gt; {
+    setSearch (event.target.value);
+  };
+  const getUser = () =&gt; {
+    return new Promise (function (resolve) {
+      setTimeout (function () {
+        resolve ({id: &#39;1&#39;, name: &#39;Robin&#39;});
+      }, 5000);
+    });
+  };
+  React.useEffect (() =&gt; {
+    const loadUser = async () =&gt; {
+      const user = await getUser ();
+      setUser (user);
+    };
+
+    loadUser ();
+  }, []);
+  return (
+    &lt;div&gt;
+      {user &amp;&amp; &lt;p&gt;Signed in as {user.name}&lt;/p&gt;}
+      &lt;SearchComponent value={search} onChange={handleChange}&gt;
+        Search:
+      &lt;/SearchComponent&gt;
+
+      &lt;p&gt;Searches for {search ? search : &#39;...&#39;}&lt;/p&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default UserSearchComponent;
+</pre></div>
+</div>
+</li>
+<li><p>SearchComponent</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="o">*</span> <span class="k">as</span> <span class="n">React</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">SearchComponent</span><span class="p">({</span><span class="n">value</span><span class="p">,</span> <span class="n">onChange</span><span class="p">,</span> <span class="n">children</span><span class="p">})</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">marginTop</span><span class="p">:</span> <span class="mi">40</span><span class="p">}}</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">label</span> <span class="n">htmlFor</span><span class="o">=</span><span class="s2">&quot;search&quot;</span><span class="o">&gt;</span><span class="p">{</span><span class="n">children</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">label</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="nb">input</span>
+        <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;search&quot;</span>
+        <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span>
+        <span class="n">value</span><span class="o">=</span><span class="p">{</span><span class="n">value</span><span class="p">}</span>
+        <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">onChange</span><span class="p">}</span>
+        <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">marginLeft</span><span class="p">:</span> <span class="mi">10</span><span class="p">}}</span>
+      <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">SearchComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="rendering-a-react-component">
+<h3><span class="section-number">12.3.2. </span>Rendering a React component<a class="headerlink" href="#rendering-a-react-component" title="Link to this heading"></a></h3>
+<ul>
+<li><p>imports</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">logRoles</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="o">//</span> <span class="kn">import</span><span class="w"> </span><span class="nn">Component</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">HiddenMessage</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./HiddenMessage&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>render Component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">{</span> <span class="n">msgDOMContainer</span> <span class="p">}</span> <span class="o">=</span> <span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">HiddenMessage</span> <span class="o">/&gt;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>show debug, prettyDOM(container, maxLength, options) helps format and display the DOM structure in a more readable way.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="n">prettyDOM</span><span class="p">(</span><span class="n">msgDOMContainer</span><span class="p">));</span>
+</pre></div>
+</div>
+</li>
+<li><p>Complete code ‘./HiddenMessage.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">logRoles</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">HiddenMessage</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./HiddenMessage&#39;</span><span class="p">;</span>
+
+<span class="n">test</span> <span class="p">(</span><span class="s1">&#39;renders &lt;HiddenMessage /&gt; component&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">{</span><span class="n">msgDOMContainer</span><span class="p">}</span> <span class="o">=</span> <span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">HiddenMessage</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">msgDOMContainer</span><span class="p">));</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="selecting-a-react-component-element">
+<h3><span class="section-number">12.3.3. </span>Selecting a React component element<a class="headerlink" href="#selecting-a-react-component-element" title="Link to this heading"></a></h3>
+<p>Conveniently getBy throws an error by default if the element cannot be found. However, this makes it difficult to check for elements which shouldn’t be there. The getByText function accepts a string as argument, as we are using it right now, but also a regular expression. Whereas a string argument is used for the exact match, a regular expression can be used for a partial match which is often more convenient.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>getByText</p></li>
+<li><p>getByRole</p></li>
+<li><p>getByLabelText</p></li>
+<li><p>getByPlaceholderText</p></li>
+<li><p>getByAltText</p></li>
+<li><p>getByDisplayValue</p></li>
+</ul>
+</div></blockquote>
+<p>Every time you are asserting that an element isn’t there, use queryBy. queryBy with all its search types:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>queryByText</p></li>
+<li><p>queryByRole</p></li>
+<li><p>queryByLabelText</p></li>
+<li><p>queryByPlaceholderText</p></li>
+<li><p>queryByAltText</p></li>
+<li><p>queryByDisplayValue</p></li>
+</ul>
+</div></blockquote>
+<p>The findBy search variant is used for asynchronous elements which will be there eventually. findBy with all its search types.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>findByText</p></li>
+<li><p>findByRole</p></li>
+<li><p>findByLabelText</p></li>
+<li><p>findByPlaceholderText</p></li>
+<li><p>findByAltText</p></li>
+<li><p>findByDisplayValue</p></li>
+</ul>
+</div></blockquote>
+<p>Multiple elements:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>getAllBy</p></li>
+<li><p>queryAllBy</p></li>
+<li><p>findAllBy</p></li>
+</ul>
+</div></blockquote>
+<p>Assertive Functions, all these assertive functions come in an extra package <code class="docutils literal notranslate"><span class="pre">&#64;testing-library/jest-dom</span></code> :</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>toBeDisabled</p></li>
+<li><p>toBeEnabled</p></li>
+<li><p>toBeEmpty</p></li>
+<li><p>toBeEmptyDOMElement</p></li>
+<li><p>toBeInTheDocument</p></li>
+<li><p>toBeInvalid</p></li>
+<li><p>toBeRequired</p></li>
+<li><p>toBeValid</p></li>
+<li><p>toBeVisible</p></li>
+<li><p>toContainElement</p></li>
+<li><p>toContainHTML</p></li>
+<li><p>toHaveAttribute</p></li>
+<li><p>toHaveClass</p></li>
+<li><p>toHaveFocus</p></li>
+<li><p>toHaveFormValues</p></li>
+<li><p>toHaveStyle</p></li>
+<li><p>toHaveTextContent</p></li>
+<li><p>toHaveValue</p></li>
+<li><p>toHaveDisplayValue</p></li>
+<li><p>toBeChecked</p></li>
+<li><p>toBePartiallyChecked</p></li>
+<li><p>toHaveDescription</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>get Component element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">headingElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">Show</span>\<span class="o">/</span><span class="n">Hide</span> <span class="n">Message</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+<span class="n">expect</span><span class="p">(</span><span class="n">headingElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="n">const</span> <span class="n">buttonElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Show Message&#39;</span><span class="p">});</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>logRoles can log an element’s ARIA role or a list of roles applied to elements within the DOM tree.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">logRoles</span><span class="p">(</span><span class="n">headingElement</span><span class="p">);</span>
+<span class="n">logRoles</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Complete code ‘./HiddenMessage.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">logRoles</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">HiddenMessage</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./HiddenMessage&#39;</span><span class="p">;</span>
+
+<span class="n">test</span> <span class="p">(</span><span class="s1">&#39;renders &lt;HiddenMessage /&gt; component&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">{</span><span class="n">msgDOMContainer</span><span class="p">}</span> <span class="o">=</span> <span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">HiddenMessage</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">msgDOMContainer</span><span class="p">));</span>
+  <span class="n">const</span> <span class="n">headingElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Show</span>\<span class="o">/</span><span class="n">Hide</span> <span class="n">Message</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="n">expect</span> <span class="p">(</span><span class="n">headingElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+  <span class="n">logRoles</span> <span class="p">(</span><span class="n">headingElement</span><span class="p">);</span>
+  <span class="n">const</span> <span class="n">buttonElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Show Message&#39;</span><span class="p">});</span>
+  <span class="n">expect</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+  <span class="n">logRoles</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="firing-events">
+<h3><span class="section-number">12.3.4. </span>Firing events<a class="headerlink" href="#firing-events" title="Link to this heading"></a></h3>
+<p>We can use RTL’s fireEvent and waitFor functions to simulate interactions of an end user. The fireEvent function takes an element (here the input field by textbox role) and an event (here an event which has the value “JavaScript”).</p>
+<p>React Testing Library comes with an extended user event library which builds up on top of the fireEvent API. The userEvent API mimics the actual browser behavior more closely than the fireEvent API. For example, a fireEvent.change() triggers only a change event whereas userEvent.type triggers a change event, but also keyDown, keyPress, and keyUp events.</p>
+<p>Whenever possible, use userEvent over fireEvent when using React Testing Library. At the time of writing this, userEvent doesn’t include all the features of fireEvent, however, this may change in the future.</p>
+<p>React Testing Library has a fireEvent function that can raise events on DOM elements. The following example raises a click event on a Save button:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">button</span><span class="o">&gt;</span><span class="n">Save</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="n">fireEvent</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="s1">&#39;Save&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The following example raises a mousedown event on a Save button:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">button</span><span class="o">&gt;</span><span class="n">Save</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="n">fireEvent</span><span class="o">.</span><span class="n">mouseDown</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="s1">&#39;Save&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<p>The following example raises a click event or mousedown event on a Save button:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userEvent</span><span class="o">.</span><span class="n">setup</span><span class="p">();</span>
+<span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">button</span><span class="o">&gt;</span><span class="n">Save</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="k">await</span> <span class="n">user</span><span class="o">.</span><span class="n">click</span><span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="s1">&#39;Save&#39;</span><span class="p">));</span>
+</pre></div>
+</div>
+<section id="fireevent">
+<h4><span class="section-number">12.3.4.1. </span>fireEvent<a class="headerlink" href="#fireevent" title="Link to this heading"></a></h4>
+<ul>
+<li><p>imports</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">logRoles</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">,</span> <span class="n">fireEvent</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="o">//</span> <span class="kn">import</span><span class="w"> </span><span class="nn">Component</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">HiddenMessage</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./HiddenMessage&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>render Component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">HiddenMessage</span> <span class="o">/&gt;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>get Component element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">buttonElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Show Message&#39;</span><span class="p">});</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>fireEvent</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fireEvent</span><span class="o">.</span><span class="n">click</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Complete code ‘./HiddenMessage.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">logRoles</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">HiddenMessage</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./HiddenMessage&#39;</span><span class="p">;</span>
+
+<span class="n">test</span> <span class="p">(</span><span class="s1">&#39;&lt;HiddenMessage /&gt; button fireEvent&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">HiddenMessage</span> <span class="o">/&gt;</span><span class="p">);</span>
+    <span class="n">const</span> <span class="n">buttonElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Show Message&#39;</span><span class="p">});</span>
+    <span class="n">fireEvent</span><span class="o">.</span><span class="n">click</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">));</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveTextContent</span> <span class="p">(</span><span class="s1">&#39;Hide Message&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="asynchronous-fireevent">
+<h4><span class="section-number">12.3.4.2. </span>Asynchronous fireEvent<a class="headerlink" href="#asynchronous-fireevent" title="Link to this heading"></a></h4>
+<ul>
+<li><p>imports</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">fireEvent</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom/extend-expect&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UserSearchComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UserSearchComponent&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>render Component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">UserSearchComponent</span> <span class="o">/&gt;</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Signed</span> <span class="ow">in</span> <span class="k">as</span><span class="o">/</span><span class="p">,{},{</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">interval</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">user</span><span class="p">));</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>get Component element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">inputElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+<span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">));</span>
+</pre></div>
+</div>
+</li>
+<li><p>fireEvent</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fireEvent</span><span class="o">.</span><span class="n">change</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">,</span> <span class="p">{</span><span class="n">target</span><span class="p">:</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">}});</span>
+<span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Complete code ‘./UserSearchComponent.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">fireEvent</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom/extend-expect&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UserSearchComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UserSearchComponent&#39;</span><span class="p">;</span>
+<span class="n">describe</span> <span class="p">(</span><span class="s1">&#39;renders UserSearchComponent waiting for fetchUser&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">beforeAll</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">jest</span><span class="o">.</span><span class="n">useFakeTimers</span> <span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="n">afterAll</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">jest</span><span class="o">.</span><span class="n">useRealTimers</span> <span class="p">();</span>
+  <span class="p">});</span>
+  <span class="n">test</span> <span class="p">(</span><span class="s1">&#39;renders UserSearchComponent and updates search text&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">UserSearchComponent</span> <span class="o">/&gt;</span><span class="p">);</span>
+    <span class="n">const</span> <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Signed</span> <span class="ow">in</span> <span class="k">as</span><span class="o">/</span><span class="p">,{},{</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="n">interval</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">});</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">user</span><span class="p">));</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+
+    <span class="n">const</span> <span class="n">inputElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">));</span>
+    <span class="n">fireEvent</span><span class="o">.</span><span class="n">change</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">,</span> <span class="p">{</span><span class="n">target</span><span class="p">:</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">}});</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveValue</span> <span class="p">(</span><span class="s1">&#39;JavaScript&#39;</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">));</span>
+
+    <span class="n">const</span> <span class="n">paragraphElement</span> <span class="o">=</span> <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">paragraphElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveTextContent</span> <span class="p">(</span><span class="s1">&#39;Searches for JavaScript&#39;</span><span class="p">);</span>
+
+    <span class="n">fireEvent</span><span class="o">.</span><span class="n">change</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">,</span> <span class="p">{</span><span class="n">target</span><span class="p">:</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;React&#39;</span><span class="p">}});</span>
+    <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveValue</span> <span class="p">(</span><span class="s1">&#39;React&#39;</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span> <span class="n">React</span><span class="o">/</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="userevent">
+<h4><span class="section-number">12.3.4.3. </span>userEvent<a class="headerlink" href="#userevent" title="Link to this heading"></a></h4>
+<ul>
+<li><p>imports</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">logRoles</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">userEvent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/user-event&#39;</span><span class="p">;</span>
+<span class="o">//</span> <span class="kn">import</span><span class="w"> </span><span class="nn">Component</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">HiddenMessage</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./HiddenMessage&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>render Component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">HiddenMessage</span> <span class="o">/&gt;</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>get Component element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">buttonElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Show Message&#39;</span><span class="p">});</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>userEvent</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">userEvent</span><span class="o">.</span><span class="n">click</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Complete code ‘./HiddenMessage.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">logRoles</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">userEvent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/user-event&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">HiddenMessage</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./HiddenMessage&#39;</span><span class="p">;</span>
+
+<span class="n">test</span> <span class="p">(</span><span class="s1">&#39;&lt;HiddenMessage /&gt; button userEvent&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">HiddenMessage</span> <span class="o">/&gt;</span><span class="p">);</span>
+    <span class="n">const</span> <span class="n">buttonElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;button&#39;</span><span class="p">,</span> <span class="p">{</span><span class="n">name</span><span class="p">:</span> <span class="s1">&#39;Show Message&#39;</span><span class="p">});</span>
+    <span class="n">userEvent</span><span class="o">.</span><span class="n">click</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">));</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveTextContent</span> <span class="p">(</span><span class="s1">&#39;Hide Message&#39;</span><span class="p">);</span>
+    <span class="n">userEvent</span><span class="o">.</span><span class="n">click</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">));</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">buttonElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveTextContent</span> <span class="p">(</span><span class="s1">&#39;Show Message&#39;</span><span class="p">);</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="asynchronous-userevent">
+<h4><span class="section-number">12.3.4.4. </span>Asynchronous userEvent<a class="headerlink" href="#asynchronous-userevent" title="Link to this heading"></a></h4>
+<ul>
+<li><p>imports</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">fireEvent</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">userEvent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/user-event&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom/extend-expect&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UserSearchComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UserSearchComponent&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>render Component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">UserSearchComponent</span> <span class="o">/&gt;</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Signed</span> <span class="ow">in</span> <span class="k">as</span><span class="o">/</span><span class="p">,{},{</span>
+    <span class="n">timeout</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+    <span class="n">interval</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+<span class="p">});</span>
+<span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">user</span><span class="p">));</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>get Component element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">inputElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+<span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">));</span>
+</pre></div>
+</div>
+</li>
+<li><p>userEvent</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">userEvent</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">inputElement</span><span class="p">,</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">);</span>
+<span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Complete code ‘./UserSearchComponent.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">fireEvent</span><span class="p">,</span> <span class="n">prettyDOM</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">userEvent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/user-event&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;@testing-library/jest-dom/extend-expect&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UserSearchComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UserSearchComponent&#39;</span><span class="p">;</span>
+
+<span class="n">describe</span> <span class="p">(</span><span class="s1">&#39;UserSearchComponent&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">beforeAll</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">jest</span><span class="o">.</span><span class="n">useFakeTimers</span> <span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="n">afterAll</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">jest</span><span class="o">.</span><span class="n">useRealTimers</span> <span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="n">test</span> <span class="p">(</span><span class="s1">&#39;UserSearchComponent and userEvent&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">render</span> <span class="p">(</span><span class="o">&lt;</span><span class="n">UserSearchComponent</span> <span class="o">/&gt;</span><span class="p">);</span>
+    <span class="n">const</span> <span class="n">user</span> <span class="o">=</span> <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Signed</span> <span class="ow">in</span> <span class="k">as</span><span class="o">/</span><span class="p">,{},{</span>
+        <span class="n">timeout</span><span class="p">:</span> <span class="mi">10000</span><span class="p">,</span>
+        <span class="n">interval</span><span class="p">:</span> <span class="mi">100</span><span class="p">,</span>
+    <span class="p">});</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">user</span><span class="p">));</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">user</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+
+    <span class="n">const</span> <span class="n">inputElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">));</span>
+    <span class="n">userEvent</span><span class="o">.</span><span class="n">type</span><span class="p">(</span><span class="n">inputElement</span><span class="p">,</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">);</span>
+    <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveValue</span> <span class="p">(</span><span class="s1">&#39;JavaScript&#39;</span><span class="p">);</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">));</span>
+
+    <span class="n">const</span> <span class="n">paragraphElement</span> <span class="o">=</span> <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">paragraphElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveTextContent</span> <span class="p">(</span><span class="s1">&#39;Searches for JavaScript&#39;</span><span class="p">);</span>
+    <span class="n">userEvent</span><span class="o">.</span><span class="n">clear</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">);</span>
+    <span class="n">userEvent</span><span class="o">.</span><span class="n">type</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">,</span> <span class="s1">&#39;React&#39;</span><span class="p">);</span>
+    <span class="k">await</span> <span class="n">screen</span><span class="o">.</span><span class="n">findByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveValue</span> <span class="p">(</span><span class="s1">&#39;React&#39;</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByText</span> <span class="p">(</span><span class="o">/</span><span class="n">Searches</span> <span class="k">for</span> <span class="n">React</span><span class="o">/</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+    <span class="n">console</span><span class="o">.</span><span class="n">log</span> <span class="p">(</span><span class="n">prettyDOM</span> <span class="p">(</span><span class="n">inputElement</span><span class="p">));</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="callback-handlers">
+<h3><span class="section-number">12.3.5. </span>callback handlers<a class="headerlink" href="#callback-handlers" title="Link to this heading"></a></h3>
+<p>Sometimes you will test React components in isolation as unit tests. Often these components will not have any side-effects or state, but only input (props) and output (JSX, callback handlers). For the Search component, we are using a utility from Vitest (or Jest) to mock the onChange function which is passed to the component. Then, after triggering the user interaction on the input field, we can assert that the onChange callback function has been called. While fireEvent executes the change event by only calling the callback function once, userEvent triggers it for every key stroke.</p>
+<ul>
+<li><p>imports</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">fireEvent</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">userEvent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/user-event&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">SearchComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./SearchComponent&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>render Component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">render</span> <span class="p">(</span>
+  <span class="o">&lt;</span><span class="n">SearchComponent</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;test&quot;</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Search:&quot;</span> <span class="o">/&gt;</span>
+<span class="p">);</span>
+
+<span class="n">expect</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByLabelText</span> <span class="p">(</span><span class="o">/</span><span class="n">search</span><span class="p">:</span><span class="o">/</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByDisplayValue</span> <span class="p">(</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+</pre></div>
+</div>
+</li>
+<li><p>calls the onChange callback handler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">handleChange</span> <span class="o">=</span> <span class="n">jest</span><span class="o">.</span><span class="n">fn</span> <span class="p">();</span>
+<span class="n">render</span> <span class="p">(</span>
+  <span class="o">&lt;</span><span class="n">SearchComponent</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Search:&quot;</span> <span class="o">/&gt;</span>
+<span class="p">);</span>
+
+<span class="n">fireEvent</span><span class="o">.</span><span class="n">change</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByLabelText</span> <span class="p">(</span><span class="o">/</span><span class="n">search</span><span class="p">:</span><span class="o">/</span><span class="n">i</span><span class="p">),</span> <span class="p">{</span>
+  <span class="n">target</span><span class="p">:</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;new value&#39;</span><span class="p">},</span>
+<span class="p">});</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">handleChange</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveBeenCalledTimes</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+<span class="k">await</span> <span class="n">userEvent</span><span class="o">.</span><span class="n">type</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">),</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">);</span>
+<span class="n">expect</span> <span class="p">(</span><span class="n">handleChange</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveBeenCalledTimes</span> <span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Complete code ‘./SearchComponent.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">fireEvent</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">userEvent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/user-event&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">SearchComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./SearchComponent&#39;</span><span class="p">;</span>
+
+<span class="n">describe</span> <span class="p">(</span><span class="s1">&#39;SearchComponent callback handler&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">test</span> <span class="p">(</span><span class="s1">&#39;renders the SearchComponent with given props&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">render</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">SearchComponent</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;test&quot;</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Search:&quot;</span> <span class="o">/&gt;</span>
+    <span class="p">);</span>
+
+    <span class="n">expect</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByLabelText</span> <span class="p">(</span><span class="o">/</span><span class="n">search</span><span class="p">:</span><span class="o">/</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByDisplayValue</span> <span class="p">(</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">i</span><span class="p">))</span><span class="o">.</span><span class="n">toBeInTheDocument</span> <span class="p">();</span>
+  <span class="p">});</span>
+
+  <span class="n">test</span> <span class="p">(</span><span class="s1">&#39;calls the onChange callback handler&#39;</span><span class="p">,</span> <span class="k">async</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="n">handleChange</span> <span class="o">=</span> <span class="n">jest</span><span class="o">.</span><span class="n">fn</span> <span class="p">();</span>
+    <span class="n">render</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">SearchComponent</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;&quot;</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleChange</span><span class="p">}</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Search:&quot;</span> <span class="o">/&gt;</span>
+    <span class="p">);</span>
+
+    <span class="n">fireEvent</span><span class="o">.</span><span class="n">change</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByLabelText</span> <span class="p">(</span><span class="o">/</span><span class="n">search</span><span class="p">:</span><span class="o">/</span><span class="n">i</span><span class="p">),</span> <span class="p">{</span>
+      <span class="n">target</span><span class="p">:</span> <span class="p">{</span><span class="n">value</span><span class="p">:</span> <span class="s1">&#39;new value&#39;</span><span class="p">},</span>
+    <span class="p">});</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">handleChange</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveBeenCalledTimes</span> <span class="p">(</span><span class="mi">1</span><span class="p">);</span>
+    <span class="k">await</span> <span class="n">userEvent</span><span class="o">.</span><span class="n">type</span> <span class="p">(</span><span class="n">screen</span><span class="o">.</span><span class="n">getByRole</span> <span class="p">(</span><span class="s1">&#39;textbox&#39;</span><span class="p">),</span> <span class="s1">&#39;JavaScript&#39;</span><span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">handleChange</span><span class="p">)</span><span class="o">.</span><span class="n">toHaveBeenCalledTimes</span> <span class="p">(</span><span class="mi">11</span><span class="p">);</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="snapshot-test">
+<h3><span class="section-number">12.3.6. </span>Snapshot test<a class="headerlink" href="#snapshot-test" title="Link to this heading"></a></h3>
+<p>Snapshot tests are provided by Jest and are great to use when you simply want to make sure the HTML output of a component does not change unexpectedly. Suppose a developer does change the component’s HTML structure, for example, by adding another paragraph element with static text. In that case, the snapshot test will fail and provide a visual of the changes so you can respond accordingly.</p>
+<ul>
+<li><p>Complete code ‘./SearchComponent.test.js’</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="p">{</span><span class="n">render</span><span class="p">,</span> <span class="n">screen</span><span class="p">,</span> <span class="n">fireEvent</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">userEvent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/user-event&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">SearchComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./SearchComponent&#39;</span><span class="p">;</span>
+
+<span class="n">describe</span> <span class="p">(</span><span class="s1">&#39;SearchComponent callback handler&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+
+  <span class="n">test</span> <span class="p">(</span><span class="s1">&#39;matches the snapshot&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="p">{</span><span class="n">asFragment</span><span class="p">}</span> <span class="o">=</span> <span class="n">render</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">SearchComponent</span> <span class="n">value</span><span class="o">=</span><span class="s2">&quot;test&quot;</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="p">{}}</span> <span class="n">children</span><span class="o">=</span><span class="s2">&quot;Search:&quot;</span> <span class="o">/&gt;</span>
+    <span class="p">);</span>
+    <span class="n">expect</span> <span class="p">(</span><span class="n">asFragment</span> <span class="p">())</span><span class="o">.</span><span class="n">toMatchSnapshot</span> <span class="p">();</span>
+  <span class="p">});</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+</section>
+<section id="getting-code-coverage">
+<h2><span class="section-number">12.4. </span>Getting code coverage<a class="headerlink" href="#getting-code-coverage" title="Link to this heading"></a></h2>
+<p>To get code coverage, we run the test command with a –coverage option. We also include a
+–watchAll=false option that tells Jest not to run in watch mode. So, run the following command
+in a terminal to determine code coverage on our app:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># npm</span>
+<span class="n">npm</span> <span class="n">run</span> <span class="n">test</span> <span class="o">--</span> <span class="o">--</span><span class="n">coverage</span> <span class="o">--</span><span class="n">watchAll</span><span class="o">=</span><span class="n">false</span>
+<span class="c1"># yarn</span>
+<span class="n">yarn</span> <span class="n">test</span> <span class="o">--</span> <span class="o">--</span><span class="n">coverage</span> <span class="o">--</span><span class="n">watchAll</span><span class="o">=</span><span class="n">false</span>
+</pre></div>
+</div>
+<p>Here’s an explanation of all the statistic columns:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>%Stmts</strong> : This is statement coverage, which is how many source code statements have been executed during test execution</p></li>
+<li><p><strong>%Branch</strong> : This is branch coverage, which is how many of the branches of conditional logic have been executed during test execution</p></li>
+<li><p><strong>%Funcs</strong> : This is function coverage, which is how many functions have been called during test execution</p></li>
+<li><p><strong>%Lines</strong> : This is line coverage, which is how many lines of source code have been executed during test execution</p></li>
+</ul>
+</div></blockquote>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut11-react-restful-api.html" class="btn btn-neutral float-left" title="11. Tut11-React and RESTful API" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
