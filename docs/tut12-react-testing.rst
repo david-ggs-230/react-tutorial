@@ -801,6 +801,31 @@ Sometimes you will test React components in isolation as unit tests. Often these
       });
     });
     
+
+==================================================================================================
+Snapshot test
+==================================================================================================
+
+Snapshot tests are provided by Jest and are great to use when you simply want to make sure the HTML output of a component does not change unexpectedly. Suppose a developer does change the component's HTML structure, for example, by adding another paragraph element with static text. In that case, the snapshot test will fail and provide a visual of the changes so you can respond accordingly. 
+
+    
+- Complete code './SearchComponent.test.js' ::
+    
+    import React from 'react';
+    import {render, screen, fireEvent} from '@testing-library/react';
+    import userEvent from '@testing-library/user-event';
+    import SearchComponent from './SearchComponent';
+    
+    describe ('SearchComponent callback handler', () => {
+      
+      test ('matches the snapshot', () => {
+        const {asFragment} = render (
+          <SearchComponent value="test" onChange={() => {}} children="Search:" />
+        );
+        expect (asFragment ()).toMatchSnapshot ();
+      });
+    });
+    
 **************************************************************************************************
 Getting code coverage
 **************************************************************************************************
