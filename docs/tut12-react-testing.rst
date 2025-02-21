@@ -251,21 +251,117 @@ Install React Testing Library
 React Testing Library (RTL) by Kent C. Dodds got released as alternative to Airbnb's Enzyme. While Enzyme gives React developers utilities to test internals of React components, React Testing Library takes a step back and questions us "how to test React components to get full confidence in our React components": Rather than testing a component's implementation details, React Testing Library puts the developer in the shoes of an end user of an React application. React Testing Library builds on top of DOM Testing Library by adding APIs for working with React components. It provides light utility functions on top of react-dom and react-dom/test-utils, in a way that encourages better testing practices.
 
 
-Install React Testing Library ::
+
+Reference: 
+    
+    - `React Testing Library Tutorial <https://www.robinwieruch.de/react-testing-library/>`_ , November 22, 2022 by Robin Wieruch
+    - `Using the React Testing Library debug method <https://blog.logrocket.com/using-react-testing-library-debug-method/>`_ , Nov 3, 2023 by Ibadehin Mojeed
+    
+- Install React Testing Library ::
     
     # npm
-    npm install --save-dev @testing-library/react @testing-library/dom @testing-library/jest-dom
+    npm install --save-dev @testing-library/react @testing-library/dom @testing-library/jest-dom @testing-library/user-event
     # yarn
-    yarn add --dev @testing-library/react @testing-library/dom @testing-library/jest-dom
+    yarn add --dev @testing-library/react @testing-library/dom @testing-library/jest-dom @testing-library/user-event
     # run npm test, Jest will launch in watch mode
     npm test
     # run yarn test, Jest will launch in watch mode
     yarn test
     
+- HiddenMessage Component ::
+    
+    import './App.css';
+    import { useState } from 'react';
+    
+    function HiddenMessage() {
+        const [showMessage, setShowMessage] = useState(false);
+      
+        const toggleMessage = () => {
+          setShowMessage(!showMessage);
+        };
+      
+        return (
+          <div className="App" style={{ marginTop: 40 }}>
+            <h1>Show/Hide Message</h1>
+            <button onClick={toggleMessage}>
+              {showMessage ? 'Hide' : 'Show'} Message
+            </button>
+            {showMessage && <p>This is a toggled message!</p>}
+          </div>
+        );
+      }
+      
+    export default HiddenMessage;
+    
+
+- UserSearchComponent ::
+    
+    import React from 'react';
+    import SearchComponent from './SearchComponent';
+    
+    function UserSearchComponent () {
+      const [search, setSearch] = React.useState ('');
+      const [user, setUser] = React.useState (null);
+    
+      const handleChange = async event => {
+        setSearch (event.target.value);
+      };
+      const getUser = () => {
+        return new Promise (function (resolve) {
+          setTimeout (function () {
+            resolve ({id: '1', name: 'Robin'});
+          }, 5000);
+        });
+      };
+      React.useEffect (() => {
+        const loadUser = async () => {
+          const user = await getUser ();
+          setUser (user);
+        };
+    
+        loadUser ();
+      }, []);
+      return (
+        <div>
+          {user && <p>Signed in as {user.name}</p>}
+          <SearchComponent value={search} onChange={handleChange}>
+            Search:
+          </SearchComponent>
+    
+          <p>Searches for {search ? search : '...'}</p>
+        </div>
+      );
+    }
+    
+    export default UserSearchComponent;
+    
+- SearchComponent ::
+    
+    import * as React from 'react';
+    
+    function SearchComponent({value, onChange, children}) {
+      return (
+        <div style={{marginTop: 40}}>
+          <label htmlFor="search">{children}</label>
+          <input
+            id="search"
+            type="text"
+            value={value}
+            onChange={onChange}
+            style={{marginLeft: 10}}
+          />
+        </div>
+      );
+    }
+    
+    export default SearchComponent;
+    
+
 ==================================================================================================
 Rendering a React component
 ==================================================================================================
 
+    
 - imports ::
     
     import { render, screen, logRoles, prettyDOM} from '@testing-library/react';
@@ -451,6 +547,72 @@ Asynchronous fireEvent
 --------------------------------------------------------------------------------------------------
 
 
+- imports ::
+    
+    import {render, screen, fireEvent, prettyDOM} from '@testing-library/react';
+    
+    import '@testing-library/jest-dom/extend-expect';
+    import UserSearchComponent from './UserSearchComponent';
+    
+- render Component ::
+    
+    render (<UserSearchComponent />);
+    const user = await screen.findByText (/Signed in as/,{},{
+        timeout: 10000,
+        interval: 100,
+    });
+    console.log (prettyDOM (user));
+    expect (user).toBeInTheDocument ();
+    
+- get Component element ::
+    
+    const inputElement = screen.getByRole ('textbox');
+    console.log (prettyDOM (inputElement));
+    
+- fireEvent ::
+    
+    fireEvent.change (inputElement, {target: {value: 'JavaScript'}});
+    await screen.findByText (/Searches for/i);
+    
+- Complete code './UserSearchComponent.test.js' ::
+    
+    import {render, screen, fireEvent, prettyDOM} from '@testing-library/react';
+    
+    import '@testing-library/jest-dom/extend-expect';
+    import UserSearchComponent from './UserSearchComponent';
+    describe ('renders UserSearchComponent waiting for fetchUser', () => {
+      beforeAll (() => {
+        jest.useFakeTimers ();
+      });
+    
+      afterAll (() => {
+        jest.useRealTimers ();
+      });
+      test ('renders UserSearchComponent and updates search text', async () => {
+        render (<UserSearchComponent />);
+        const user = await screen.findByText (/Signed in as/,{},{
+            timeout: 10000,
+            interval: 100,
+        });
+        console.log (prettyDOM (user));
+        expect (user).toBeInTheDocument ();
+    
+        const inputElement = screen.getByRole ('textbox');
+        console.log (prettyDOM (inputElement));
+        fireEvent.change (inputElement, {target: {value: 'JavaScript'}});
+        expect (inputElement).toHaveValue ('JavaScript');
+        console.log (prettyDOM (inputElement));
+    
+        const paragraphElement = await screen.findByText (/Searches for/i);
+        expect (paragraphElement).toHaveTextContent ('Searches for JavaScript');
+    
+        fireEvent.change (inputElement, {target: {value: 'React'}});
+        await screen.findByText (/Searches for/i);
+        expect (inputElement).toHaveValue ('React');
+        expect (screen.getByText (/Searches for React/i)).toBeInTheDocument ();
+      });
+    });
+    
 --------------------------------------------------------------------------------------------------
 userEvent
 --------------------------------------------------------------------------------------------------
@@ -495,3 +657,75 @@ userEvent
 --------------------------------------------------------------------------------------------------
 Asynchronous userEvent
 --------------------------------------------------------------------------------------------------
+
+
+- imports ::
+    
+    import {render, screen, fireEvent, prettyDOM} from '@testing-library/react';
+    import userEvent from '@testing-library/user-event';
+    import '@testing-library/jest-dom/extend-expect';
+    import UserSearchComponent from './UserSearchComponent';
+    
+- render Component ::
+    
+    render (<UserSearchComponent />);
+    const user = await screen.findByText (/Signed in as/,{},{
+        timeout: 10000,
+        interval: 100,
+    });
+    console.log (prettyDOM (user));
+    expect (user).toBeInTheDocument ();
+    
+- get Component element ::
+    
+    const inputElement = screen.getByRole ('textbox');
+    console.log (prettyDOM (inputElement));
+    
+- userEvent ::
+    
+    userEvent.type(inputElement, 'JavaScript');
+    await screen.findByText (/Searches for/i);
+    
+- Complete code './UserSearchComponent.test.js' ::
+    
+    import {render, screen, fireEvent, prettyDOM} from '@testing-library/react';
+    import userEvent from '@testing-library/user-event';
+    import '@testing-library/jest-dom/extend-expect';
+    import UserSearchComponent from './UserSearchComponent';
+    
+    describe ('UserSearchComponent', () => {
+      beforeAll (() => {
+        jest.useFakeTimers ();
+      });
+    
+      afterAll (() => {
+        jest.useRealTimers ();
+      });
+      
+      test ('UserSearchComponent and userEvent', async () => {
+        render (<UserSearchComponent />);
+        const user = await screen.findByText (/Signed in as/,{},{
+            timeout: 10000,
+            interval: 100,
+        });
+        console.log (prettyDOM (user));
+        expect (user).toBeInTheDocument ();
+    
+        const inputElement = screen.getByRole ('textbox');
+        console.log (prettyDOM (inputElement));
+        userEvent.type(inputElement, 'JavaScript');
+        await screen.findByText (/Searches for/i);
+        expect (inputElement).toHaveValue ('JavaScript');
+        console.log (prettyDOM (inputElement));
+    
+        const paragraphElement = await screen.findByText (/Searches for/i);
+        expect (paragraphElement).toHaveTextContent ('Searches for JavaScript');
+        userEvent.clear (inputElement);
+        userEvent.type (inputElement, 'React');
+        await screen.findByText (/Searches for/i);
+        expect (inputElement).toHaveValue ('React');
+        expect (screen.getByText (/Searches for React/i)).toBeInTheDocument ();
+        console.log (prettyDOM (inputElement));
+      });
+    });
+    
