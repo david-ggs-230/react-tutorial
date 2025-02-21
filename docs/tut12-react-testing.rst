@@ -6,19 +6,22 @@
    
 .. role:: custom-color-green
    :class: sd-text-success
-    
+   
 .. role:: custom-color-red
    :class: sd-text-danger
-    
+   
 .. role:: custom-color-black
    :class: sd-text-black
+   
+.. role:: custom-color-black-bold
+   :class: sd-text-black sd-font-weight-bold
    
 .. role:: custom-color-primary-underline
    :class: sd-text-primary sd-text-decoration-line-underline
    
 .. role:: custom-color-primary-bold
    :class: sd-text-primary sd-font-weight-bold
-
+   
 .. rst-class:: title-center h1
    
 React Unit Testing
@@ -658,7 +661,6 @@ userEvent
 Asynchronous userEvent
 --------------------------------------------------------------------------------------------------
 
-
 - imports ::
     
     import {render, screen, fireEvent, prettyDOM} from '@testing-library/react';
@@ -728,4 +730,94 @@ Asynchronous userEvent
         console.log (prettyDOM (inputElement));
       });
     });
+    
+
+==================================================================================================
+callback handlers
+==================================================================================================
+
+Sometimes you will test React components in isolation as unit tests. Often these components will not have any side-effects or state, but only input (props) and output (JSX, callback handlers). For the Search component, we are using a utility from Vitest (or Jest) to mock the onChange function which is passed to the component. Then, after triggering the user interaction on the input field, we can assert that the onChange callback function has been called. While fireEvent executes the change event by only calling the callback function once, userEvent triggers it for every key stroke.
+
+    
+- imports ::
+    
+    import React from 'react';
+    import {render, screen, fireEvent} from '@testing-library/react';
+    import userEvent from '@testing-library/user-event';
+    import SearchComponent from './SearchComponent';
+    
+- render Component ::
+    
+    render (
+      <SearchComponent value="test" onChange={() => {}} children="Search:" />
+    );
+    
+    expect (screen.getByLabelText (/search:/i)).toBeInTheDocument ();
+    expect (screen.getByDisplayValue (/test/i)).toBeInTheDocument ();
+    
+- calls the onChange callback handler ::
+    
+    const handleChange = jest.fn ();
+    render (
+      <SearchComponent value="" onChange={handleChange} children="Search:" />
+    );
+    
+    fireEvent.change (screen.getByLabelText (/search:/i), {
+      target: {value: 'new value'},
+    });
+    expect (handleChange).toHaveBeenCalledTimes (1);
+    await userEvent.type (screen.getByRole ('textbox'), 'JavaScript');
+    expect (handleChange).toHaveBeenCalledTimes (11);
+    
+- Complete code './SearchComponent.test.js' ::
+    
+    import React from 'react';
+    import {render, screen, fireEvent} from '@testing-library/react';
+    import userEvent from '@testing-library/user-event';
+    import SearchComponent from './SearchComponent';
+    
+    describe ('SearchComponent callback handler', () => {
+      test ('renders the SearchComponent with given props', () => {
+        render (
+          <SearchComponent value="test" onChange={() => {}} children="Search:" />
+        );
+    
+        expect (screen.getByLabelText (/search:/i)).toBeInTheDocument ();
+        expect (screen.getByDisplayValue (/test/i)).toBeInTheDocument ();
+      });
+    
+      test ('calls the onChange callback handler', async () => {
+        const handleChange = jest.fn ();
+        render (
+          <SearchComponent value="" onChange={handleChange} children="Search:" />
+        );
+    
+        fireEvent.change (screen.getByLabelText (/search:/i), {
+          target: {value: 'new value'},
+        });
+        expect (handleChange).toHaveBeenCalledTimes (1);
+        await userEvent.type (screen.getByRole ('textbox'), 'JavaScript');
+        expect (handleChange).toHaveBeenCalledTimes (11);
+      });
+    });
+    
+**************************************************************************************************
+Getting code coverage
+**************************************************************************************************
+
+To get code coverage, we run the test command with a --coverage option. We also include a
+--watchAll=false option that tells Jest not to run in watch mode. So, run the following command
+in a terminal to determine code coverage on our app: ::
+    
+    # npm
+    npm run test -- --coverage --watchAll=false
+    # yarn 
+    yarn test -- --coverage --watchAll=false
+    
+Here’s an explanation of all the statistic columns:
+    
+    - **%Stmts** : This is statement coverage, which is how many source code statements have been executed during test execution
+    - **%Branch** : This is branch coverage, which is how many of the branches of conditional logic have been executed during test execution
+    - **%Funcs** : This is function coverage, which is how many functions have been called during test execution
+    - **%Lines** : This is line coverage, which is how many lines of source code have been executed during test execution
     
