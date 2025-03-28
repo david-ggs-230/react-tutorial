@@ -1,0 +1,364 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2. Tut02-React Components &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="3. Tut03-React Props" href="tut03-react-props.html" />
+    <link rel="prev" title="1. Tut01-Hello ReactJS App" href="tut01-hello-reactjs-app.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">2. Tut02-React Components</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">2.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#react-components">2.2. React Components</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#function-components">2.2.1. Function Components</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#class-components">2.2.2. Class Components</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#react-nested-components">2.3. React Nested Components</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-react-state.html">4. Tut04-React State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-react-event.html">5. Tut05-React Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-component-life-cycle.html">6. Tut06-React Component Life Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-component-styling.html">7. Tut07-React Component Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-hooks.html">9. Tut09-React Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut11-react-restful-api.html">11. Tut11-React and RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut12-react-testing.html">12. Tut12-React Unit Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">2. </span>Tut02-React Components</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut02-react-components">React Components</p>
+<section id="id1">
+<h1><span class="section-number">2. </span>Tut02-React Components<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">2.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut02-react-components&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut02</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">components</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut02-react-components/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut02</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">components</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">Disable</span> <span class="n">test</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut02-react-components&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="react-components">
+<h2><span class="section-number">2.2. </span>React Components<a class="headerlink" href="#react-components" title="Link to this heading"></a></h2>
+<dl class="simple">
+<dt>There are two types of components in React:</dt><dd><ul class="simple">
+<li><p>Function Components</p></li>
+<li><p>Class Components</p></li>
+</ul>
+</dd>
+</dl>
+<section id="function-components">
+<h3><span class="section-number">2.2.1. </span>Function Components<a class="headerlink" href="#function-components" title="Link to this heading"></a></h3>
+<dl class="simple">
+<dt>Functional Components:</dt><dd><ul class="simple">
+<li><p>They are JavaScript functions that return React elements.</p></li>
+<li><p>Stateless or Stateful: Can manage state using React Hooks.</p></li>
+<li><p>Simpler Syntax: Ideal for small and reusable components.</p></li>
+<li><p>Performance: Generally faster since they don’t require a ‘this’ keyword.</p></li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut02-react-components/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut02</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">components</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+
+function App() {
+  return (
+    &lt;div className=&quot;App&quot;&gt;
+        &lt;h1&gt;Hello, My React-Function-Component App!&lt;/h1&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default App;
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center">
+<a class="sd-mb-2 reference internal image-reference" href="_images/tut02-react-components-function.png"><img alt="_images/tut02-react-components-function.png" class="sd-mb-2" src="_images/tut02-react-components-function.png" style="width: 80%;" />
+</a>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="class-components">
+<h3><span class="section-number">2.2.2. </span>Class Components<a class="headerlink" href="#class-components" title="Link to this heading"></a></h3>
+<dl>
+<dt>Class Components:</dt><dd><ul>
+<li><p>Class components are ES6 classes that extend React.Component.</p></li>
+<li><p>Include features like state management and lifecycle methods.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>State Management: State is managed using the this.state property.</p></li>
+<li><p>Lifecycle Methods: Includes methods like componentDidMount, componentDidUpdate, etc.</p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</dd>
+</dl>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut02-react-components/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut02</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">components</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, { Component } from &#39;react&#39;;
+import &#39;./App.css&#39;;
+
+class App extends React.Component {
+    render() {
+        return (
+          &lt;div className=&quot;App&quot;&gt;
+              &lt;h1&gt;Hello, My React-Class-Component App!&lt;/h1&gt;
+          &lt;/div&gt;
+        );
+    }
+}
+
+export default App;
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center">
+<a class="sd-mb-2 reference internal image-reference" href="_images/tut02-react-components-class.png"><img alt="_images/tut02-react-components-class.png" class="sd-mb-2" src="_images/tut02-react-components-class.png" style="width: 80%;" />
+</a>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="react-nested-components">
+<h2><span class="section-number">2.3. </span>React Nested Components<a class="headerlink" href="#react-nested-components" title="Link to this heading"></a></h2>
+<p>A nested component in React is a component that is related to an another component. You can also consider it as a child component inside a parent component; but they are not linked together using the inheritance concept but with the composition concept.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;Person /&gt;</p></li>
+<li><p>Parent component &lt;App /&gt; contains child components &lt;Person /&gt;</p></li>
+</ul>
+</div></blockquote>
+<p><strong>Step-by-Step Tutorial</strong></p>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut02-react-components/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut02</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">components</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">Person1.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">Person1</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">li</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Nancy</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Age</span><span class="p">:</span> <span class="mi">25</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Location</span><span class="p">:</span> <span class="n">New</span> <span class="n">York</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">Person1</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">Person2.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">Component</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">Person2</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+    <span class="n">render</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="p">(</span>
+          <span class="o">&lt;</span><span class="n">li</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">Alan</span> <span class="n">Boyer</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Age</span><span class="p">:</span> <span class="mi">35</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Location</span><span class="p">:</span> <span class="n">Boston</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+          <span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+        <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">Person2</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import &#39;./App.css&#39;;
+import React, { Component } from &#39;react&#39;;
+import Person1 from &#39;./Person1&#39;;
+import Person2 from &#39;./Person2&#39;;
+
+class App extends Component {
+  render() {
+      return (
+        &lt;div className=&quot;App&quot;&gt;
+            &lt;h1&gt;Hello, My React-Components App!&lt;/h1&gt;
+            &lt;ol&gt;
+              &lt;Person1 /&gt;
+              &lt;Person2 /&gt;
+            &lt;/ol&gt;
+        &lt;/div&gt;
+      );
+  }
+}
+
+export default App;
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center">
+<a class="sd-mb-2 reference internal image-reference" href="_images/tut02-react-components-nested.png"><img alt="_images/tut02-react-components-nested.png" class="sd-mb-2" src="_images/tut02-react-components-nested.png" style="width: 80%;" />
+</a>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut01-hello-reactjs-app.html" class="btn btn-neutral float-left" title="1. Tut01-Hello ReactJS App" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut03-react-props.html" class="btn btn-neutral float-right" title="3. Tut03-React Props" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

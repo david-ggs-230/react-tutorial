@@ -1,0 +1,1313 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9. Tut09-React Hooks &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="10. Tut10-React Form" href="tut10-react-form.html" />
+    <link rel="prev" title="8. Tut08-React Router" href="tut08-react-router.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-react-components.html">2. Tut02-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-react-state.html">4. Tut04-React State</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut05-react-event.html">5. Tut05-React Event</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-component-life-cycle.html">6. Tut06-React Component Life Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-component-styling.html">7. Tut07-React Component Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Tut09-React Hooks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">9.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#react-hooks">9.2. React Hooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#usestate">9.2.1. useState</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useeffect">9.2.2. useEffect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usecontext">9.2.3. useContext</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#useref">9.2.4. useRef</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usereducer">9.2.5. useReducer</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usememo">9.2.6. useMemo</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usecallback">9.2.7. useCallback</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-hooks">9.2.8. Custom Hooks</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut11-react-restful-api.html">11. Tut11-React and RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut12-react-testing.html">12. Tut12-React Unit Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9. </span>Tut09-React Hooks</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut09-react-hooks">React Hooks</p>
+<section id="id1">
+<h1><span class="section-number">9. </span>Tut09-React Hooks<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">9.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut09-react-hooks&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Install React Router</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># yarn add react-router-dom or npm install react-router-dom --save</span>
+<span class="n">yarn</span> <span class="n">add</span> <span class="o">-</span><span class="n">D</span> <span class="n">react</span><span class="o">-</span><span class="n">router</span><span class="o">-</span><span class="n">dom</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut09-react-hooks&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="react-hooks">
+<h2><span class="section-number">9.2. </span>React Hooks<a class="headerlink" href="#react-hooks" title="Link to this heading"></a></h2>
+<p>Hooks were added to React in version 16.8. React hooks are a powerful feature that allow you to use state, lifecycle methods, and other React features in functional components.</p>
+<p>Hook Rules:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Hooks can only be called inside React function components.</p></li>
+<li><p>Hooks can only be called at the top level of a component.</p></li>
+<li><p>Hooks cannot be conditional</p></li>
+</ul>
+</div></blockquote>
+<p>The main hooks include useState, useEffect, useContext, useReducer, useCallback, useMemo, useRef, and useImperativeHandle, among others. These hooks provide ways to access React features, allowing you to better organize and reuse your code.</p>
+<section id="usestate">
+<h3><span class="section-number">9.2.1. </span>useState<a class="headerlink" href="#usestate" title="Link to this heading"></a></h3>
+<p>useState is a basic React hook, which allows a function component to maintain its own state and re-render itself based on the state changes. The signature of the useState is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span> <span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">setState</span><span class="o">&gt;</span> <span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span> <span class="o">&lt;</span><span class="n">initialValue</span><span class="o">&gt;</span> <span class="p">)</span>
+<span class="c1"># initialValue − Initial value of the state. state can be specified in any type (number, string, array and object).</span>
+<span class="c1"># state − Variable to represent the value of the state.</span>
+<span class="c1"># setState − Function variable to represent the function to update the state returned by the useState.</span>
+<span class="c1"># useState accepts a function parameter instead of initial value and execute the function only</span>
+<span class="c1">#    once during initial rendering of the component. This will help to improve the performance,</span>
+<span class="c1">#    if the computation of initial value is expensive.</span>
+<span class="c1">#    signature: const [ &lt;state&gt;, &lt;setState&gt; ] = useState(() =&gt; { ... ; return &lt;initialValue&gt;; })</span>
+</pre></div>
+</div>
+<p>The signature of the setState function is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">setState</span><span class="p">(</span> <span class="o">&lt;</span><span class="n">valueToBeUpdated</span><span class="o">&gt;</span> <span class="p">)</span>
+</pre></div>
+</div>
+<p>The sample usage to set and update the user’s name is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">initialize</span> <span class="n">the</span> <span class="n">state</span>
+<span class="n">const</span> <span class="p">[</span><span class="n">name</span><span class="p">,</span> <span class="n">setName</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="s1">&#39;John&#39;</span><span class="p">)</span>
+
+<span class="o">//</span> <span class="n">update</span> <span class="n">the</span> <span class="n">state</span>
+<span class="n">setName</span><span class="p">(</span><span class="s1">&#39;Peter)</span>
+</pre></div>
+</div>
+<p>useState with Function Parameter</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="n">val</span><span class="p">,</span> <span class="n">setVal</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="n">var</span> <span class="n">initialValue</span> <span class="o">=</span> <span class="n">null</span>
+   <span class="o">//</span> <span class="n">expensive</span> <span class="n">calculation</span> <span class="n">of</span> <span class="n">initial</span> <span class="n">value</span>
+   <span class="k">return</span> <span class="n">initialValue</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+<p>Batches multiple state updates − Multiple state updates are batched and processed by React internally. If multiple state update has to be done immediately, then the special function flushSync provided by React can be used, which will immediately flush all the state changes.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">flushSync</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="n">setName</span><span class="p">(</span><span class="s1">&#39;Peter&#39;</span><span class="p">))</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseStateComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">UseStateComponent</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">count</span><span class="p">,</span> <span class="n">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Hooks</span><span class="o">-</span> <span class="n">useState</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">You</span> <span class="n">clicked</span> <span class="p">{</span><span class="n">count</span><span class="p">}</span> <span class="n">times</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="n">setCount</span><span class="p">(</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Click</span> <span class="n">me</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">UseStateComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">UseStateComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseStateComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UseStateComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id2">
+<img alt="React Hooks- useState" class="sd-mb-1" src="_images/tut09-react-hooks-usestate.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks- useState</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Click Me</span> button to change the internal <code class="docutils literal notranslate"><span class="pre">count</span></code> state</span><a class="headerlink" href="#id2" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="useeffect">
+<h3><span class="section-number">9.2.2. </span>useEffect<a class="headerlink" href="#useeffect" title="Link to this heading"></a></h3>
+<p>React provides useEffect to do side-effects in a component. Some of the side effects are as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">-</span> <span class="n">Fetching</span> <span class="n">data</span> <span class="kn">from</span><span class="w"> </span><span class="nn">external</span> <span class="n">source</span> <span class="o">&amp;</span> <span class="n">updating</span> <span class="n">the</span> <span class="n">rendered</span> <span class="n">content</span><span class="o">.</span>
+<span class="o">-</span> <span class="n">Updating</span> <span class="n">DOM</span> <span class="n">elements</span> <span class="n">after</span> <span class="n">rendering</span><span class="o">.</span>
+<span class="o">-</span> <span class="n">Subscriptions</span>
+<span class="o">-</span> <span class="n">Using</span> <span class="n">Timers</span>
+<span class="o">-</span> <span class="n">Logging</span>
+</pre></div>
+</div>
+<p>In class based components, these side effects are done using life cycle components. So, useEffect hook is an effect replacement for below mentioned life cycle events.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>- componentDidMount − Fires after the rendering is done for the first time.
+- componentDidUpdate − Fires after the rendering is updated due to prop or state changes.
+- componentWillUnmount − Fires after the rendered content is unmounted during destruction of component.
+</pre></div>
+</div>
+<p>The signature of useEffect is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">useEffect</span><span class="p">(</span> <span class="o">&lt;</span><span class="n">update</span> <span class="n">function</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">dependency</span><span class="o">&gt;</span> <span class="p">)</span>
+<span class="c1"># the signature of the update function is:</span>
+<span class="c1">#    {</span>
+<span class="c1">#       // code</span>
+<span class="c1">#       return &lt;clean up function&gt;</span>
+<span class="c1">#    }</span>
+</pre></div>
+</div>
+<p>useEffect( &lt;update function&gt;, &lt;dependency&gt; ):</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Update function − Update function is the function to be executed after each render phase. This corresponds to componentDidMount and componentDidUpdate events</p></li>
+<li><p>Dependency − Dependency is an array with all the variables on which the function is dependent. Specifying the dependency is very important to optimize the effect hook. In general, update function is called after each render. Sometimes it is not necessary to render update function on each render.</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseEffectComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, {useState, useEffect} from &#39;react&#39;;
+import &#39;./App.css&#39;;
+
+function UseEffectComponent () {
+  const [count, setCount] = useState(0);
+
+  if (typeof UseEffectComponent.logMessages == &#39;undefined&#39;) {
+    UseEffectComponent.logMessages = [];
+  }
+
+  const handleClick=()=&gt;{
+    setCount(count + 1);
+    UseEffectComponent.logMessages.push(&quot;Button was Clicked! Count is &quot;+(count+1)+&quot;.&quot;);
+  }
+  useEffect (() =&gt; {
+    UseEffectComponent.logMessages.push (&#39;Component mounted&#39;);
+    return () =&gt; {
+      // Cleanup function - equivalent to componentWillUnmount
+      UseEffectComponent.logMessages.push (&#39;Component unmounted&#39;);
+    };
+  }, []); // Empty dependency array to run only once on initial render
+  // Equivalent to componentDidMount and componentDidUpdate
+  useEffect (
+    () =&gt; {
+      // This will run after the component mounts and every time `count` changes
+      UseEffectComponent.logMessages.push (&#39;Component mounted or updated&#39;);
+      // Cleanup function - equivalent to componentWillUnmount
+      return () =&gt; {
+        // Cleanup function - equivalent to componentWillUnmount
+        UseEffectComponent.logMessages.push (&#39;Component unmounted for [count] &lt;dependency&gt;&#39;);
+      };
+  },[count]); // The effect depends on the `count` state
+
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;React Hooks- useEffect&lt;/h2&gt;
+      &lt;p&gt;You clicked {count} times&lt;/p&gt;
+      &lt;button onClick={handleClick}&gt;Click me&lt;/button&gt;
+      &lt;div className=&quot;App&quot;&gt;
+        &lt;h5&gt;LogMessages&lt;/h5&gt;
+        {/* Display the list of messages */}
+        &lt;ul&gt;
+          {UseEffectComponent.logMessages.map ((message, index) =&gt; (
+            &lt;li key={index}&gt;{message}&lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default UseEffectComponent;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">UseEffectComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseEffectComponent&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UseEffectComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id3">
+<img alt="React Hooks- useEffect" class="sd-mb-1" src="_images/tut09-react-hooks-useeffect.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.2 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks- useEffect</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Click Me</span> button to change the internal <code class="docutils literal notranslate"><span class="pre">count</span></code> state</span><a class="headerlink" href="#id3" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="usecontext">
+<h3><span class="section-number">9.2.3. </span>useContext<a class="headerlink" href="#usecontext" title="Link to this heading"></a></h3>
+<p>Context is one of the important concept in React. It provides the ability to pass a information from the parent component to all its children to any nested level without passing the information through props in each level. Context will make the code more readable and simple to understand. Context can be used to store information which does not change or have minimal change. Some of the use cases of context are as follows</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Application configuration</p></li>
+<li><p>Current authenticated user information</p></li>
+<li><p>Current user setting</p></li>
+<li><p>Language setting</p></li>
+<li><p>Theme / Design configuration by application / users</p></li>
+</ul>
+</div></blockquote>
+<p>Context usage through hook</p>
+<blockquote>
+<div><ul>
+<li><p>Creating a new context</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">//</span> <span class="n">Create</span> <span class="n">a</span> <span class="n">Context</span>
+<span class="n">const</span> <span class="n">ThemeContext</span> <span class="o">=</span> <span class="n">React</span><span class="o">.</span><span class="n">createContext</span><span class="p">({</span>
+   <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">,</span>
+   <span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span>
+<span class="p">})</span>
+</pre></div>
+</div>
+</li>
+<li><p>Setting context provider in the root component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">ThemeContext</span><span class="o">.</span><span class="n">Provider</span> <span class="n">value</span><span class="o">=</span><span class="p">{{</span>
+   <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;white&#39;</span><span class="p">,</span>
+   <span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span>
+<span class="p">}}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">children</span> <span class="n">components</span><span class="o">.../&gt;</span>
+<span class="o">&lt;/</span><span class="n">ThemeContext</span><span class="o">.</span><span class="n">Provider</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Setting context consumer in the component where we need the context information</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ThemeContext</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;ThemeContext&quot;</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">theme</span> <span class="o">=</span> <span class="n">useContext</span><span class="p">(</span><span class="n">ThemContext</span><span class="p">)</span>
+</pre></div>
+</div>
+</li>
+<li><p>Accessing context information and using it in render method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">let</span> <span class="n">theme</span> <span class="o">=</span> <span class="n">useContext</span><span class="p">(</span><span class="n">ThemeContext</span><span class="p">)</span>
+<span class="k">return</span> <span class="p">(</span>
+   <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span>
+      <span class="n">color</span><span class="p">:</span> <span class="n">theme</span><span class="o">.</span><span class="n">color</span><span class="p">,</span>
+      <span class="n">backgroundColor</span><span class="p">:</span> <span class="n">theme</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="p">}}</span><span class="o">&gt;</span>
+         <span class="n">Hello</span> <span class="n">World</span>
+   <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+<span class="p">)</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<p>Updating context: Updating the context will rerender all the child component. React provides an option to update the context by using both useState and useContext hook.</p>
+<blockquote>
+<div><ul>
+<li><p>In the root component, use useState hook to manage the theme information</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="n">theme</span><span class="p">,</span> <span class="n">setTheme</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">({</span><span class="o">...</span><span class="p">})</span>
+<span class="o">&lt;</span><span class="n">ThemeContext</span><span class="o">.</span><span class="n">Provider</span> <span class="n">value</span><span class="o">=</span><span class="p">{{</span> <span class="n">theme</span><span class="p">,</span> <span class="n">setTheme</span> <span class="p">}}</span><span class="o">&gt;</span>
+    <span class="o">&lt;</span><span class="n">children</span> <span class="n">components</span><span class="o">.../&gt;</span>
+<span class="o">&lt;/</span><span class="n">ThemeContext</span><span class="o">.</span><span class="n">Provider</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+<li><p>In the component where we need the context information, use useContext and state update function</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">ThemeContext</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;ThemeContext&quot;</span><span class="p">;</span>
+<span class="n">let</span> <span class="p">{</span> <span class="n">theme</span><span class="p">,</span> <span class="n">setTheme</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useContext</span><span class="p">(</span><span class="n">ThemeContext</span><span class="p">)</span>
+<span class="n">const</span> <span class="n">handleClick</span><span class="o">=</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+  <span class="n">setTheme</span><span class="p">({</span><span class="n">color</span><span class="p">:</span> <span class="n">color</span><span class="p">});</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./ThemeContext.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span>
+
+<span class="n">const</span> <span class="n">ThemeContext</span> <span class="o">=</span> <span class="n">React</span><span class="o">.</span><span class="n">createContext</span><span class="p">();</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">ThemeContext</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseContextComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useContext</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ThemeContext</span> <span class="kn">from</span><span class="w"> </span><span class="s2">&quot;./ThemeContext&quot;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">UseContextComponent</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">{</span> <span class="n">theme</span><span class="p">,</span> <span class="n">setTheme</span> <span class="p">}</span> <span class="o">=</span> <span class="n">useContext</span><span class="p">(</span><span class="n">ThemeContext</span><span class="p">)</span>
+  <span class="n">const</span> <span class="n">handleClick</span><span class="o">=</span><span class="p">(</span><span class="n">color</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="n">setTheme</span><span class="p">({</span><span class="n">color</span><span class="p">:</span> <span class="n">color</span><span class="p">});</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Hooks</span><span class="o">-</span> <span class="n">useContext</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+         <span class="n">Context</span> <span class="n">Color</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">color</span><span class="p">:</span> <span class="n">theme</span><span class="o">.</span><span class="n">color</span> <span class="p">}}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">theme</span><span class="o">.</span><span class="n">color</span><span class="p">}</span> <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="n">handleClick</span><span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Red</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">button</span>  <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">marginLeft</span><span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">}}</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="n">handleClick</span><span class="p">(</span><span class="s1">&#39;blue&#39;</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Blue</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">UseContextComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UseContextComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseContextComponent&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ThemeContext</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./ThemeContext&#39;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">theme</span><span class="p">,</span> <span class="n">setTheme</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">({</span><span class="n">color</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span><span class="p">});</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;App&#39;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">ThemeContext</span><span class="o">.</span><span class="n">Provider</span>  <span class="n">value</span><span class="o">=</span><span class="p">{{</span> <span class="n">theme</span><span class="p">,</span> <span class="n">setTheme</span> <span class="p">}}</span> <span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">UseContextComponent</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;/</span><span class="n">ThemeContext</span><span class="o">.</span><span class="n">Provider</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id4">
+<img alt="React Hooks- useContext" class="sd-mb-1" src="_images/tut09-react-hooks-usecontext-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.3 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks- useContext</span>, initial context color: <span class="sd-text-success">green</span></span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id5">
+<img alt="React Hooks- useContext" class="sd-my-0" src="_images/tut09-react-hooks-usecontext-red.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.4 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks- useContext</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Red</span> button to change the context color</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="useref">
+<h3><span class="section-number">9.2.4. </span>useRef<a class="headerlink" href="#useref" title="Link to this heading"></a></h3>
+<p>The useRef hook in React is commonly used for accessing and interacting with DOM elements or for storing mutable values that do not trigger a re-render when they change. The useRef hook helps ensure that the component works smoothly with both React’s Virtual DOM and the HTML DOM.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Accessing DOM Elements: You can use useRef to directly reference a DOM element and interact with it (e.g., focusing an input field).</p></li>
+<li><p>Storing Mutable Values: You can use useRef to store values that persist across renders, but changes to those values do not cause re-renders.</p></li>
+</ul>
+</div></blockquote>
+<p>How useRef Works with Virtual DOM and HTML DOM</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Persistent Reference: using useRef allows you to interact with the real HTML DOM directly without causing a re-render or needing to store the value in React state.</p></li>
+<li><p>No Re-rendering on Changes: Unlike state (useState), updating the current property of a useRef does not cause the component to re-render.</p></li>
+</ul>
+</div></blockquote>
+<p>The signature of useRef is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">refObj</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">useRef</span><span class="p">(</span><span class="o">&lt;</span><span class="n">val</span><span class="o">&gt;</span><span class="p">)</span>
+<span class="c1"># val is the initial value to be set for the returned mutable object, refObj.</span>
+<span class="c1"># refObj is the object returned by the hook.</span>
+</pre></div>
+</div>
+<p>To automatically attach a DOM object to the refObj, it should be set in ref props of the element as shown below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="nb">input</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">refObj</span><span class="p">}</span> <span class="o">/&gt;</span>
+</pre></div>
+</div>
+<p>To access the attached DOM element, use current property of the refObj as shown below</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="n">refElement</span> <span class="o">=</span> <span class="n">refObj</span><span class="o">.</span><span class="n">current</span>
+</pre></div>
+</div>
+<p>Use cases of useRef</p>
+<blockquote>
+<div><ul>
+<li><p>Accessing JavaScript DOM API</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Focusing an input element</p></li>
+<li><p>Selecting text</p></li>
+<li><p>play audio or video using media playback API</p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>Imperative animation − Web Animation API provides a rich set of animation feature through imperative programming rather than declarative programming. To use Web animation API, we need access to the raw DOM.</p></li>
+<li><p>Integration with third party library − Since third party library requires access to raw DOM to do its functionality, it is be mandatory to use useRef to get the DOM reference from react and provide it to third party library.</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseRefComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">useState</span><span class="p">,</span> <span class="n">useRef</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">UseRefComponent</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">inputVal</span><span class="p">,</span> <span class="n">setInputVal</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">);</span>
+  <span class="n">const</span> <span class="n">inputRef</span> <span class="o">=</span> <span class="n">useRef</span> <span class="p">(</span><span class="n">null</span><span class="p">);</span>
+  <span class="n">const</span> <span class="n">labelRef</span> <span class="o">=</span> <span class="n">useRef</span><span class="p">(</span><span class="n">null</span><span class="p">);</span>
+
+  <span class="n">const</span> <span class="n">handleInputChange</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">labelRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">innerText</span><span class="o">=</span><span class="n">inputRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">value</span><span class="p">;</span>
+  <span class="p">};</span>
+  <span class="n">const</span> <span class="n">handleClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">setInputVal</span> <span class="p">(</span><span class="n">inputRef</span><span class="o">.</span><span class="n">current</span><span class="o">.</span><span class="n">value</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Hooks</span><span class="o">-</span> <span class="n">useRef</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="nb">input</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">inputRef</span><span class="p">}</span> <span class="nb">type</span><span class="o">=</span><span class="s2">&quot;text&quot;</span> <span class="n">placeholder</span><span class="o">=</span><span class="s2">&quot;Enter input field data&quot;</span> <span class="n">onChange</span><span class="o">=</span><span class="p">{</span><span class="n">handleInputChange</span> <span class="p">}</span> <span class="o">/&gt;</span>
+      <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="n">handleClick</span> <span class="p">(</span><span class="s1">&#39;red&#39;</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Update</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="s1">&#39;10px&#39;</span> <span class="p">}}</span><span class="o">&gt;</span>
+        <span class="n">Input</span> <span class="n">Value</span> <span class="ow">in</span> <span class="n">HTML</span> <span class="n">DOM</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span>  <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span> <span class="p">}}</span> <span class="n">ref</span><span class="o">=</span><span class="p">{</span><span class="n">labelRef</span> <span class="p">}</span> <span class="o">&gt;&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">div</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginTop</span><span class="p">:</span> <span class="s1">&#39;10px&#39;</span> <span class="p">}}</span><span class="o">&gt;</span>
+          <span class="n">Input</span> <span class="n">Value</span> <span class="ow">in</span> <span class="n">react</span> <span class="n">Virtual</span> <span class="n">DOM</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span>  <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span> <span class="p">}}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">inputVal</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">UseRefComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UseRefComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseRefComponent&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;App&#39;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UseRefComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id6">
+<img alt="React Hooks - useRef" class="sd-mb-1" src="_images/tut09-react-hooks-useref-input-dom.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.5 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useRef</span>, auto update useRef label when the input changes</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id7">
+<img alt="React Hooks - useRef" class="sd-my-0" src="_images/tut09-react-hooks-useref-input-react-dom.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.6 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useRef</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Update</span> button to update the inputVal state</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="usereducer">
+<h3><span class="section-number">9.2.5. </span>useReducer<a class="headerlink" href="#usereducer" title="Link to this heading"></a></h3>
+<p>The useReducer hook in React is a powerful alternative to useState for managing complex state logic. It is often used when the state updates depend on previous states or involve multiple sub-values. Essentially, it allows you to handle state transitions in a more structured way, similar to how Redux works, but at the component level.</p>
+<p>The useReducer hook is particularly useful when:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>The state logic is complex (e.g., multiple state variables or conditionally updating state).</p></li>
+<li><p>You need to manage actions (e.g., incrementing, decrementing, resetting a value) in a predictable way.</p></li>
+<li><p>You want to keep state logic separate from the component logic.</p></li>
+</ul>
+</div></blockquote>
+<p>The useReducer hook accepts a reducer function along with the initial value and returns a dispatcher function. Reducer function will accept the initial state and an action (specific scenario) and then provides logic to update the state based on the action. The dispatcher function accepts the action (and corresponding details) and call the reducer function with provided action.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="p">[</span><span class="o">&lt;</span><span class="n">state</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">dispatch</span> <span class="n">function</span><span class="o">&gt;</span><span class="p">]</span> <span class="o">=</span> <span class="n">useReducer</span><span class="p">(</span><span class="o">&lt;</span><span class="n">reducer</span> <span class="n">function</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">initial</span> <span class="n">argument</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">init</span> <span class="n">function</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="c1"># const [state, dispatch] = useReducer(reducer, initialState);</span>
+<span class="c1">#     reducer: A function that takes the current state and an action as arguments and returns the new state.</span>
+<span class="c1">#     initialState: The initial state for the reducer.</span>
+<span class="c1">#     state: The information to be maintained in the state</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseReducerComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useReducer</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+
+<span class="n">const</span> <span class="n">UseReducerComponent</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span> <span class="n">Reducer</span> <span class="n">function</span> <span class="n">that</span> <span class="n">determines</span> <span class="n">how</span> <span class="n">the</span> <span class="n">state</span> <span class="n">changes</span>
+  <span class="n">const</span> <span class="n">countReducerFunction</span> <span class="o">=</span> <span class="p">(</span><span class="n">state</span><span class="p">,</span> <span class="n">action</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">switch</span> <span class="p">(</span><span class="n">action</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="p">{</span>
+      <span class="k">case</span> <span class="s1">&#39;increment&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="o">...</span><span class="n">state</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;red&#39;</span> <span class="p">};</span>
+      <span class="k">case</span> <span class="s1">&#39;decrement&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="o">...</span><span class="n">state</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">count</span> <span class="o">-</span> <span class="mi">1</span><span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;green&#39;</span> <span class="p">};</span>
+      <span class="k">case</span> <span class="s1">&#39;reset&#39;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="p">{</span> <span class="o">...</span><span class="n">state</span><span class="p">,</span> <span class="n">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;blue&#39;</span> <span class="p">};</span>
+      <span class="n">default</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">state</span><span class="p">;</span>
+    <span class="p">}</span>
+  <span class="p">};</span>
+  <span class="o">//</span> <span class="n">Using</span> <span class="n">useReducer</span> <span class="n">to</span> <span class="n">manage</span> <span class="n">state</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">state</span><span class="p">,</span> <span class="n">dispatch</span><span class="p">]</span> <span class="o">=</span> <span class="n">useReducer</span><span class="p">(</span><span class="n">countReducerFunction</span><span class="p">,</span> <span class="p">{</span> <span class="n">count</span><span class="p">:</span> <span class="mi">0</span> <span class="p">,</span> <span class="n">color</span><span class="p">:</span> <span class="s1">&#39;black&#39;</span><span class="p">});</span>
+  <span class="n">const</span> <span class="n">handleClick</span><span class="o">=</span><span class="p">(</span><span class="nb">type</span><span class="p">)</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="n">dispatch</span><span class="p">({</span> <span class="nb">type</span><span class="p">:</span> <span class="nb">type</span> <span class="p">});</span>
+  <span class="p">}</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Hooks</span><span class="o">-</span> <span class="n">useReducer</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="n">Count</span><span class="p">:</span> <span class="o">&lt;</span><span class="n">span</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">color</span><span class="p">:</span> <span class="n">state</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">fontWeight</span><span class="p">:</span> <span class="s1">&#39;bold&#39;</span> <span class="p">}}</span><span class="o">&gt;</span> <span class="p">{</span><span class="n">state</span><span class="o">.</span><span class="n">count</span><span class="p">}</span> <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="n">handleClick</span><span class="p">(</span><span class="s1">&#39;increment&#39;</span><span class="p">)</span> <span class="p">}</span><span class="o">&gt;</span><span class="n">Increment</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">marginLeft</span><span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">}}</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="n">handleClick</span><span class="p">(</span><span class="s1">&#39;decrement&#39;</span><span class="p">)</span> <span class="p">}</span><span class="o">&gt;</span><span class="n">Decrement</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span><span class="n">marginLeft</span><span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">}}</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{()</span> <span class="o">=&gt;</span> <span class="n">handleClick</span><span class="p">(</span><span class="s1">&#39;reset&#39;</span><span class="p">)</span> <span class="p">}</span><span class="o">&gt;</span><span class="n">Reset</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">};</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">UseReducerComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">UseReducerComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseReducerComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;App&#39;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UseReducerComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id8">
+<img alt="React Hooks - useReducer" class="sd-mb-1" src="_images/tut09-react-hooks-usereducer-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.7 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useReducer</span>, state with initial values: {count: 0, color: <span class="sd-text-black">black</span> }</span><a class="headerlink" href="#id8" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id9">
+<img alt="React Hooks - useReducer" class="sd-my-0" src="_images/tut09-react-hooks-usereducer-increment.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.8 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useReducer</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Increment</span> button to update the state { count: xxx, color: <span class="sd-text-danger">red</span> }</span><a class="headerlink" href="#id9" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id10">
+<img alt="React Hooks - useReducer" class="sd-mb-1" src="_images/tut09-react-hooks-usereducer-decrement.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.9 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useReducer</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Decrement</span> button to update the state { count: xxx, color: <span class="sd-text-success">green</span> }</span><a class="headerlink" href="#id10" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id11">
+<img alt="React Hooks - useReducer" class="sd-my-0" src="_images/tut09-react-hooks-usereducer-reset.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.10 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useReducer</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Reset</span> button to update the state { count: 0, color: <span class="sd-text-primary">blue</span> }</span><a class="headerlink" href="#id11" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="usememo">
+<h3><span class="section-number">9.2.6. </span>useMemo<a class="headerlink" href="#usememo" title="Link to this heading"></a></h3>
+<p>The useMemo hook in React is used to optimize performance by memoizing (i caching) the result of a computation or function call, preventing unnecessary recalculations on re-renders. This is especially useful when the computation is expensive or the result is likely to stay the same across renders.</p>
+<p>When to Use useMemo:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>When you have a computationally expensive function that depends on certain props or state values, and you want to avoid recalculating it on every render.</p></li>
+<li><p>When passing down functions to child components, and you want to prevent re-renders of child components when certain props don’t change.</p></li>
+</ul>
+</div></blockquote>
+<p>Using useMemo to Optimize a computationally expensive functions:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>useMemo with Arguments: Use useMemo to memoize computations that take arguments, and only recompute the result when the arguments change.</p></li>
+<li><p>The dependencies array determines when the memoized value should be recalculated. If any dependency changes, the function inside useMemo will be re-run to calculate the new result.</p></li>
+<li><p>useMemo is particularly useful for avoiding unnecessary re-executions of expensive calculations in functional components.</p></li>
+<li><p>Arguments are passed as state variables</p></li>
+</ul>
+</div></blockquote>
+<p>Preventing Re-rendering of Expensive Child Component</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>useMemo is often used to optimize the rendering of child components by memoizing the props that are passed to them, especially when those props are computationally expensive to calculate.</p></li>
+<li><p>ChildComponent won’t re-render unless props or states change to prevent unnecessary recalculations during every render of ParentComponent.</p></li>
+<li><p>Arguments are passed using props</p></li>
+</ul>
+</div></blockquote>
+<p>The signature of the useMemo hook is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="o">&lt;</span><span class="n">output</span> <span class="n">of</span> <span class="n">the</span> <span class="n">expensive</span> <span class="n">logic</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">useMemo</span><span class="p">(</span><span class="o">&lt;</span><span class="n">expensive_fn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">dependency_array</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="n">const</span> <span class="n">MemoizedComponent</span> <span class="o">=</span> <span class="n">React</span><span class="o">.</span><span class="n">memo</span><span class="p">(</span><span class="n">FunctionalComponent</span><span class="p">);</span>
+<span class="c1"># expensive_fn − Do the expensive logic and returns the output to be memoized.</span>
+<span class="c1"># dependency_array − Hold variables, upon which the expensive logic depends. If the value of the array changes,</span>
+<span class="c1">#    then the expensive logic has to be rerun and the value have to be updated.</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseMemoChildComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useMemo</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UseMemoComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseMemoComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">UseMemoChildComponent</span><span class="p">({</span><span class="n">data</span><span class="p">})</span> <span class="p">{</span>
+
+  <span class="k">if</span> <span class="p">(</span><span class="n">typeof</span> <span class="n">UseMemoComponent</span><span class="o">.</span><span class="n">logMessages</span> <span class="o">==</span> <span class="s1">&#39;undefined&#39;</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">UseMemoComponent</span><span class="o">.</span><span class="n">logMessages</span> <span class="o">=</span> <span class="p">[];</span>
+  <span class="p">}</span>
+  <span class="n">const</span> <span class="n">expensiveCalculation</span> <span class="o">=</span> <span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">UseMemoComponent</span><span class="o">.</span><span class="n">logMessages</span><span class="o">.</span><span class="n">push</span><span class="p">(</span><span class="s1">&#39;Calling ChildComputation(&#39;</span><span class="o">+</span><span class="n">num</span><span class="o">+</span><span class="s2">&quot;)&quot;</span><span class="p">)</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">num</span><span class="o">&lt;</span><span class="mi">1</span><span class="p">)</span> <span class="k">return</span> <span class="mi">0</span><span class="p">;</span>
+    <span class="n">let</span> <span class="nb">sum</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">num</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="nb">sum</span> <span class="o">+=</span> <span class="n">i</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="nb">sum</span><span class="p">;</span>
+  <span class="p">};</span>
+
+  <span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">useMemo</span><span class="p">(()</span> <span class="o">=&gt;</span> <span class="n">expensiveCalculation</span><span class="p">(</span><span class="n">data</span><span class="p">),</span> <span class="p">[</span><span class="n">data</span><span class="p">]);</span>
+  <span class="o">//</span><span class="n">let</span> <span class="n">result</span> <span class="o">=</span> <span class="n">expensiveCalculation</span><span class="p">(</span><span class="n">data</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">span</span><span class="o">&gt;</span>
+        <span class="n">Child</span> <span class="n">Compution</span> <span class="n">Sum</span><span class="p">:</span> <span class="p">{</span><span class="n">result</span><span class="p">}</span>
+    <span class="o">&lt;/</span><span class="n">span</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="o">//</span><span class="n">export</span> <span class="n">default</span> <span class="n">React</span><span class="o">.</span><span class="n">memo</span><span class="p">(</span><span class="n">UseMemoChildComponent</span><span class="p">);</span>
+<span class="n">export</span> <span class="n">default</span> <span class="n">UseMemoChildComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseMemoComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React, {useState, useMemo, useEffect} from &#39;react&#39;;
+import UseMemoChildComponent from &#39;./UseMemoChildComponent&#39;;
+import &#39;./App.css&#39;;
+
+function UseMemoComponent () {
+  const [count, setCount] = useState(0);
+  const [number, setNumber] = useState(10);
+  const [childNum, setChildNumber] = useState(10);
+  const [reRender, setReRender] = useState(true);
+
+  if (typeof UseMemoComponent.logMessages == &#39;undefined&#39;) {
+    UseMemoComponent.logMessages = [];
+  }
+  useEffect (() =&gt; {
+    setReRender(!reRender);
+  }, [UseMemoComponent.logMessages]);
+
+  const expensiveCalculation = (num) =&gt; {
+    UseMemoComponent.logMessages.push(&#39;Calling Computation(&#39;+num+&quot;). Count: &quot;+count+&quot;.&quot;)
+    if(num&lt;1) return 0;
+    let sum=0;
+    for (let i = 0; i &lt;= num; i++) {
+      sum += i;
+    }
+    return sum;
+  };
+
+  const useMemoCalculation = useMemo(() =&gt; expensiveCalculation(number), [number]);
+
+  const handleCountClick=()=&gt;{
+    setCount(count + 1);
+    UseMemoComponent.logMessages.push(&quot;Increment Clicked! Count: &quot;+(count+1)+&quot;.&quot;);
+  }
+  const handleNumberClick=()=&gt;{
+    setNumber(number + 1);
+    UseMemoComponent.logMessages.push(&quot;Compute Clicked! Number: &quot;+(number+1)+&quot;.&quot;);
+  }
+
+  const handleChildNumberClick=()=&gt;{
+    setChildNumber(childNum + 1);
+    UseMemoComponent.logMessages.push(&quot;Child-Compute Clicked! Number: &quot;+(childNum+1)+&quot;.&quot;);
+  }
+  return (
+    &lt;div&gt;
+      &lt;h2&gt;React Hooks- useMemo&lt;/h2&gt;
+      &lt;p&gt;Count: {count} &lt;/p&gt;
+      &lt;p&gt;Computation Sum: {useMemoCalculation}&lt;/p&gt;
+      &lt;p&gt;&lt;UseMemoChildComponent  data={childNum} /&gt;&lt;/p&gt;
+      &lt;p&gt;
+        &lt;button onClick={handleCountClick}&gt;Increment&lt;/button&gt;
+        &lt;button style={{marginLeft: &#39;10px&#39;}} onClick={handleNumberClick }&gt;Compute&lt;/button&gt;
+        &lt;button style={{marginLeft: &#39;10px&#39;}} onClick={handleChildNumberClick}&gt;Child-Compute&lt;/button&gt;
+      &lt;/p&gt;
+      &lt;div className=&quot;App&quot;&gt;
+        &lt;h5&gt;LogMessages&lt;/h5&gt;
+        {/* Display the list of messages */}
+        &lt;ul&gt;
+          {UseMemoComponent.logMessages.map ((message, index) =&gt; (
+            &lt;li key={index}&gt;{message}&lt;/li&gt;
+          ))}
+        &lt;/ul&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  );
+}
+
+export default UseMemoComponent;
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">UseMemoComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseMemoComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;App&#39;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UseMemoComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id12">
+<img alt="React Hooks - useMemo" class="sd-mb-1" src="_images/tut09-react-hooks-usememo-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.11 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useMemo</span>, state with initial values: {count: 0, compute: 10, child-compute: 10 }</span><a class="headerlink" href="#id12" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id13">
+<img alt="React Hooks - useMemo" class="sd-my-0" src="_images/tut09-react-hooks-usememo-count.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.12 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useMemo</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Count-Change</span> button to update the state {count: XXX}, no rerender for Compute function value and Child-Compute component.</span><a class="headerlink" href="#id13" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id14">
+<img alt="React Hooks - useMemo" class="sd-my-0" src="_images/tut09-react-hooks-usememo-compute.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.13 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useMemo</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Compute</span> button to update the state {compute: XXX}, no rerender for Count state value and Child-Compute component.</span><a class="headerlink" href="#id14" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id15">
+<img alt="React Hooks - useMemo" class="sd-my-0" src="_images/tut09-react-hooks-usememo-child-compute.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.14 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useMemo</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Child-Compute</span> button to update the state {child-compute: XXX}, no rerender for Count state value and Compute function value.</span><a class="headerlink" href="#id15" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="usecallback">
+<h3><span class="section-number">9.2.7. </span>useCallback<a class="headerlink" href="#usecallback" title="Link to this heading"></a></h3>
+<p>The useCallback hook is similar to useMemo hook and provides the functionality of memoizing the function instead of values. Since callback function in an integral part of the JavaScript programming and callback functions are passed by references, react provides a separate hook, useCallback to memoize the callback functions. The useCallback and useMemo Hooks are similar. The main difference is that useMemo returns a memoized value and useCallback returns a memoized function.</p>
+<p>When to Use useCallback:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>One reason to use useCallback is to prevent a component from re-rendering unless its props have changed.</p></li>
+<li><p>Every time a component re-renders, its functions get recreated. When the function is passed to its child component as props, the props state has actually changed.</p></li>
+<li><p>We can use the useCallback hook to prevent the function from being recreated unless necessary.</p></li>
+</ul>
+</div></blockquote>
+<p>The signature of the useMemo hook is as follows</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">const</span> <span class="o">&lt;</span><span class="n">memoized_callback_fn</span><span class="o">&gt;</span> <span class="o">=</span> <span class="n">useCallback</span><span class="p">(</span><span class="o">&lt;</span><span class="n">callback_fn</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">dependency_array</span><span class="o">&gt;</span><span class="p">);</span>
+<span class="c1"># callback_fn − Callback function to be memorized.</span>
+<span class="c1"># dependency_array − Hold variables, upon which the callback function depends.</span>
+<span class="c1"># The output of the useCallback hook is the memoized callback function of the callback_fn.</span>
+<span class="c1"># The useCallback(callback_fn, dependency_array) is equivalent to useMemo(() =&gt; callback_fn, dependency_array).</span>
+</pre></div>
+</div>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseCallbackChildComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="n">const</span> <span class="n">UseCallbackChildComponent</span><span class="o">=</span><span class="p">({</span><span class="n">count</span><span class="p">,</span> <span class="n">onClick</span><span class="p">})</span><span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="n">console</span><span class="o">.</span><span class="n">log</span><span class="p">(</span><span class="s2">&quot;child render&quot;</span><span class="p">);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="n">Child</span> <span class="n">Component</span><span class="o">&lt;/</span><span class="n">h5</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Child</span> <span class="n">Count</span><span class="p">:</span> <span class="p">{</span><span class="n">count</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+            <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">onClick</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Child</span> <span class="n">Count</span> <span class="n">by</span> <span class="n">Child</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">React</span><span class="o">.</span><span class="n">memo</span><span class="p">(</span><span class="n">UseCallbackChildComponent</span><span class="p">);</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UseCallbackComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useState</span> <span class="p">,</span><span class="n">useCallback</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">UseCallbackChildComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseCallbackChildComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">UseCallbackComponent</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">count</span><span class="p">,</span> <span class="n">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">pcount</span><span class="p">,</span> <span class="n">setPCount</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+
+  <span class="n">const</span> <span class="n">handleCountClick</span><span class="o">=</span><span class="n">useCallback</span><span class="p">(()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="n">setCount</span><span class="p">(</span><span class="n">count</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">},[</span><span class="n">count</span><span class="p">]);</span>
+
+  <span class="n">const</span> <span class="n">handleParentCountClick</span><span class="o">=</span><span class="p">()</span><span class="o">=&gt;</span><span class="p">{</span>
+    <span class="n">setPCount</span><span class="p">(</span><span class="n">pcount</span> <span class="o">+</span> <span class="mi">1</span><span class="p">);</span>
+  <span class="p">};</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">h2</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Hooks</span><span class="o">-</span> <span class="n">useCallback</span><span class="o">&lt;/</span><span class="n">h2</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">Parent</span> <span class="n">Count</span><span class="p">:</span> <span class="p">{</span><span class="n">pcount</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleParentCountClick</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Parent</span> <span class="n">Count</span> <span class="n">by</span> <span class="n">Parent</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">style</span><span class="o">=</span><span class="p">{{</span> <span class="n">marginLeft</span><span class="p">:</span> <span class="s1">&#39;10px&#39;</span><span class="p">}}</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleCountClick</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Child</span> <span class="n">Count</span> <span class="n">by</span> <span class="n">Parent</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UseCallbackChildComponent</span>  <span class="n">count</span><span class="o">=</span><span class="p">{</span><span class="n">count</span><span class="p">}</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleCountClick</span><span class="p">}</span><span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">UseCallbackComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">UseCallbackComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UseCallbackComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s1">&#39;App&#39;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UseCallbackComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id16">
+<img alt="React Hooks - useCallback" class="sd-mb-1" src="_images/tut09-react-hooks-usecallback-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.15 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useCallback</span>, state with initial values: {parent-count: 0,  child-count: 0 }</span><a class="headerlink" href="#id16" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id17">
+<img alt="React Hooks - useCallback" class="sd-mb-1" src="_images/tut09-react-hooks-usecallback-parentcount.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.16 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useCallback</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Parent Count by Parent</span> button to update the state {parent-count: XXX}, no re-render for Child component.</span><a class="headerlink" href="#id17" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id18">
+<img alt="React Hooks - useCallback" class="sd-mb-1" src="_images/tut09-react-hooks-usecallback-parentchild.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.17 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useCallback</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Child Count by Parent</span> button to update the state {child-count: XXX}, re-render for Child component.</span><a class="headerlink" href="#id18" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id19">
+<img alt="React Hooks - useCallback" class="sd-mb-1" src="_images/tut09-react-hooks-usecallback-childchild.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.18 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useCallback</span>, Click <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Child Count by Child</span> button to update the state {child-count: XXX}, re-render for Child component.</span><a class="headerlink" href="#id19" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="custom-hooks">
+<h3><span class="section-number">9.2.8. </span>Custom Hooks<a class="headerlink" href="#custom-hooks" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://www.tutorialspoint.com/reactjs/reactjs_custom_hooks.htm">ReactJS - Custom Hooks</a> : <span class="sd-text-primary sd-text-decoration-line-underline">https://www.tutorialspoint.com/reactjs/reactjs_custom_hooks.htm</span></p>
+<p>React allows to create new custom hooks through existing hooks. Developer can extract a special functionality from the function component and can create it as a separate hook, which can be used in any function component.</p>
+<p>Create a custom hook</p>
+<blockquote>
+<div><p>Let use create a new react function component with infinite scroll feature and then extract the infinite functionality from the function component and create a custom hook. Once the custom hook is created, we will try to change the original function component to use our custom hook.</p>
+<p>The basic functionality of the component is to show a dummy list of todo item simply by generating it. As the user scrolls, the component will generate a new set of dummy todo list and append it to the existing list.</p>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut09-react-hooks/src&gt;</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut09</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">hooks</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./useInfiniteScroll_CustomHook.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>import React from &#39;react&#39;;
+
+const useInfiniteScroll_CustomHook = loadDataFn =&gt; {
+  const [bottom, setBottom] = React.useState (false);
+  React.useEffect (() =&gt; {
+    window.addEventListener (&#39;scroll&#39;, handleScroll);
+    return () =&gt; {
+      window.removeEventListener (&#39;scroll&#39;, handleScroll);
+    };
+  }, []);
+  React.useEffect (
+    () =&gt; {
+      if (!bottom) return;
+      loadDataFn ();
+    },
+    [bottom]
+  );
+
+  function handleScroll () {
+    if (
+      window.innerHeight + document.documentElement.scrollTop !=
+      document.documentElement.offsetHeight
+    ) {
+      return;
+    }
+    setBottom (true);
+  }
+  return [bottom, setBottom];
+};
+
+export default useInfiniteScroll_CustomHook;
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">./UsingCustomHook_InfiniteScrollComponent.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">useState</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">useInfiniteScroll_CustomHook</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./useInfiniteScroll_CustomHook&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">UsingCustomHook_InfiniteScrollComponent</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">data</span><span class="p">,</span> <span class="n">setData</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">([]);</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">count</span><span class="p">,</span> <span class="n">setCount</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span> <span class="p">(</span><span class="mi">100</span><span class="p">);</span>
+  <span class="n">const</span> <span class="p">[</span><span class="n">bottom</span><span class="p">,</span> <span class="n">setBottom</span><span class="p">]</span> <span class="o">=</span> <span class="n">useInfiniteScroll_CustomHook</span> <span class="p">(</span><span class="n">loadMoreData</span><span class="p">);</span>
+
+  <span class="n">const</span> <span class="n">loadData</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[];</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">data</span><span class="o">.</span><span class="n">push</span> <span class="p">({</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+        <span class="n">todo</span><span class="p">:</span> <span class="s1">&#39;Todo Item &#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">toString</span> <span class="p">(),</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="n">setData</span> <span class="p">(</span><span class="n">data</span><span class="p">);</span>
+  <span class="p">};</span>
+
+  <span class="n">function</span> <span class="n">loadMoreData</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="n">let</span> <span class="n">data</span> <span class="o">=</span> <span class="p">[];</span>
+
+    <span class="k">for</span> <span class="p">(</span><span class="n">let</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;=</span> <span class="n">count</span><span class="p">;</span> <span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
+      <span class="n">data</span><span class="o">.</span><span class="n">push</span> <span class="p">({</span>
+        <span class="nb">id</span><span class="p">:</span> <span class="n">i</span><span class="p">,</span>
+        <span class="n">todo</span><span class="p">:</span> <span class="s1">&#39;Todo Item &#39;</span> <span class="o">+</span> <span class="n">i</span><span class="o">.</span><span class="n">toString</span> <span class="p">(),</span>
+      <span class="p">});</span>
+    <span class="p">}</span>
+    <span class="n">setData</span> <span class="p">(</span><span class="n">data</span><span class="p">);</span>
+    <span class="n">setCount</span> <span class="p">(</span><span class="n">count</span> <span class="o">+</span> <span class="mi">100</span><span class="p">);</span>
+    <span class="n">setBottom</span> <span class="p">(</span><span class="n">false</span><span class="p">);</span>
+  <span class="p">}</span>
+  <span class="n">React</span><span class="o">.</span><span class="n">useEffect</span> <span class="p">(()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">loadData</span> <span class="p">(</span><span class="n">count</span><span class="p">);</span>
+  <span class="p">},</span> <span class="p">[]);</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">List</span> <span class="n">of</span> <span class="n">Todo</span> <span class="nb">list</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="n">data</span> <span class="o">&amp;&amp;</span> <span class="n">data</span><span class="o">.</span><span class="n">map</span> <span class="p">(</span><span class="n">item</span> <span class="o">=&gt;</span> <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">item</span><span class="o">.</span><span class="n">id</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">item</span><span class="o">.</span><span class="n">todo</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span><span class="p">)}</span>
+      <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">UsingCustomHook_InfiniteScrollComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code></p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">UsingCustomHook_InfiniteScrollComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./UsingCustomHook_InfiniteScrollComponent&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span> <span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">UsingCustomHook_InfiniteScrollComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-1 sd-row-cols-md-1 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id20">
+<img alt="React Hooks - useCustomHook" class="sd-mb-1" src="_images/tut09-react-hooks-usecustomhook-home.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.19 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useCustomHook</span>, state with initial values: {count: 100}</span><a class="headerlink" href="#id20" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+<div class="sd-col sd-d-flex-column docutils">
+<figure class="align-center" id="id21">
+<img alt="React Hooks - useCustomHook" class="sd-mb-1" src="_images/tut09-react-hooks-usecustomhook-scroll.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 9.20 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">React Hooks - useCustomHook</span>, The application will update the state {count: XXX} and append new todo item once the user hits the end of the page and goes on infinitely.</span><a class="headerlink" href="#id21" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut08-react-router.html" class="btn btn-neutral float-left" title="8. Tut08-React Router" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut10-react-form.html" class="btn btn-neutral float-right" title="10. Tut10-React Form" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

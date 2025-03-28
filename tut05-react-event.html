@@ -1,0 +1,839 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5. Tut05-React Event &mdash; React Tutorial 1.0.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=e59714d7" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom-theme.css?v=63e39a35" />
+
+  
+      <script src="_static/jquery.js?v=5d32c60e"></script>
+      <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+      <script src="_static/documentation_options.js?v=8d563738"></script>
+      <script src="_static/doctools.js?v=9bcbadda"></script>
+      <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+      <script src="_static/design-tabs.js?v=f930bc37"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="6. Tut06-React Component Life Cycle" href="tut06-react-component-life-cycle.html" />
+    <link rel="prev" title="4. Tut04-React State" href="tut04-react-state.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            React Tutorial
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Environment Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html">1. Install ReactJS on Windows</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-linux">2. Install ReactJS on Linux</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reactjs-env-setup.html#install-reactjs-on-macos">3. Install ReactJS on macOS</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">React Tutorial</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="tut01-hello-reactjs-app.html">1. Tut01-Hello ReactJS App</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut02-react-components.html">2. Tut02-React Components</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut03-react-props.html">3. Tut03-React Props</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut04-react-state.html">4. Tut04-React State</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">5. Tut05-React Event</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-test-app-folder-structure">5.1. Create Test App Folder Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#event-management">5.2. Event Management</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#event-handler-in-class-component">5.2.1. Event Handler in Class Component</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#event-handler-pass-no-argument">5.2.1.1. Event Handler (Pass no argument)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#event-handler-pass-extra-argument">5.2.1.2. Event Handler (Pass extra argument)</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#event-handler-in-function-component">5.2.2. Event Handler in Function Component</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#id2">5.2.2.1. Event Handler (Pass no argument)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#id3">5.2.2.2. Event Handler (Pass extra argument)</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="tut06-react-component-life-cycle.html">6. Tut06-React Component Life Cycle</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut07-react-component-styling.html">7. Tut07-React Component Styling</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut08-react-router.html">8. Tut08-React Router</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut09-react-hooks.html">9. Tut09-React Hooks</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut10-react-form.html">10. Tut10-React Form</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut11-react-restful-api.html">11. Tut11-React and RESTful API</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tut12-react-testing.html">12. Tut12-React Unit Testing</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">React Tutorial</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5. </span>Tut05-React Event</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <p class="title-center h1" id="tut05-react-event">React Event</p>
+<section id="id1">
+<h1><span class="section-number">5. </span>Tut05-React Event<a class="headerlink" href="#id1" title="Link to this heading"></a></h1>
+<p>Events are just some actions performed by a user to interact with any application. They can be the smallest of actions, like hovering a mouse pointer on an element that triggers a drop-down menu, resizing an application window, or dragging and dropping elements to upload them etc. Events in React are divided into three categories:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Mouse Events − onClick, onDrag, onDoubleClick</p></li>
+<li><p>Keyboard Events − onKeyDown, onKeyPress, onKeyUp</p></li>
+<li><p>Focus Events − onFocus, onBlur</p></li>
+</ul>
+</div></blockquote>
+<section id="create-test-app-folder-structure">
+<h2><span class="section-number">5.1. </span>Create Test App Folder Structure<a class="headerlink" href="#create-test-app-folder-structure" title="Link to this heading"></a></h2>
+<ul>
+<li><p>Move inside a project folder:</p></li>
+<li><p>Create React App &lt;tut05-react-event&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">create</span> <span class="n">react</span><span class="o">-</span><span class="n">app</span> <span class="n">tut05</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">event</span>
+</pre></div>
+</div>
+</li>
+<li><p>Move inside the ReactJS App/src folder &lt;tut05-react-event/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut05</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">event</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Disable the unit test: open the file <code class="docutils literal notranslate"><span class="pre">App.test.js</span></code>, make modifications</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="p">{</span> <span class="n">render</span><span class="p">,</span> <span class="n">screen</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;@testing-library/react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">App</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./App&#39;</span><span class="p">;</span>
+
+<span class="n">test</span><span class="p">(</span><span class="s1">&#39;renders learn react link&#39;</span><span class="p">,</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+  <span class="o">//</span><span class="n">render</span><span class="p">(</span><span class="o">&lt;</span><span class="n">App</span> <span class="o">/&gt;</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">Disable</span> <span class="n">test</span>
+  <span class="o">//</span><span class="n">const</span> <span class="n">linkElement</span> <span class="o">=</span> <span class="n">screen</span><span class="o">.</span><span class="n">getByText</span><span class="p">(</span><span class="o">/</span><span class="n">learn</span> <span class="n">react</span><span class="o">/</span><span class="n">i</span><span class="p">);</span>
+  <span class="o">//</span><span class="n">expect</span><span class="p">(</span><span class="n">linkElement</span><span class="p">)</span><span class="o">.</span><span class="n">toBeInTheDocument</span><span class="p">();</span>
+<span class="p">});</span>
+</pre></div>
+</div>
+</li>
+<li><p>open the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code>, and make modifications.</p></li>
+<li><p>Run the ReactJS App &lt;tut05-react-event&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">yarn</span> <span class="n">start</span>
+</pre></div>
+</div>
+</li>
+<li><p>open your browser and go to <a class="reference external" href="http://localhost:3000">http://localhost:3000</a> to see your React app running</p></li>
+</ul>
+</section>
+<section id="event-management">
+<h2><span class="section-number">5.2. </span>Event Management<a class="headerlink" href="#event-management" title="Link to this heading"></a></h2>
+<p>React event handling is very similar to DOM events with little changes. In JavaScript, when an event is specified, you will be dealing with a react event type called a synthetic event instead of regular DOM events. SyntheticEvent is expensive in terms of CPU resources as every synthetic event created needs to be garbage-collected. Every synthetic event object has the following attributes:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>boolean bubbles</p></li>
+<li><p>boolean cancelable</p></li>
+<li><p>DOMEventTarget currentTarget</p></li>
+<li><p>boolean defaultPrevented</p></li>
+<li><p>number eventPhase</p></li>
+<li><p>boolean isTrusted</p></li>
+<li><p>DOMEvent nativeEvent</p></li>
+<li><p>void preventDefault()</p></li>
+<li><p>boolean isDefaultPrevented()</p></li>
+<li><p>void stopPropagation()</p></li>
+<li><p>boolean isPropagationStopped()</p></li>
+<li><p>void persist()</p></li>
+<li><p>DOMEventTarget target</p></li>
+<li><p>number timeStamp</p></li>
+<li><p>string type</p></li>
+</ul>
+</div></blockquote>
+<section id="event-handler-in-class-component">
+<h3><span class="section-number">5.2.1. </span>Event Handler in Class Component<a class="headerlink" href="#event-handler-in-class-component" title="Link to this heading"></a></h3>
+<p>Define an event handler method to handle the given event:</p>
+<blockquote>
+<div><ul>
+<li><p>using regular function</p>
+<blockquote>
+<div><ul>
+<li><p>Define the event handler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="n">eventHandlerMethod</span><span class="p">()</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing an event argument</span>
+<span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing extra arguments</span>
+<span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use the event handler</p>
+<blockquote>
+<div><ul>
+<li><p>must bind the event handler method in the constructor of the component</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">...</span>
+   <span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Handle event on element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing an event argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing extra arguments</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">extra</span><span class="p">)}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span><span class="o">=&gt;</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>using lambda function</p>
+<blockquote>
+<div><ul>
+<li><p>Define the event handler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing an event argument</span>
+<span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing extra arguments</span>
+<span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use the event handler</p>
+<blockquote>
+<div><ul>
+<li><p>in lambda syntax, binding is not needed. this keyword will be automatically bound to the event handler method</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">constructor</span><span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">...</span>
+   <span class="o">//</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>  <span class="c1"># not needed</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Handle event on element</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing an event argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing extra arguments</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span><span class="o">=&gt;</span><span class="n">this</span><span class="o">.</span><span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<section id="event-handler-pass-no-argument">
+<h4><span class="section-number">5.2.1.1. </span>Event Handler (Pass no argument)<a class="headerlink" href="#event-handler-pass-no-argument" title="Link to this heading"></a></h4>
+<p>Here’s an example of a ReactJS class component that handles both button and div clicks to update a message list:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Button click, add ‘Button was clicked!’ to LogMessageList</p></li>
+<li><p>Div click, add ‘Div was clicked!’ to LogMessageList</p></li>
+</ul>
+</div></blockquote>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;EventHandlerComponent /&gt;</p></li>
+<li><p>Three elements in  &lt;EventHandlerComponent /&gt;, LogMessage, Button and Div</p></li>
+<li><p>Child component update information when button is clicked</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut05-react-event/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut05</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">event</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">EventHandlerComponent.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EventHandlerComponent</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span> <span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">Initialize</span> <span class="n">state</span> <span class="k">with</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="n">messages</span><span class="p">:</span> <span class="p">[]};</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">handleDivClick</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">handleDivClick</span><span class="o">.</span><span class="n">bind</span> <span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="o">//</span> <span class="n">Event</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">button</span> <span class="n">click</span>
+  <span class="o">//</span> <span class="k">class</span><span class="w"> </span><span class="nc">property</span><span class="p">,</span> <span class="n">using</span> <span class="k">lambda</span> <span class="n">function</span> <span class="n">to</span> <span class="n">define</span> <span class="n">event</span> <span class="n">handler</span><span class="o">.</span> <span class="n">autobind</span><span class="o">.</span>
+  <span class="n">handleButtonClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setState</span> <span class="p">(</span><span class="n">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="n">messages</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="n">prevState</span><span class="o">.</span><span class="n">messages</span><span class="p">,</span> <span class="s1">&#39;Button was clicked!&#39;</span><span class="p">],</span>
+    <span class="p">}));</span>
+  <span class="p">};</span>
+
+  <span class="o">//</span> <span class="n">Event</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">div</span> <span class="n">click</span><span class="p">,</span>
+  <span class="o">//</span> <span class="n">Class</span> <span class="n">method</span><span class="p">,</span> <span class="n">must</span> <span class="n">bind</span> <span class="n">the</span> <span class="n">event</span> <span class="n">handler</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">constructor</span> <span class="n">of</span> <span class="n">the</span> <span class="n">component</span><span class="o">.</span>
+  <span class="n">handleDivClick</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setState</span> <span class="p">(</span><span class="n">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="n">messages</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="n">prevState</span><span class="o">.</span><span class="n">messages</span><span class="p">,</span> <span class="s1">&#39;Div was clicked!&#39;</span><span class="p">],</span>
+    <span class="p">}));</span>
+  <span class="p">}</span>
+  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Event</span> <span class="n">Handler</span> <span class="n">Example</span> <span class="p">(</span><span class="n">Class</span> <span class="n">Component</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span>
+          <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">handleDivClick</span><span class="p">}</span>
+          <span class="n">style</span><span class="o">=</span><span class="p">{{</span>
+            <span class="n">marginTop</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="n">padding</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="o">/*</span><span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;#f0f0f0&#39;</span><span class="p">,</span><span class="o">*/</span>
+            <span class="n">cursor</span><span class="p">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">,</span>
+          <span class="p">}}</span>
+        <span class="o">&gt;</span>
+          <span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Div</span><span class="p">)</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">/*</span> <span class="n">Button</span> <span class="n">that</span> <span class="n">triggers</span> <span class="n">button</span> <span class="n">click</span> <span class="n">handler</span> <span class="o">*/</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">handleButtonClick</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Button</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="n">LogMessages</span><span class="o">&lt;/</span><span class="n">h5</span><span class="o">&gt;</span>
+          <span class="p">{</span><span class="o">/*</span> <span class="n">Display</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span> <span class="o">*/</span><span class="p">}</span>
+          <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="n">message</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+              <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">index</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="p">))}</span>
+          <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">EventHandlerComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">EventHandlerComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./EventHandlerComponent&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">EventHandlerComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id4">
+<img alt="Event Handler (Pass no argument)" class="sd-my-2" src="_images/tut05-react-event-class-component.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.1 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Event Handler (Pass no argument)</span>, Click <span class="sd-text-primary">Click Me (Div)</span> or <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Click Me (Button)</span> to update logMessages</span><a class="headerlink" href="#id4" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="event-handler-pass-extra-argument">
+<h4><span class="section-number">5.2.1.2. </span>Event Handler (Pass extra argument)<a class="headerlink" href="#event-handler-pass-extra-argument" title="Link to this heading"></a></h4>
+<p>Here’s an example of a ReactJS class component that handles both button and div clicks to update a message list:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Button click, add ‘Button was clicked!’ to LogMessageList</p></li>
+<li><p>Div click, add ‘Div was clicked!’ to LogMessageList</p></li>
+</ul>
+</div></blockquote>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;EventHandlerComponentWithExtraArgs /&gt;</p></li>
+<li><p>Three elements in  &lt;EventHandlerComponentWithExtraArgs /&gt;, LogMessage, Button and Div</p></li>
+<li><p>Child component update information when button is clicked</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut05-react-event/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut05</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">event</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">EventHandlerComponentWithExtraArgs.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span><span class="n">Component</span><span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">EventHandlerComponentWithExtraArgs</span> <span class="n">extends</span> <span class="n">Component</span> <span class="p">{</span>
+  <span class="n">constructor</span> <span class="p">(</span><span class="n">props</span><span class="p">)</span> <span class="p">{</span>
+    <span class="nb">super</span> <span class="p">(</span><span class="n">props</span><span class="p">);</span>
+    <span class="o">//</span> <span class="n">Initialize</span> <span class="n">state</span> <span class="k">with</span> <span class="n">a</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">state</span> <span class="o">=</span> <span class="p">{</span><span class="n">messages</span><span class="p">:</span> <span class="p">[]};</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">handleDivClick</span> <span class="o">=</span> <span class="n">this</span><span class="o">.</span><span class="n">handleDivClick</span><span class="o">.</span><span class="n">bind</span> <span class="p">(</span><span class="n">this</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="o">//</span> <span class="n">Event</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">button</span> <span class="n">click</span>
+  <span class="o">//</span> <span class="k">class</span><span class="w"> </span><span class="nc">property</span><span class="p">,</span> <span class="n">using</span> <span class="k">lambda</span> <span class="n">function</span> <span class="n">to</span> <span class="n">define</span> <span class="n">event</span> <span class="n">handler</span><span class="o">.</span> <span class="n">autobind</span><span class="o">.</span>
+  <span class="n">handleButtonClick</span> <span class="o">=</span> <span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setState</span> <span class="p">(</span><span class="n">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="n">messages</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="n">prevState</span><span class="o">.</span><span class="n">messages</span><span class="p">,</span> <span class="s1">&#39;Button was clicked! Passed Argument: [&#39;</span><span class="o">+</span><span class="n">number</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">],</span>
+    <span class="p">}));</span>
+  <span class="p">};</span>
+
+  <span class="o">//</span> <span class="n">Event</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">div</span> <span class="n">click</span><span class="p">,</span>
+  <span class="o">//</span> <span class="n">Class</span> <span class="n">method</span><span class="p">,</span> <span class="n">must</span> <span class="n">bind</span> <span class="n">the</span> <span class="n">event</span> <span class="n">handler</span> <span class="n">method</span> <span class="ow">in</span> <span class="n">the</span> <span class="n">constructor</span> <span class="n">of</span> <span class="n">the</span> <span class="n">component</span><span class="o">.</span>
+  <span class="n">handleDivClick</span> <span class="p">(</span> <span class="n">number</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">this</span><span class="o">.</span><span class="n">setState</span> <span class="p">(</span><span class="n">prevState</span> <span class="o">=&gt;</span> <span class="p">({</span>
+      <span class="n">messages</span><span class="p">:</span> <span class="p">[</span><span class="o">...</span><span class="n">prevState</span><span class="o">.</span><span class="n">messages</span><span class="p">,</span> <span class="s1">&#39;Div was clicked! Passed Argument: [&#39;</span><span class="o">+</span><span class="n">number</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">],</span>
+    <span class="p">}));</span>
+  <span class="p">}</span>
+  <span class="n">render</span> <span class="p">()</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Event</span> <span class="n">Handler</span> <span class="n">Example</span> <span class="p">(</span><span class="n">Class</span> <span class="n">Component</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span>
+          <span class="n">onClick</span><span class="o">=</span><span class="p">{</span> <span class="n">this</span><span class="o">.</span><span class="n">handleDivClick</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">20</span><span class="p">))</span> <span class="p">}</span>
+          <span class="n">style</span><span class="o">=</span><span class="p">{{</span>
+            <span class="n">marginTop</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="n">padding</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="o">/*</span><span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;#f0f0f0&#39;</span><span class="p">,</span><span class="o">*/</span>
+            <span class="n">cursor</span><span class="p">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">,</span>
+          <span class="p">}}</span>
+        <span class="o">&gt;</span>
+          <span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Div</span><span class="p">)</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">/*</span> <span class="n">Button</span> <span class="n">that</span> <span class="n">triggers</span> <span class="n">button</span> <span class="n">click</span> <span class="n">handler</span> <span class="o">*/</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span><span class="o">=&gt;</span><span class="n">this</span><span class="o">.</span><span class="n">handleButtonClick</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">20</span><span class="p">),</span><span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Button</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="n">LogMessages</span><span class="o">&lt;/</span><span class="n">h5</span><span class="o">&gt;</span>
+          <span class="p">{</span><span class="o">/*</span> <span class="n">Display</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span> <span class="o">*/</span><span class="p">}</span>
+          <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="p">{</span><span class="n">this</span><span class="o">.</span><span class="n">state</span><span class="o">.</span><span class="n">messages</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="n">message</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+              <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">index</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="p">))}</span>
+          <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">EventHandlerComponentWithExtraArgs</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">EventHandlerComponentWithExtraArgs</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./EventHandlerComponentWithExtraArgs&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">EventHandlerComponentWithExtraArgs</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id5">
+<img alt="Event Handler (Pass extra argument)" class="sd-my-2" src="_images/tut05-react-event-class-component-extra-arg.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.2 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Event Handler (Pass extra argument)</span>, Click <span class="sd-text-primary">Click Me (Div)</span> or <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Click Me (Button)</span> to update logMessages</span><a class="headerlink" href="#id5" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+<section id="event-handler-in-function-component">
+<h3><span class="section-number">5.2.2. </span>Event Handler in Function Component<a class="headerlink" href="#event-handler-in-function-component" title="Link to this heading"></a></h3>
+<p>Define an event handler method to handle the given event:</p>
+<blockquote>
+<div><ul>
+<li><p>using regular function</p>
+<blockquote>
+<div><ul>
+<li><p>Define the event handler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="n">eventHandlerMethod</span><span class="p">()</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing an event argument</span>
+<span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing extra arguments</span>
+<span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use the event handler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing an event argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing extra arguments</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">eventHandlerMethod</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">this</span><span class="p">,</span> <span class="n">extra</span><span class="p">)}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span><span class="o">=&gt;</span><span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>using lambda function</p>
+<blockquote>
+<div><ul>
+<li><p>Define the event handler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing an event argument</span>
+<span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="p">(</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+
+<span class="c1"># Passing extra arguments</span>
+<span class="n">eventHandlerMethod</span> <span class="o">=</span> <span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+   <span class="o">....</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Use the event handler</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># Passing no argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing an event argument</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">eventHandlerMethod</span><span class="p">}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+
+<span class="c1">#Passing extra arguments</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">eventHandlerMethod</span><span class="o">.</span><span class="n">bind</span><span class="p">(</span><span class="n">null</span><span class="p">,</span> <span class="n">extra</span><span class="p">)}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+<span class="o">&lt;</span><span class="n">tag</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span><span class="o">=&gt;</span><span class="n">eventHandlerMethod</span><span class="p">(</span><span class="n">extra</span><span class="p">,</span> <span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span> <span class="o">...</span> <span class="o">&lt;/</span><span class="n">tag</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div></blockquote>
+<section id="id2">
+<h4><span class="section-number">5.2.2.1. </span>Event Handler (Pass no argument)<a class="headerlink" href="#id2" title="Link to this heading"></a></h4>
+<p>Here’s an example of a ReactJS function component that handles both button and div clicks to update a message list:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Button click, add ‘Button was clicked!’ to LogMessageList</p></li>
+<li><p>Div click, add ‘Div was clicked!’ to LogMessageList</p></li>
+</ul>
+</div></blockquote>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;EventHandlerComponent /&gt;</p></li>
+<li><p>Three elements in  &lt;EventHandlerComponent /&gt;, LogMessage, Button and Div</p></li>
+<li><p>Child component update information when button is clicked</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut05-react-event/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut05</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">event</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">EventHandlerComponent.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span>  <span class="n">EventHandlerComponent</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="p">[</span><span class="n">messages</span><span class="p">,</span> <span class="n">setMessages</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">([]);</span>
+
+    <span class="o">//</span> <span class="n">Regular</span> <span class="n">function</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">div</span> <span class="n">click</span>
+    <span class="n">function</span> <span class="n">handleDivClick</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="n">setMessages</span><span class="p">((</span><span class="n">prevMessages</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="n">prevMessages</span><span class="p">,</span> <span class="s1">&#39;Div was clicked!&#39;</span><span class="p">]);</span>
+    <span class="p">};</span>
+    <span class="o">//</span> <span class="n">Event</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">button</span> <span class="n">click</span>
+    <span class="o">//</span> <span class="k">class</span><span class="w"> </span><span class="nc">property</span><span class="p">,</span> <span class="n">using</span> <span class="k">lambda</span> <span class="n">function</span> <span class="n">to</span> <span class="n">define</span> <span class="n">event</span> <span class="n">handler</span><span class="o">.</span> <span class="n">autobind</span><span class="o">.</span>
+    <span class="n">const</span> <span class="n">handleButtonClick</span> <span class="o">=</span> <span class="p">()</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">setMessages</span><span class="p">((</span><span class="n">prevMessages</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="n">prevMessages</span><span class="p">,</span> <span class="s1">&#39;Button was clicked!&#39;</span><span class="p">]);</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Event</span> <span class="n">Handler</span> <span class="n">Example</span> <span class="p">(</span><span class="n">Function</span> <span class="n">Component</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span>
+          <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleDivClick</span><span class="p">}</span>
+          <span class="n">style</span><span class="o">=</span><span class="p">{{</span>
+            <span class="n">marginTop</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="n">padding</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="o">/*</span><span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;#f0f0f0&#39;</span><span class="p">,</span><span class="o">*/</span>
+            <span class="n">cursor</span><span class="p">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">,</span>
+          <span class="p">}}</span>
+        <span class="o">&gt;</span>
+          <span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Div</span><span class="p">)</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">/*</span> <span class="n">Button</span> <span class="n">that</span> <span class="n">triggers</span> <span class="n">button</span> <span class="n">click</span> <span class="n">handler</span> <span class="o">*/</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{</span><span class="n">handleButtonClick</span><span class="p">}</span><span class="o">&gt;</span><span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Button</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="n">LogMessages</span><span class="o">&lt;/</span><span class="n">h5</span><span class="o">&gt;</span>
+          <span class="p">{</span><span class="o">/*</span> <span class="n">Display</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span> <span class="o">*/</span><span class="p">}</span>
+          <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="p">{</span> <span class="n">messages</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="n">message</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+              <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">index</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="p">))}</span>
+          <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">EventHandlerComponent</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">EventHandlerComponent</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./EventHandlerComponent&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">EventHandlerComponent</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id6">
+<img alt="Event Handler (Pass no argument)" class="sd-my-2" src="_images/tut05-react-event-function-component.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.3 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Event Handler (Pass no argument)</span>, Click <span class="sd-text-primary">Click Me (Div)</span> or <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Click Me (Button)</span> to update logMessages</span><a class="headerlink" href="#id6" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+<section id="id3">
+<h4><span class="section-number">5.2.2.2. </span>Event Handler (Pass extra argument)<a class="headerlink" href="#id3" title="Link to this heading"></a></h4>
+<p>Here’s an example of a ReactJS class component that handles both button and div clicks to update a message list:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Button click, add ‘Button was clicked!’ to LogMessageList</p></li>
+<li><p>Div click, add ‘Div was clicked!’ to LogMessageList</p></li>
+</ul>
+</div></blockquote>
+<p>Structure:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>Create a parent component &lt;App /&gt;</p></li>
+<li><p>Create a child component &lt;EventHandlerComponentWithExtraArgs /&gt;</p></li>
+<li><p>Three elements in  &lt;EventHandlerComponentWithExtraArgs /&gt;, LogMessage, Button and Div</p></li>
+<li><p>Child component update information when button is clicked</p></li>
+</ul>
+</div></blockquote>
+<ul>
+<li><p>Move inside the ReactJS App/src folder &lt;tut05-react-event/src&gt;:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="n">tut05</span><span class="o">-</span><span class="n">react</span><span class="o">-</span><span class="n">event</span><span class="o">/</span><span class="n">src</span>
+</pre></div>
+</div>
+</li>
+<li><p>Create the file <code class="docutils literal notranslate"><span class="pre">EventHandlerComponentWithExtraArgs.js</span></code> (Child Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">React</span><span class="o">,</span><span class="w"> </span><span class="p">{</span> <span class="n">useState</span> <span class="p">}</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;react&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+
+<span class="n">function</span>  <span class="n">EventHandlerComponentWithExtraArgs</span><span class="p">()</span> <span class="p">{</span>
+    <span class="n">const</span> <span class="p">[</span><span class="n">messages</span><span class="p">,</span> <span class="n">setMessages</span><span class="p">]</span> <span class="o">=</span> <span class="n">useState</span><span class="p">([]);</span>
+
+    <span class="o">//</span> <span class="n">Regular</span> <span class="n">function</span> <span class="n">to</span> <span class="n">handle</span> <span class="n">div</span> <span class="n">click</span>
+    <span class="n">function</span> <span class="n">handleDivClick</span> <span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="n">e</span><span class="p">)</span> <span class="p">{</span>
+        <span class="n">setMessages</span><span class="p">((</span><span class="n">prevMessages</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="n">prevMessages</span><span class="p">,</span> <span class="s1">&#39;Div was clicked! Passed Argument: [&#39;</span><span class="o">+</span><span class="n">number</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">]);</span>
+    <span class="p">};</span>
+    <span class="o">//</span> <span class="n">Event</span> <span class="n">handler</span> <span class="k">for</span> <span class="n">button</span> <span class="n">click</span>
+    <span class="o">//</span> <span class="k">class</span><span class="w"> </span><span class="nc">property</span><span class="p">,</span> <span class="n">using</span> <span class="k">lambda</span> <span class="n">function</span> <span class="n">to</span> <span class="n">define</span> <span class="n">event</span> <span class="n">handler</span><span class="o">.</span> <span class="n">autobind</span><span class="o">.</span>
+    <span class="n">const</span> <span class="n">handleButtonClick</span> <span class="o">=</span> <span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="n">e</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+        <span class="n">setMessages</span><span class="p">((</span><span class="n">prevMessages</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">[</span><span class="o">...</span><span class="n">prevMessages</span><span class="p">,</span> <span class="s1">&#39;Button was clicked! Passed Argument: [&#39;</span><span class="o">+</span><span class="n">number</span><span class="o">+</span><span class="s1">&#39;]&#39;</span><span class="p">]);</span>
+    <span class="p">};</span>
+
+    <span class="k">return</span> <span class="p">(</span>
+      <span class="o">&lt;</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">h4</span><span class="o">&gt;</span><span class="n">React</span> <span class="n">Event</span> <span class="n">Handler</span> <span class="n">Example</span> <span class="p">(</span><span class="n">Function</span> <span class="n">Component</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">h4</span><span class="o">&gt;</span>
+        <span class="o">&lt;</span><span class="n">div</span>
+          <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span><span class="o">=&gt;</span><span class="n">handleDivClick</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">20</span><span class="p">),</span><span class="n">e</span><span class="p">)}</span>
+          <span class="n">style</span><span class="o">=</span><span class="p">{{</span>
+            <span class="n">marginTop</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="n">padding</span><span class="p">:</span> <span class="s1">&#39;20px&#39;</span><span class="p">,</span>
+            <span class="o">/*</span><span class="n">backgroundColor</span><span class="p">:</span> <span class="s1">&#39;#f0f0f0&#39;</span><span class="p">,</span><span class="o">*/</span>
+            <span class="n">cursor</span><span class="p">:</span> <span class="s1">&#39;pointer&#39;</span><span class="p">,</span>
+          <span class="p">}}</span>
+        <span class="o">&gt;</span>
+          <span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Div</span><span class="p">)</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+        <span class="p">{</span><span class="o">/*</span> <span class="n">Button</span> <span class="n">that</span> <span class="n">triggers</span> <span class="n">button</span> <span class="n">click</span> <span class="n">handler</span> <span class="o">*/</span><span class="p">}</span>
+        <span class="o">&lt;</span><span class="n">button</span> <span class="n">onClick</span><span class="o">=</span><span class="p">{(</span><span class="n">e</span><span class="p">)</span><span class="o">=&gt;</span><span class="n">handleButtonClick</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">Math</span><span class="o">.</span><span class="n">random</span><span class="p">()</span> <span class="o">*</span> <span class="mi">20</span><span class="p">),</span><span class="n">e</span><span class="p">)}</span><span class="o">&gt;</span><span class="n">Click</span> <span class="n">Me</span> <span class="p">(</span><span class="n">Button</span><span class="p">)</span><span class="o">&lt;/</span><span class="n">button</span><span class="o">&gt;</span>
+
+        <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+          <span class="o">&lt;</span><span class="n">h5</span><span class="o">&gt;</span><span class="n">LogMessages</span><span class="o">&lt;/</span><span class="n">h5</span><span class="o">&gt;</span>
+          <span class="p">{</span><span class="o">/*</span> <span class="n">Display</span> <span class="n">the</span> <span class="nb">list</span> <span class="n">of</span> <span class="n">messages</span> <span class="o">*/</span><span class="p">}</span>
+          <span class="o">&lt;</span><span class="n">ul</span><span class="o">&gt;</span>
+            <span class="p">{</span> <span class="n">messages</span><span class="o">.</span><span class="n">map</span> <span class="p">((</span><span class="n">message</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">(</span>
+              <span class="o">&lt;</span><span class="n">li</span> <span class="n">key</span><span class="o">=</span><span class="p">{</span><span class="n">index</span><span class="p">}</span><span class="o">&gt;</span><span class="p">{</span><span class="n">message</span><span class="p">}</span><span class="o">&lt;/</span><span class="n">li</span><span class="o">&gt;</span>
+            <span class="p">))}</span>
+          <span class="o">&lt;/</span><span class="n">ul</span><span class="o">&gt;</span>
+        <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+      <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+    <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">EventHandlerComponentWithExtraArgs</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Edit the file <code class="docutils literal notranslate"><span class="pre">App.js</span></code> (Parent Component):</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="s1">&#39;./App.css&#39;</span><span class="p">;</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">EventHandlerComponentWithExtraArgs</span> <span class="kn">from</span><span class="w"> </span><span class="s1">&#39;./EventHandlerComponentWithExtraArgs&#39;</span><span class="p">;</span>
+
+<span class="n">function</span> <span class="n">App</span><span class="p">()</span> <span class="p">{</span>
+  <span class="k">return</span> <span class="p">(</span>
+    <span class="o">&lt;</span><span class="n">div</span> <span class="n">className</span><span class="o">=</span><span class="s2">&quot;App&quot;</span><span class="o">&gt;</span>
+      <span class="o">&lt;</span><span class="n">EventHandlerComponentWithExtraArgs</span> <span class="o">/&gt;</span>
+    <span class="o">&lt;/</span><span class="n">div</span><span class="o">&gt;</span>
+  <span class="p">);</span>
+<span class="p">}</span>
+
+<span class="n">export</span> <span class="n">default</span> <span class="n">App</span><span class="p">;</span>
+</pre></div>
+</div>
+</li>
+<li><p>Screenshot</p>
+<blockquote>
+<div><figure class="align-center" id="id7">
+<img alt="Event Handler (Pass extra argument)" class="sd-my-2" src="_images/tut05-react-event-function-component-extra-arg.png" />
+<figcaption>
+<p><span class="caption-number">Fig. 5.4 </span><span class="caption-text"><span class="sd-text-primary sd-font-weight-bold">Event Handler (Pass extra argument)</span>, Click <span class="sd-text-primary">Click Me (Div)</span> or <span class="sd-sphinx-override sd-badge sd-outline-secondary sd-text-secondary">Click Me (Button)</span> to update logMessages</span><a class="headerlink" href="#id7" title="Link to this image"></a></p>
+</figcaption>
+</figure>
+</div></blockquote>
+</li>
+</ul>
+</section>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tut04-react-state.html" class="btn btn-neutral float-left" title="4. Tut04-React State" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="tut06-react-component-life-cycle.html" class="btn btn-neutral float-right" title="6. Tut06-React Component Life Cycle" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, David G..</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
